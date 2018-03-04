@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="18dp"
+    android:layout_marginTop="6dp"
     android:background="@color/colorBackground">
 
     <WebView
@@ -25,18 +26,20 @@
             android:id="@+id/headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:text="Headline"
             android:textColor="@color/colorPrimaryDark"/>
         <TextView
             android:id="@+id/datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
             android:text="DateTime"/>
         <TextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:text="This is content of blog post Salman Menyapa"/>
     </LinearLayout>
 

@@ -19,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     toolbar.setTitle(R.string.title_home);
+                    fragment = new SalmanMenyapaFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
@@ -47,10 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        loadFragment(new SalmanMenyapaFragment());
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
