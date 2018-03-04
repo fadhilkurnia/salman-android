@@ -7,7 +7,8 @@
     android:orientation="horizontal"
     android:padding="18dp"
     android:layout_marginTop="6dp"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:onClick="openPost">
 
     <WebView
         android:id="@+id/webview_image"
