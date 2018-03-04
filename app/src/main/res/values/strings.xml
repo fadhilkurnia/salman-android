@@ -2,4 +2,9 @@
     <string name="app_name">Alumni Salman</string>
     <string name="goto_register">Belum punya akun ? <b>Daftar</b></string>
     <string name="goto_login">Sudah punya akun ? <b>Masuk</b></string>
+    <string name="title_home">Salman Menyapa</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_map">Peta Alumni</string>
+    <string name="title_gift">Merchandise</string>
+    <string name="title_contact">Contact Us</string>
 </resources>
