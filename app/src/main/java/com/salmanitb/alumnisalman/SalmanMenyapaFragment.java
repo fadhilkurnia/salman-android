@@ -58,8 +58,11 @@ public class SalmanMenyapaFragment extends Fragment {
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg");
         postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
         postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
         postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
         postList.add(post);
 
         postAdapter.notifyDataSetChanged();

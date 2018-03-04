@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     public void openPost(View view) {
         Intent intent = new Intent(this, ReadPostActivity.class);
         String datetime, headline, content, imageLocation;
