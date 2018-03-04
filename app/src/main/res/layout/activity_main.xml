@@ -35,6 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
+        app:itemTextColor="@color/button_navigation_color_selector"
+        app:itemIconTint="@color/button_navigation_color_selector"
         app:menu="@menu/navigation_item" />
 
 </android.support.design.widget.CoordinatorLayout>
