@@ -17,7 +17,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     private List<Post> postList;
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        public TextView datetime, headline, content;
+        public TextView datetime, headline, content, contentfull;
         public WebView webview;
 
         public PostViewHolder(View view) {
@@ -25,6 +25,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             datetime = (TextView) view.findViewById(R.id.datetime);
             headline = (TextView) view.findViewById(R.id.headline);
             content = (TextView) view.findViewById(R.id.content);
+            contentfull = (TextView) view.findViewById(R.id.content_full);
             webview = (WebView) view.findViewById(R.id.webview_image);
         }
     }
@@ -47,6 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.datetime.setText(post.getDatetime());
         holder.headline.setText(post.getHeadline());
         holder.content.setText(post.getContent().substring(0,149) + "...");
+        holder.contentfull.setText(post.getContent());
         holder.webview.loadUrl(post.getImageLocation());
         holder.webview.setInitialScale(60);
     }

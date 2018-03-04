@@ -4,7 +4,9 @@
 package com.salmanitb.alumnisalman;
 
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
     private String datetime, headline, videoLocation, content, imageLocation;
 
     public Post() {
