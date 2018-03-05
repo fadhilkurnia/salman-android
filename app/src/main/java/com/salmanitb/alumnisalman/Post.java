@@ -7,15 +7,15 @@ package com.salmanitb.alumnisalman;
 import java.io.Serializable;
 
 public class Post implements Serializable {
-    private String datetime, headline, videoLocation, content, imageLocation;
+    private String datetime, headline, youtubeVideoID, content, imageLocation;
 
     public Post() {
 
     }
-    public Post(String datetime, String headline, String videoLocation, String content, String imageLocation) {
+    public Post(String datetime, String headline, String youtubeVideoID, String content, String imageLocation) {
         this.datetime = datetime;
         this.headline = headline;
-        this.videoLocation = videoLocation;
+        this.youtubeVideoID = youtubeVideoID;
         this.content = content;
         this.imageLocation = imageLocation;
     }
@@ -36,12 +36,12 @@ public class Post implements Serializable {
         this.headline = headline;
     }
 
-    public String getVideoLocation() {
-        return videoLocation;
+    public String getYoutubeVideoID() {
+        return youtubeVideoID;
     }
 
-    public void setVideoLocation(String videoLocation) {
-        this.videoLocation = videoLocation;
+    public void setYoutubeVideoID(String youtubeVideoID) {
+        this.youtubeVideoID = youtubeVideoID;
     }
 
     public String getContent() {

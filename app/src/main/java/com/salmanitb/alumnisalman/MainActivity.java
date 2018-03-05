@@ -76,14 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void openPost(View view) {
         Intent intent = new Intent(this, ReadPostActivity.class);
-        String datetime, headline, content, imageLocation;
+        String datetime, headline,youtubeVideoID , content, imageLocation;
 
         datetime = ((TextView) view.findViewById(R.id.datetime)).getText().toString();
         headline = ((TextView) view.findViewById(R.id.headline)).getText().toString();
+        youtubeVideoID = ((TextView) view.findViewById(R.id.youtube_video_ID)).getText().toString();
         content = ((TextView) view.findViewById(R.id.content_full)).getText().toString();
         imageLocation = ((WebView) view.findViewById(R.id.webview_image)).getUrl().toString();
 
-        Post post = new Post(datetime, headline, "", content, imageLocation);
+        Post post = new Post(datetime, headline, youtubeVideoID, content, imageLocation);
         intent.putExtra("POST", post);
         startActivity(intent);
     }

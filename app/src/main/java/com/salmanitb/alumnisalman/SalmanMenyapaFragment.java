@@ -40,7 +40,7 @@ public class SalmanMenyapaFragment extends Fragment {
     }
 
     private void preparePostData() {
-        Post post = new Post("Kamis, 1 Maret 2018", "KALAM Salman: Keterhubungan Antar Alumni Itu Penting", "",
+        Post post = new Post("Kamis, 1 Maret 2018", "KALAM Salman: Keterhubungan Antar Alumni Itu Penting", "5xUCnEixL-s",
                 "Pembangunan jaringan merupakan hal yang vital dalam mengoptimalkan dakwah di Indonesia. Berkaitan dengan ini, Alumni Masjid Salman ITB seyogyanya senantiasa terhubung satu sama lain. Bahkan lebih lanjut lagi, saling membantu saat ada yang kesusahan.\n" +
                         "\n" +
                         "“Kita harus senantiasa bergandengan tangan, siapa yang jatuh, kita bantu. Lalu siapa yang naik, agar tidak lupa,” kata Ketua YPM Salman Syarif Hidayat, pada acara Pelantikan Pengurus Keluarga Alumni (KALAM) Salman ITB periode 2015-2019, Sabtu (24/1).\n" +
@@ -58,11 +58,11 @@ public class SalmanMenyapaFragment extends Fragment {
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg");
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
+        post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getYoutubeVideoID(), post.getContent(), post.getImageLocation());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", post.getVideoLocation(), post.getContent(), post.getImageLocation());
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);
 
         postAdapter.notifyDataSetChanged();

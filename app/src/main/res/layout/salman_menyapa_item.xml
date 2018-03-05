@@ -47,6 +47,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
+        <TextView
+            android:id="@+id/youtube_video_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

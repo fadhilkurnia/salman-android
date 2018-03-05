@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import com.google.android.youtube.player.YouTubePlayerFragment;
 public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
 
     public static final String API_KEY = "AIzaSyCP4a36d6Q4ZKWav5e_ELlBhZmf6wOwgls";
-    public static final String VIDEO_ID = "5xUCnEixL-s";
+    public static String VIDEO_ID = "";
 
     private Toolbar toolbar;
     private TextView datetime, headline, content;
@@ -48,6 +49,10 @@ public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer
         headline.setText(post.getHeadline());
         content.setText(post.getContent());
         webView.loadUrl(post.getImageLocation());
+        VIDEO_ID = post.getYoutubeVideoID();
+        if (VIDEO_ID.equals("")) {
+            youTubePlayerFragment.getView().setVisibility(View.GONE);
+        }
     }
 
     @Override
