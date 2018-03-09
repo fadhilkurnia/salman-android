@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@android:dimen/app_icon_size"
     android:orientation="vertical"
     tools:context="com.salmanitb.alumnisalman.SalmanMenyapaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:onClick="openFirstPost">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <WebView
+                android:id="@+id/latest_webview_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+            </WebView>
+            <TextView
+                android:id="@+id/latest_headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/latest_webview_image"
+                android:padding="6dp"
+                android:text="This is the headline"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="@android:color/white"
+                android:background="#77000000"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/latest_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:text="DateTime"
+            android:textColor="@android:color/darker_gray" />
+        <TextView
+            android:id="@+id/latest_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="8dp"
+            android:text="This is content of blog post Salman Menyapa"/>
+        <TextView
+            android:id="@+id/latest_content_full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/latest_youtube_video_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,5 +72,4 @@
 
     </ScrollView>
 
-
-</FrameLayout>
+</LinearLayout>

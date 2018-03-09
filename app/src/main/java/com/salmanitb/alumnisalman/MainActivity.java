@@ -76,15 +76,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void openPost(View view) {
         Intent intent = new Intent(this, ReadPostActivity.class);
-        String datetime, headline,youtubeVideoID , content, imageLocation;
+        String datetime, headline,youtubeVideoID , content, webViewImage;
 
         datetime = ((TextView) view.findViewById(R.id.datetime)).getText().toString();
         headline = ((TextView) view.findViewById(R.id.headline)).getText().toString();
         youtubeVideoID = ((TextView) view.findViewById(R.id.youtube_video_ID)).getText().toString();
         content = ((TextView) view.findViewById(R.id.content_full)).getText().toString();
-        imageLocation = ((WebView) view.findViewById(R.id.webview_image)).getUrl().toString();
+        webViewImage = ((WebView) view.findViewById(R.id.webview_image)).getUrl().toString();
 
-        Post post = new Post(datetime, headline, youtubeVideoID, content, imageLocation);
+        Post post = new Post(datetime, headline, youtubeVideoID, content, webViewImage);
+        intent.putExtra("POST", post);
+        startActivity(intent);
+    }
+
+    public void openFirstPost(View view) {
+        Intent intent = new Intent(this, ReadPostActivity.class);
+        String datetime, headline,youtubeVideoID , content, webViewImage;
+
+        datetime = ((TextView) view.findViewById(R.id.latest_datetime)).getText().toString();
+        headline = ((TextView) view.findViewById(R.id.latest_headline)).getText().toString();
+        youtubeVideoID = ((TextView) view.findViewById(R.id.latest_youtube_video_ID)).getText().toString();
+        content = ((TextView) view.findViewById(R.id.latest_content_full)).getText().toString();
+        webViewImage = ((WebView) view.findViewById(R.id.latest_webview_image)).getUrl().toString();
+
+        Post post = new Post(datetime, headline, youtubeVideoID, content, webViewImage);
         intent.putExtra("POST", post);
         startActivity(intent);
     }
