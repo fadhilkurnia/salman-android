@@ -1,4 +1,4 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.model.Post;
 
 public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
 

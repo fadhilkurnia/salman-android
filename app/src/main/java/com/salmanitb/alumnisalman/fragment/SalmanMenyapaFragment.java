@@ -1,6 +1,5 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,6 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.activity.PostAdapter;
+import com.salmanitb.alumnisalman.model.Post;
+
 import java.util.ArrayList;
 import java.util.List;
 

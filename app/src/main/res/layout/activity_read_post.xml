@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.salmanitb.alumnisalman.ReadPostActivity">
+    tools:context="com.salmanitb.alumnisalman.activity.ReadPostActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"

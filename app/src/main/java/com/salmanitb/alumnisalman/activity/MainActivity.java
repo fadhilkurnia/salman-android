@@ -1,4 +1,4 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
+import com.salmanitb.alumnisalman.model.Post;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;

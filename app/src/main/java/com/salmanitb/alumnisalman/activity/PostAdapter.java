@@ -1,7 +1,7 @@
 /**
  * Created by nursyahrina on 03/03/18.
  */
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.model.Post;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@
     android:padding="6dp"
     android:layout_marginBottom="@android:dimen/app_icon_size"
     android:orientation="vertical"
-    tools:context="com.salmanitb.alumnisalman.SalmanMenyapaFragment">
+    tools:context="com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment">
 
     <ScrollView
         android:layout_width="match_parent"
