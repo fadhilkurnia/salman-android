@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBackground"
     tools:context="com.salmanitb.alumnisalman.ReadPostActivity">
 
     <android.support.v7.widget.Toolbar
@@ -55,37 +54,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|end"
             android:src="@drawable/ic_action_share"
+            app:elevation="8dp"
             app:backgroundTint="@android:color/holo_green_dark" />
     </LinearLayout>
 
-    <ScrollView
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <WebView
-                android:id="@+id/webview_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp">
-            </WebView>
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="This is content of blog post Salman Menyapa"/>
-            <fragment
-                android:name="com.google.android.youtube.player.YouTubePlayerFragment"
-                android:id="@+id/youtube_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"/>
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="0dp">
+    </WebView>
 
 </LinearLayout>
