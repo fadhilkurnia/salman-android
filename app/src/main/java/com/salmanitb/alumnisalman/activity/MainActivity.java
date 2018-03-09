@@ -19,6 +19,9 @@ import com.salmanitb.alumnisalman.model.Post;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
+    Fragment salmanMenyapaFragment;
+    Fragment alumniFragment;
+    Fragment contactFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     toolbar.setTitle(R.string.title_home);
-                    fragment = new SalmanMenyapaFragment();
-                    loadFragment(fragment);
+                    loadFragment(salmanMenyapaFragment);
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
@@ -56,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-        loadFragment(new SalmanMenyapaFragment());
+
+        salmanMenyapaFragment = new SalmanMenyapaFragment();
+
+        loadFragment(salmanMenyapaFragment);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
