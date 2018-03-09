@@ -53,7 +53,8 @@
         android:layout_marginTop="30dp"
         android:background="#827717"
         android:text="Masuk"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:onClick="Login"/>
 
     <TextView
         android:id="@+id/txt_register"
