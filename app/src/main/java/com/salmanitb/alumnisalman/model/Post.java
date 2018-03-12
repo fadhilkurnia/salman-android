@@ -1,7 +1,7 @@
 /**
  * Created by nursyahrina on 03/03/18.
  */
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.model;
 
 
 import java.io.Serializable;

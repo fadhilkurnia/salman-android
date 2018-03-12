@@ -1,4 +1,4 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -8,7 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 import android.widget.TextView;
 
-public class ReadPostActivity extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.model.Post;
+
+public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
+
+    public static final String API_KEY = "AIzaSyCP4a36d6Q4ZKWav5e_ELlBhZmf6wOwgls";
+    public static String VIDEO_ID = "";
 
     private Toolbar toolbar;
     private TextView datetime, headline;
@@ -34,5 +43,15 @@ public class ReadPostActivity extends AppCompatActivity {
         datetime.setText(post.getDatetime());
         headline.setText(post.getHeadline());
         webView.loadUrl("http://kabar.salmanitb.com/2015/01/25/kalam-salman-keterhubungan-antar-alumni-penting/");
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
     }
 }

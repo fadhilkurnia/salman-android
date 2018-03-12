@@ -1,5 +1,7 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,10 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.activity.ReadPostActivity;
+import com.salmanitb.alumnisalman.adapter.PostAdapter;
+import com.salmanitb.alumnisalman.model.Post;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +28,6 @@ import java.util.List;
 public class SalmanMenyapaFragment extends Fragment {
 
     private List<Post> postList = new ArrayList<Post>();
-    private TextView datetime, headline, content, contentfull, youtubeVideoID;
-    private WebView webViewImage;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
 
@@ -32,15 +36,18 @@ public class SalmanMenyapaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
-        datetime = (TextView) rootView.findViewById(R.id.datetime_latest);
-        headline = (TextView) rootView.findViewById(R.id.headline_latest);
-        youtubeVideoID = (TextView) rootView.findViewById(R.id.youtube_video_ID_latest);
-        content = (TextView) rootView.findViewById(R.id.content_latest);
-        contentfull = (TextView) rootView.findViewById(R.id.content_full_latest);
-        webViewImage = (WebView) rootView.findViewById(R.id.webview_image_latest);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
 
-        postAdapter = new PostAdapter(postList);
+        PostAdapter.OnItemClickListener listener = new PostAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Post post) {
+                Intent intent = new Intent(getActivity(), ReadPostActivity.class);
+                intent.putExtra("POST", post);
+                startActivity(intent);
+            }
+        };
+
+        postAdapter = new PostAdapter(postList, listener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -68,12 +75,6 @@ public class SalmanMenyapaFragment extends Fragment {
                         "\n" +
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg");
-        webViewImage.loadUrl(post.getImageLocation());
-        datetime.setText(post.getDatetime());
-        headline.setText(post.getHeadline());
-        content.setText(post.getContent().substring(0,170) + "...");
-        contentfull.setText(post.getContent());
-        youtubeVideoID.setText(post.getYoutubeVideoID());
 
         post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getYoutubeVideoID(), post.getContent(), post.getImageLocation());
         postList.add(post);
