@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,8 @@ import java.util.List;
 public class SalmanMenyapaFragment extends Fragment {
 
     private List<Post> postList = new ArrayList<Post>();
+    private TextView datetime, headline, content, contentfull, youtubeVideoID;
+    private WebView webViewImage;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
 
@@ -27,6 +32,12 @@ public class SalmanMenyapaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
+        datetime = (TextView) rootView.findViewById(R.id.datetime_latest);
+        headline = (TextView) rootView.findViewById(R.id.headline_latest);
+        youtubeVideoID = (TextView) rootView.findViewById(R.id.youtube_video_ID_latest);
+        content = (TextView) rootView.findViewById(R.id.content_latest);
+        contentfull = (TextView) rootView.findViewById(R.id.content_full_latest);
+        webViewImage = (WebView) rootView.findViewById(R.id.webview_image_latest);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
 
         postAdapter = new PostAdapter(postList);
@@ -57,8 +68,18 @@ public class SalmanMenyapaFragment extends Fragment {
                         "\n" +
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg");
-        postList.add(post);
+        webViewImage.loadUrl(post.getImageLocation());
+        datetime.setText(post.getDatetime());
+        headline.setText(post.getHeadline());
+        content.setText(post.getContent().substring(0,170) + "...");
+        contentfull.setText(post.getContent());
+        youtubeVideoID.setText(post.getYoutubeVideoID());
+
         post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getYoutubeVideoID(), post.getContent(), post.getImageLocation());
+        postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);
         post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);

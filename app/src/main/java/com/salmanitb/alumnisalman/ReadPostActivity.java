@@ -5,22 +5,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-
-public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
-
-    public static final String API_KEY = "AIzaSyCP4a36d6Q4ZKWav5e_ELlBhZmf6wOwgls";
-    public static String VIDEO_ID = "";
+public class ReadPostActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView datetime, headline, content;
+    private TextView datetime, headline;
     private WebView webView;
 
     @Override
@@ -38,35 +29,10 @@ public class ReadPostActivity extends AppCompatActivity implements YouTubePlayer
 
         datetime = (TextView) findViewById(R.id.datetime);
         headline = (TextView) findViewById(R.id.headline);
-        content = (TextView) findViewById(R.id.content);
-        webView = (WebView) findViewById(R.id.webview_image);
-
-        YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment)getFragmentManager()
-                .findFragmentById(R.id.youtube_fragment);
-        youTubePlayerFragment.initialize(API_KEY, this);
+        webView = (WebView) findViewById(R.id.webview);
 
         datetime.setText(post.getDatetime());
         headline.setText(post.getHeadline());
-        content.setText(post.getContent());
-        webView.loadUrl(post.getImageLocation());
-        VIDEO_ID = post.getYoutubeVideoID();
-        if (VIDEO_ID.equals("")) {
-            youTubePlayerFragment.getView().setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult result) {
-        Toast.makeText(this, "Failed to initialize.", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-        if(null== player) return;
-
-        // Start buffering
-        if (!wasRestored) {
-            player.cueVideo(VIDEO_ID);
-        }
+        webView.loadUrl("http://kabar.salmanitb.com/2015/01/25/kalam-salman-keterhubungan-antar-alumni-penting/");
     }
 }
