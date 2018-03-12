@@ -8,34 +8,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder>{
 
     private List<Post> postList;
+    PostClickListener listener;
 
-    public class PostViewHolder extends RecyclerView.ViewHolder {
-        public TextView datetime, headline, content, contentfull, youtubeVideoID;
-        public WebView webview;
+    public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.webview_image) ImageView image;
+        @BindView(R.id.datetime) TextView datetime;
+        @BindView(R.id.headline) TextView headline;
+        @BindView(R.id.content) TextView content;
+        @BindView(R.id.content_full) TextView contentfull;
+        @BindView(R.id.youtube_video_ID) TextView youtubeVideoID;
 
         public PostViewHolder(View view) {
             super(view);
-            datetime = (TextView) view.findViewById(R.id.datetime);
-            headline = (TextView) view.findViewById(R.id.headline);
-            content = (TextView) view.findViewById(R.id.content);
-            contentfull = (TextView) view.findViewById(R.id.content_full);
-            youtubeVideoID = (TextView) view.findViewById(R.id.youtube_video_ID);
-            webview = (WebView) view.findViewById(R.id.webview_image);
+            ButterKnife.bind(this,view);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.ItemClicked(view, this.getPosition());
         }
     }
 
-    public PostAdapter(List<Post> postList) {
+    public PostAdapter(List<Post> postList, PostClickListener listener) {
         this.postList = postList;
+        this.listener = listener;
     }
 
     @Override
@@ -54,13 +66,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.content.setText(post.getContent().substring(0,149) + "...");
         holder.contentfull.setText(post.getContent());
         holder.youtubeVideoID.setText(post.getYoutubeVideoID());
-        holder.webview.loadUrl(post.getImageLocation());
-        holder.webview.setInitialScale(60);
+        Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(holder.image);
     }
 
     @Override
     public int getItemCount() {
         return postList.size();
+    }
+
+    public Post getPost(int index) {
+        return postList.get(index);
+    }
+
+    public interface PostClickListener {
+        public void ItemClicked(View v, int position);
     }
 
 }

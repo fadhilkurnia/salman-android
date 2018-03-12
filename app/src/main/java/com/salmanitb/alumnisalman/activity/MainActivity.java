@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        salmanMenyapaFragment = new SalmanMenyapaFragment();
+        salmanMenyapaFragment = new SalmanMenyapaFragment(this);
 
         loadFragment(salmanMenyapaFragment);
 

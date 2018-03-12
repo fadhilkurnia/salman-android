@@ -1,5 +1,8 @@
 package com.salmanitb.alumnisalman.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,8 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.activity.ReadPostActivity;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.model.Post;
 
@@ -25,6 +31,17 @@ public class SalmanMenyapaFragment extends Fragment {
     private List<Post> postList = new ArrayList<Post>();
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
+    private Context context;
+
+    public SalmanMenyapaFragment() {
+        super();
+    }
+
+    @SuppressLint("ValidFragment")
+    public SalmanMenyapaFragment(Context context) {
+        super();
+        this.context = context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +50,14 @@ public class SalmanMenyapaFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
 
-        postAdapter = new PostAdapter(postList);
+        postAdapter = new PostAdapter(postList, new PostAdapter.PostClickListener() {
+            @Override
+            public void ItemClicked(View v, int position) {
+                Intent intent = new Intent(context, ReadPostActivity.class);
+                intent.putExtra("POST", postList.get(position));
+                startActivity(intent);
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
