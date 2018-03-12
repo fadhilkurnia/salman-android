@@ -18,7 +18,6 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.ReadPostActivity;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.model.Post;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +75,12 @@ public class SalmanMenyapaFragment extends Fragment {
                         "\n" +
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg");
-        postList.add(post);
+
         post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getYoutubeVideoID(), post.getContent(), post.getImageLocation());
+        postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        postList.add(post);
+        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);
         post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
         postList.add(post);
