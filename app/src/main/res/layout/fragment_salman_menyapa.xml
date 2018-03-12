@@ -19,42 +19,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <WebView
-                android:id="@+id/latest_webview_image"
+                android:id="@+id/webview_image_latest"
                 android:layout_width="match_parent"
                 android:layout_height="180dp">
             </WebView>
             <TextView
-                android:id="@+id/latest_headline"
+                android:id="@+id/headline_latest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/latest_webview_image"
+                android:layout_alignBottom="@id/webview_image_latest"
                 android:padding="6dp"
-                android:text="This is the headline"
+                android:text="This is the latest headline"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="@android:color/white"
                 android:background="#77000000"/>
         </RelativeLayout>
         <TextView
-            android:id="@+id/latest_datetime"
+            android:id="@+id/datetime_latest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
             android:text="DateTime"
             android:textColor="@android:color/darker_gray" />
         <TextView
-            android:id="@+id/latest_content"
+            android:id="@+id/content_latest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
             android:paddingBottom="8dp"
             android:text="This is content of blog post Salman Menyapa"/>
         <TextView
-            android:id="@+id/latest_content_full"
+            android:id="@+id/content_full_latest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
         <TextView
-            android:id="@+id/latest_youtube_video_ID"
+            android:id="@+id/youtube_video_ID_latest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />

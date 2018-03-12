@@ -32,12 +32,12 @@ public class SalmanMenyapaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
-        datetime = (TextView) rootView.findViewById(R.id.latest_datetime);
-        headline = (TextView) rootView.findViewById(R.id.latest_headline);
-        youtubeVideoID = (TextView) rootView.findViewById(R.id.latest_youtube_video_ID);
-        content = (TextView) rootView.findViewById(R.id.latest_content);
-        contentfull = (TextView) rootView.findViewById(R.id.latest_content_full);
-        webViewImage = (WebView) rootView.findViewById(R.id.latest_webview_image);
+        datetime = (TextView) rootView.findViewById(R.id.datetime_latest);
+        headline = (TextView) rootView.findViewById(R.id.headline_latest);
+        youtubeVideoID = (TextView) rootView.findViewById(R.id.youtube_video_ID_latest);
+        content = (TextView) rootView.findViewById(R.id.content_latest);
+        contentfull = (TextView) rootView.findViewById(R.id.content_full_latest);
+        webViewImage = (WebView) rootView.findViewById(R.id.webview_image_latest);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
 
         postAdapter = new PostAdapter(postList);
