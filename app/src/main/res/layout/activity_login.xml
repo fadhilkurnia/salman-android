@@ -10,7 +10,7 @@
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:theme="@style/AppTheme.NoActionBar"
-    tools:context="com.salmanitb.alumnisalman.LoginActivity">
+    tools:context="com.salmanitb.alumnisalman.activity.LoginActivity">
 
     <ImageView
         android:layout_width="130dp"

@@ -3,73 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="@android:dimen/app_icon_size"
     android:orientation="vertical"
-    tools:context="com.salmanitb.alumnisalman.SalmanMenyapaFragment">
+    tools:context="com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_salman_menyapa"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:onClick="openFirstPost">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <WebView
-                android:id="@+id/webview_image_latest"
-                android:layout_width="match_parent"
-                android:layout_height="180dp">
-            </WebView>
-            <TextView
-                android:id="@+id/headline_latest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/webview_image_latest"
-                android:padding="6dp"
-                android:text="This is the latest headline"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                android:textColor="@android:color/white"
-                android:background="#77000000"/>
-        </RelativeLayout>
-        <TextView
-            android:id="@+id/datetime_latest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            android:text="DateTime"
-            android:textColor="@android:color/darker_gray" />
-        <TextView
-            android:id="@+id/content_latest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            android:paddingBottom="8dp"
-            android:text="This is content of blog post Salman Menyapa"/>
-        <TextView
-            android:id="@+id/content_full_latest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-        <TextView
-            android:id="@+id/youtube_video_ID_latest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_salman_menyapa"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
-        </android.support.v7.widget.RecyclerView>
-
-    </ScrollView>
+        android:scrollbars="none"
+        android:layout_width="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

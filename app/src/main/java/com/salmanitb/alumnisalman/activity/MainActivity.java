@@ -1,4 +1,4 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -14,34 +13,44 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
+import com.salmanitb.alumnisalman.model.Post;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+    Fragment salmanMenyapaFragment;
+    Fragment alumniFragment;
+    Fragment contactFragment;
+
+    @BindView(R.id.my_toolbar) Toolbar toolbar;
+    @BindView(R.id.navigation) BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    toolbar.setTitle(R.string.title_home);
-                    fragment = new SalmanMenyapaFragment();
-                    loadFragment(fragment);
+                    toolbar.setVisibility(View.GONE);
+                    loadFragment(salmanMenyapaFragment);
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
                     fragment = new ProfilFragment();
                     loadFragment(fragment);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
                     toolbar.setTitle(R.string.title_map);
-                    return true;
-                case R.id.navigation_gift:
-                    toolbar.setTitle(R.string.title_gift);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_contact:
                     toolbar.setTitle(R.string.title_contact);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
             }
             return false;
@@ -52,18 +61,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        loadFragment(new SalmanMenyapaFragment());
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        salmanMenyapaFragment = new SalmanMenyapaFragment();
+        alumniFragment = new SalmanMenyapaFragment();
+        contactFragment = new SalmanMenyapaFragment();
+
+        loadFragment(salmanMenyapaFragment);
     }
 
     private void loadFragment(Fragment fragment) {
-        // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
@@ -91,18 +102,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openFirstPost(View view) {
-        Intent intent = new Intent(this, ReadPostActivity.class);
-        String datetime, headline,youtubeVideoID , content, webViewImage;
-
-        datetime = ((TextView) view.findViewById(R.id.datetime_latest)).getText().toString();
-        headline = ((TextView) view.findViewById(R.id.headline_latest)).getText().toString();
-        youtubeVideoID = ((TextView) view.findViewById(R.id.youtube_video_ID_latest)).getText().toString();
-        content = ((TextView) view.findViewById(R.id.content_full_latest)).getText().toString();
-        webViewImage = ((WebView) view.findViewById(R.id.webview_image_latest)).getUrl().toString();
-
-        Post post = new Post(datetime, headline, youtubeVideoID, content, webViewImage);
-        intent.putExtra("POST", post);
-        startActivity(intent);
-    }
 }

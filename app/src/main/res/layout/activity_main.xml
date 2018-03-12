@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context="com.salmanitb.alumnisalman.MainActivity">
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.salmanitb.alumnisalman.activity.MainActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar"
+        app:title="@string/title_home"
+        android:visibility="gone"
+        app:titleTextColor="@android:color/white" />
+
+    <FrameLayout
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:titleTextColor="@android:color/white"
-            app:title="@string/title_home"
-            app:popupTheme="@style/Theme.AppCompat.NoActionBar"/>
-        <FrameLayout
-            android:id="@+id/frame_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    </LinearLayout>
+        android:layout_above="@+id/navigation"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_marginBottom="-4dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        app:itemTextColor="@color/button_navigation_color_selector"
+        android:background="@drawable/navigation_background"
         app:itemIconTint="@color/button_navigation_color_selector"
+        app:itemTextColor="@color/button_navigation_color_selector"
         app:menu="@menu/navigation_item" />
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

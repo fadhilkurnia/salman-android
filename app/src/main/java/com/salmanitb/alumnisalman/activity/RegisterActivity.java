@@ -1,10 +1,11 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import butterknife.BindView;
+import com.salmanitb.alumnisalman.R;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
