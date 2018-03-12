@@ -1,7 +1,7 @@
 /**
  * Created by nursyahrina on 03/03/18.
  */
-package com.salmanitb.alumnisalman.activity;
+package com.salmanitb.alumnisalman.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

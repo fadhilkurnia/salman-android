@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.salmanitb.alumnisalman.R;
-import com.salmanitb.alumnisalman.activity.PostAdapter;
+import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.model.Post;
 
 import java.util.ArrayList;
