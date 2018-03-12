@@ -24,28 +24,9 @@ import butterknife.ButterKnife;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder>{
 
     private List<Post> postList;
-    PostClickListener listener;
+    private PostAdapter.OnItemClickListener listener;
 
-    public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.webview_image) ImageView image;
-        @BindView(R.id.datetime) TextView datetime;
-        @BindView(R.id.headline) TextView headline;
-        @BindView(R.id.content) TextView content;
-        @BindView(R.id.content_full) TextView contentfull;
-        @BindView(R.id.youtube_video_ID) TextView youtubeVideoID;
-
-        public PostViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this,view);
-        }
-
-        @Override
-        public void onClick(View view) {
-            listener.ItemClicked(view, this.getPosition());
-        }
-    }
-
-    public PostAdapter(List<Post> postList, PostClickListener listener) {
+    public PostAdapter(List<Post> postList, PostAdapter.OnItemClickListener listener) {
         this.postList = postList;
         this.listener = listener;
     }
@@ -60,13 +41,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public void onBindViewHolder(PostViewHolder holder, int position) {
-        Post post = postList.get(position);
-        holder.datetime.setText(post.getDatetime());
-        holder.headline.setText(post.getHeadline());
-        holder.content.setText(post.getContent().substring(0,149) + "...");
-        holder.contentfull.setText(post.getContent());
-        holder.youtubeVideoID.setText(post.getYoutubeVideoID());
-        Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(holder.image);
+        holder.bind(postList.get(position), listener);
     }
 
     @Override
@@ -78,8 +53,43 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         return postList.get(index);
     }
 
-    public interface PostClickListener {
-        public void ItemClicked(View v, int position);
+    public interface OnItemClickListener {
+        public void onItemClick(Post post);
+    }
+
+
+    public class PostViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.webview_image) ImageView image;
+        @BindView(R.id.datetime) TextView datetime;
+        @BindView(R.id.headline) TextView headline;
+        @BindView(R.id.content) TextView content;
+        @BindView(R.id.content_full) TextView contentfull;
+        @BindView(R.id.youtube_video_ID) TextView youtubeVideoID;
+        public View layout;
+
+        public PostViewHolder(View view) {
+            super(view);
+            layout = view;
+            ButterKnife.bind(this,view);
+        }
+
+        public void bind(final Post post, final OnItemClickListener listener) {
+
+            datetime.setText(post.getDatetime());
+            headline.setText(post.getHeadline());
+            content.setText(post.getContent().substring(0,149) + "...");
+            contentfull.setText(post.getContent());
+            youtubeVideoID.setText(post.getYoutubeVideoID());
+            Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(image);
+
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(post);
+                }
+            });
+        }
+
     }
 
 }

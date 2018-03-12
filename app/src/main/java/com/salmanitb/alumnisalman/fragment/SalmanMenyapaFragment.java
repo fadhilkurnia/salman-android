@@ -31,17 +31,6 @@ public class SalmanMenyapaFragment extends Fragment {
     private List<Post> postList = new ArrayList<Post>();
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
-    private Context context;
-
-    public SalmanMenyapaFragment() {
-        super();
-    }
-
-    @SuppressLint("ValidFragment")
-    public SalmanMenyapaFragment(Context context) {
-        super();
-        this.context = context;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,14 +39,16 @@ public class SalmanMenyapaFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
 
-        postAdapter = new PostAdapter(postList, new PostAdapter.PostClickListener() {
+        PostAdapter.OnItemClickListener listener = new PostAdapter.OnItemClickListener() {
             @Override
-            public void ItemClicked(View v, int position) {
-                Intent intent = new Intent(context, ReadPostActivity.class);
-                intent.putExtra("POST", postList.get(position));
+            public void onItemClick(Post post) {
+                Intent intent = new Intent(getActivity(), ReadPostActivity.class);
+                intent.putExtra("POST", post);
                 startActivity(intent);
             }
-        });
+        };
+
+        postAdapter = new PostAdapter(postList, listener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     toolbar.setTitle(R.string.title_home);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        salmanMenyapaFragment = new SalmanMenyapaFragment(this);
+        salmanMenyapaFragment = new SalmanMenyapaFragment();
 
         loadFragment(salmanMenyapaFragment);
 
