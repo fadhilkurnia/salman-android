@@ -17,11 +17,16 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
 import com.salmanitb.alumnisalman.model.Post;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private Toolbar toolbar;
     Fragment salmanMenyapaFragment;
     Fragment alumniFragment;
     Fragment contactFragment;
+
+    @BindView(R.id.my_toolbar) Toolbar toolbar;
+    @BindView(R.id.navigation) BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,20 +35,20 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    toolbar.setTitle(R.string.title_home);
+                    toolbar.setVisibility(View.GONE);
                     loadFragment(salmanMenyapaFragment);
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
                     toolbar.setTitle(R.string.title_map);
-                    return true;
-                case R.id.navigation_gift:
-                    toolbar.setTitle(R.string.title_gift);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_contact:
                     toolbar.setTitle(R.string.title_contact);
+                    toolbar.setVisibility(View.VISIBLE);
                     return true;
             }
             return false;
@@ -54,21 +59,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        salmanMenyapaFragment = new SalmanMenyapaFragment();
-
-        loadFragment(salmanMenyapaFragment);
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        salmanMenyapaFragment = new SalmanMenyapaFragment();
+        alumniFragment = new SalmanMenyapaFragment();
+        contactFragment = new SalmanMenyapaFragment();
+
+        loadFragment(salmanMenyapaFragment);
     }
 
     private void loadFragment(Fragment fragment) {
-        // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);

@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.salmanitb.alumnisalman.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -17,6 +17,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar"
         app:title="@string/title_home"
+        android:visibility="gone"
         app:titleTextColor="@android:color/white" />
 
     <FrameLayout
@@ -25,6 +26,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
         android:layout_below="@+id/my_toolbar"
+        android:layout_marginBottom="-4dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.BottomNavigationView
@@ -33,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/navigation_background"
         app:itemIconTint="@color/button_navigation_color_selector"
         app:itemTextColor="@color/button_navigation_color_selector"
         app:menu="@menu/navigation_item" />
