@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.fragment.ProfilFragment;
 import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
 import com.salmanitb.alumnisalman.model.Post;
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Fragment salmanMenyapaFragment;
     Fragment alumniFragment;
     Fragment contactFragment;
+    Fragment profilFragment;
+
 
     @BindView(R.id.my_toolbar) Toolbar toolbar;
     @BindView(R.id.navigation) BottomNavigationView navigation;
@@ -40,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
-                    fragment = new ProfilFragment();
-                    loadFragment(fragment);
+                    loadFragment(profilFragment);
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         salmanMenyapaFragment = new SalmanMenyapaFragment();
         alumniFragment = new SalmanMenyapaFragment();
         contactFragment = new SalmanMenyapaFragment();
+        profilFragment = new ProfilFragment();
 
         loadFragment(salmanMenyapaFragment);
     }

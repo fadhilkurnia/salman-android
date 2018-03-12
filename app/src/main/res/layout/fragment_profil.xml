@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.salmanitb.alumnisalman.ProfilFragment">
+    tools:context="com.salmanitb.alumnisalman.fragment.ProfilFragment">
 
     <ScrollView
         android:layout_width="match_parent"
