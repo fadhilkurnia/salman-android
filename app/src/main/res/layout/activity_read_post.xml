@@ -55,7 +55,7 @@
             android:layout_gravity="top|end"
             android:src="@drawable/ic_action_share"
             app:elevation="8dp"
-            app:backgroundTint="@android:color/holo_green_dark" />
+            app:backgroundTint="@color/colorAccent" />
     </LinearLayout>
 
     <WebView
