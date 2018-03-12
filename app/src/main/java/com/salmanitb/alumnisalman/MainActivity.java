@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
+                    fragment = new ProfilFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.navigation_map:
                     toolbar.setTitle(R.string.title_map);
