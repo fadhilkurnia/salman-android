@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle(R.string.title_profile);
+                    fragment = new ProfilFragment();
+                    loadFragment(fragment);
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
