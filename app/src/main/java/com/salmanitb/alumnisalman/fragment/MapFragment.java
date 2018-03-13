@@ -64,6 +64,12 @@ public class MapFragment extends Fragment {
                 public void onMapReady(GoogleMap map) {
                 Log.d("SearchFragment", "google map ready");
                 googleMap = map;
+
+                LatLng bandung = new LatLng(-6.8919607, 107.6156134);
+                googleMap.addMarker(new MarkerOptions().position(bandung)
+                        .title("Marker in Sydney"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(bandung));
+
                 }
             });
 
