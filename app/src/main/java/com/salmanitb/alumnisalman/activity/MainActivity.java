@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.fragment.MapFragment;
 import com.salmanitb.alumnisalman.fragment.ProfilFragment;
 import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
 import com.salmanitb.alumnisalman.model.Post;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment alumniFragment;
     Fragment contactFragment;
     Fragment profilFragment;
+    Fragment mapFragment;
 
 
     @BindView(R.id.my_toolbar) Toolbar toolbar;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_map:
                     toolbar.setTitle(R.string.title_map);
+                    loadFragment(mapFragment);
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_contact:
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         alumniFragment = new SalmanMenyapaFragment();
         contactFragment = new SalmanMenyapaFragment();
         profilFragment = new ProfilFragment();
+        mapFragment = new MapFragment();
 
         loadFragment(salmanMenyapaFragment);
     }
@@ -103,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
         Post post = new Post(datetime, headline, youtubeVideoID, content, webViewImage);
         intent.putExtra("POST", post);
         startActivity(intent);
+    }
+
+    public void searchAlumni(View view) {
+
     }
 
 }
