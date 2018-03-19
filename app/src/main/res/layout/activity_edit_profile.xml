@@ -81,7 +81,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/username"
+                        android:id="@+id/user_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="nama"
@@ -90,7 +90,7 @@
                         android:background="@color/edit_profile_background"/>
 
                     <EditText
-                        android:id="@+id/useremail"
+                        android:id="@+id/user_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="email"
@@ -202,7 +202,7 @@
                     android:background="@color/edit_profile_background"/>
 
                 <EditText
-                    android:id="@+id/major"
+                    android:id="@+id/user_major"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/edit_text_size"
@@ -212,7 +212,7 @@
                     android:background="@color/edit_profile_background"/>
 
                 <EditText
-                    android:id="@+id/lmd"
+                    android:id="@+id/user_lmd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/edit_text_size"
@@ -222,7 +222,7 @@
                     android:background="@color/edit_profile_background"/>
 
                 <EditText
-                    android:id="@+id/activities"
+                    android:id="@+id/user_activities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/edit_text_size"
@@ -232,14 +232,14 @@
                     android:background="@color/edit_profile_background"/>
 
                 <EditText
-                    android:id="@+id/year_activities"
+                    android:id="@+id/user_year_activities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/edit_text_size"
-                    android:hint="tahun aktivitas"
                     android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:background="@color/edit_profile_background"
+                    android:hint="tahun aktivitas"
                     android:padding="@dimen/edit_text_padding"
-                    android:background="@color/edit_profile_background"/>
+                    android:textSize="@dimen/edit_text_size" />
 
             </LinearLayout>
 
