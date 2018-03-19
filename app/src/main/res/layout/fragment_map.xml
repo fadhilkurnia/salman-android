@@ -20,10 +20,10 @@
         map:mapType="normal"
         map:uiCompass="false"
         map:uiRotateGestures="true"
-        map:uiScrollGestures="false"
+        map:uiScrollGestures="true"
         map:uiTiltGestures="true"
-        map:uiZoomControls="false"
-        map:uiZoomGestures="true" />
+        map:uiZoomControls="true"
+        map:uiZoomGestures="true"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
