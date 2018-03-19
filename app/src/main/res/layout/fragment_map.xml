@@ -40,13 +40,13 @@
             android:background="@android:color/white"/>
 
         <Button
+            android:id="@+id/search_alumni"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/ic_search"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
-            android:onClick="searchAlumni"
             />
 
     </RelativeLayout>

@@ -1,4 +1,8 @@
 package com.salmanitb.alumnisalman.activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,9 +11,12 @@ import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -29,8 +36,21 @@ public class EditProfileActivity extends AppCompatActivity {
     @BindView(R.id.user_activities) protected EditText activities;
     @BindView(R.id.user_year_activities) protected EditText year_activities;
 
+    @BindView(R.id.edit_profile_image) protected CircleImageView image;
+
+
+    //a constant to track the file chooser intent
+    private static final int PICK_IMAGE_REQUEST = 234;
+
+    private Bitmap bitmap;
+    private Uri filePath;
+
     @OnClick(R.id.save_button) protected void saveProfile() {
         saveUserAction();
+    }
+
+    @OnClick(R.id.edit_image_icon) protected void editImage() {
+        editImageAction();
     }
 
     @Override
@@ -40,6 +60,29 @@ public class EditProfileActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+
+    private void editImageAction() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
+
+    }
+
+    // handling the image chooser activity result
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
+                image.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private void saveUserAction() {
 
