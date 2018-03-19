@@ -5,4 +5,6 @@
     <color name="colorPrimaryLight">#a88556</color>
     <color name="colorAccent">#827717</color>
     <color name="colorBackground">#fffde7</color>
+    <color name="textLight">#FFFFFF</color>
+    <color name="edit_profile_background">#E0E0E0</color>
 </resources>

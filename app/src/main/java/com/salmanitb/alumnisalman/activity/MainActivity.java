@@ -44,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(salmanMenyapaFragment);
                     return true;
                 case R.id.navigation_profile:
-                    toolbar.setTitle(R.string.title_profile);
+                    toolbar.setVisibility(View.GONE);
+//                    toolbar.setTitle(R.string.title_profile);
                     loadFragment(profilFragment);
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
-                    toolbar.setTitle(R.string.title_map);
+                    toolbar.setVisibility(View.GONE);
+//                    toolbar.setTitle(R.string.title_map);
                     loadFragment(mapFragment);
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
@@ -110,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchAlumni(View view) {
-
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -1,9 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.salmanitb.alumnisalman.activity.EditProfileActivity">
+    tools:context="com.salmanitb.alumnisalman.activity.EditProfileActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:foregroundGravity="bottom"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textColor="@color/textLight"
+            android:textAllCaps="false"
+            android:layout_gravity="left|start|center_vertical"
+            android:textSize="18sp"
+            />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="Save"
+            android:textColor="@color/textLight"
+            android:background="@android:color/transparent"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/top_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="0dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/edit_profile_image"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/profile"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="0dp"
+                    android:paddingTop="@dimen/edit_text_margin_top"
+                    android:layout_centerVertical="true"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@id/edit_profile_image"
+                    android:layout_toEndOf="@id/edit_profile_image"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="nama"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/edit_text_padding"
+                        android:background="@color/edit_profile_background"/>
+
+                    <EditText
+                        android:id="@+id/useremail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="email"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/edit_text_padding"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:background="@color/edit_profile_background"/>
+
+                    <EditText
+                        android:id="@+id/user_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/edit_text_size"
+                        android:padding="@dimen/edit_text_padding"
+                        android:layout_marginTop="@dimen/edit_text_margin_top"
+                        android:hint="jenis kelamin"
+                        android:background="@color/edit_profile_background"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/bottom_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/top_box"
+                app:layout_editor_absoluteX="0dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="@dimen/edit_text_margin_top"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="8dp">
+
+                <EditText
+                    android:id="@+id/user_job"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="pekerjaan"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+                <EditText
+                    android:id="@+id/user_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="instansi"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+                <EditText
+                    android:id="@+id/user_phonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="No HP"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/user_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="alamat"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/user_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="kota"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/user_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="negara"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/user_university"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="kota"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/user_year_university"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="angkatan universitas"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="jurusan"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/lmd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="angkatan LMD"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="aktivitas di salman"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+                <EditText
+                    android:id="@+id/year_activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/edit_text_size"
+                    android:hint="tahun aktivitas"
+                    android:layout_marginTop="@dimen/edit_text_margin_top"
+                    android:padding="@dimen/edit_text_padding"
+                    android:background="@color/edit_profile_background"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
