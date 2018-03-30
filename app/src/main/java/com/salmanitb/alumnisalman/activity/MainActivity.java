@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.fragment.ContactFragment;
 import com.salmanitb.alumnisalman.fragment.ProfilFragment;
 import com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment;
 import com.salmanitb.alumnisalman.model.Post;
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_contact:
-                    toolbar.setTitle(R.string.title_contact);
-                    toolbar.setVisibility(View.VISIBLE);
+                    toolbar.setVisibility(View.GONE);
+                    loadFragment(contactFragment);
                     return true;
             }
             return false;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         salmanMenyapaFragment = new SalmanMenyapaFragment();
         alumniFragment = new SalmanMenyapaFragment();
-        contactFragment = new SalmanMenyapaFragment();
+        contactFragment = new ContactFragment();
         profilFragment = new ProfilFragment();
 
         loadFragment(salmanMenyapaFragment);

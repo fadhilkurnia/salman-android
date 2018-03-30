@@ -6,9 +6,17 @@
     <string name="title_profile">Profil</string>
     <string name="title_map">Peta Alumni</string>
     <string name="title_gift">Merchandise</string>
-    <string name="title_contact">Contact Us</string>
+    <string name="title_contact">Hubungi Kami</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="alumni_masjid_salman_itb">Alumni Masjid Salman ITB</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tincidunt varius consequat. Aenean a cursus orci. Fusce id ultricies nisi. Nunc eros lectus, porttitor quis sodales ac, suscipit non purus. Quisque sed hendrerit sem. Etiam dolor est, feugiat in posuere ultrices, vulputate nec justo.</string>
+    <string name="app_version">Aplikasi Alumni Salman v.1.0</string>
+    <string name="default_address">Jalan Ganeca No 7, Lb. Siliwangi, Coblong, Kota Bandung, Jawa Barat 40132</string>
+    <string name="default_phone">+6222 2507 675</string>
+    <string name="default_email">alumni@salmanitb.com</string>
+    <string name="send_email">Kirim Pesan</string>
+    <string name="send">Kirim</string>
 </resources>
