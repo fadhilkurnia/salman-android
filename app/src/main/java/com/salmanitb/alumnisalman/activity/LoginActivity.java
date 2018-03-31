@@ -19,6 +19,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    @OnClick(R.id.btn_login)
+    public void doLogin() {
+        Intent intent = new Intent(this, ConfirmActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +32,4 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    public void Login(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 }

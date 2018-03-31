@@ -18,6 +18,12 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    @OnClick(R.id.btn_register)
+    public void gotoRegisterForm() {
+        Intent intent = new Intent(this, RegisterFormActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
