@@ -1,9 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context="com.salmanitb.alumnisalman.activity.RegisterFormActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar"
+        app:title="Registrasi Akun Baru"
+        app:titleTextColor="@android:color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Nama Lengkap"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:singleLine="true"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Jenis Kelamin"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:id="@+id/input_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Domisili"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Negara"
+                            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/edit_text_background"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Kota"
+                            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/edit_text_background"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Alamat"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Almamater"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/separator" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Kampus"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Jurusan"
+                            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/edit_text_background"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Angkatan"
+                            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/edit_text_background"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Kegiatan yang diikuti"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/separator" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Angkatan LMD atau SII"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Kosongkan jika belum pernah mengikuti LMD atau SII"
+                    android:textAppearance="@style/Widget.AppCompat.Button.Small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aktivitas yang pernah diikuti"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pekerjaan"
+                    android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
