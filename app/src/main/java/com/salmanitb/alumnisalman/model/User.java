@@ -9,6 +9,7 @@ public class User {
     private String uid;
     private String name;
     private String email;
+    private String image;
     private String sex;
     private String job;
     private String company;
@@ -178,5 +179,13 @@ public class User {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -169,6 +169,4 @@ public class EditProfileActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-
-
 }
