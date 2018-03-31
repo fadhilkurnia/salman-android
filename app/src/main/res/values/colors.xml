@@ -9,4 +9,6 @@
     <color name="white">#ffffff</color>
     <color name="separator">#d4d3c3</color>
     <color name="popupbackground">#db492f02</color>
+    <color name="textLight">#FFFFFF</color>
+    <color name="edit_profile_background">#E0E0E0</color>
 </resources>
