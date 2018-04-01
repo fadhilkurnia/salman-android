@@ -14,5 +14,6 @@ public class SalmanApplication extends Application {
         super.onCreate();
 
         PreferenceManager.getInstance().setApplicationCOntext(getApplicationContext());
+
     }
 }
