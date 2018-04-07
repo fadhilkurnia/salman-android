@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.model.About;
 
 import butterknife.BindView;
@@ -103,6 +105,8 @@ public class ContactFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
         ButterKnife.bind(this, rootView);
 
+        loadAboutFromCache();
+
         APIConnector.getInstance().getAbout(new APIConnector.ApiCallback<About>() {
             @Override
             public void onSuccess(About response) {
@@ -110,15 +114,26 @@ public class ContactFragment extends Fragment {
                 txtAddress.setText(response.getAddress());
                 txtPhone.setText(response.getPhone());
                 txtEmail.setText(response.getEmail());
+                PreferenceManager.getInstance().setAboutData(response);
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(rootView.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d(getTag(), t.getMessage());
             }
         });
 
         return rootView;
+    }
+
+    private void loadAboutFromCache() {
+        About about = PreferenceManager.getInstance().getAboutData();
+        if (about != null) {
+            appDescription.setText(about.getAbout());
+            txtAddress.setText(about.getAddress());
+            txtPhone.setText(about.getPhone());
+            txtEmail.setText(about.getEmail());
+        }
     }
 
     private void hideSoftKeyboard() {
