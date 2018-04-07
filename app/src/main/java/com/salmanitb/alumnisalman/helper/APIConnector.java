@@ -2,6 +2,7 @@ package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
 
+import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 
 import java.math.BigInteger;
@@ -53,6 +54,20 @@ public class APIConnector{
 
             @Override
             public void onFailure(@NonNull Call<BaseResponse<String>> call, @NonNull Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    public void getAbout(final ApiCallback<About> callback) {
+        WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
+            @Override
+            public void onResponse(Call<About> call, Response<About> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<About> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
