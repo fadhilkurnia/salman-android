@@ -23,6 +23,7 @@
     <string name="verification_description">Kami berusaha memastikan semua pengguna aplikasi ini adalah Alumni Salman yang pernah aktif di berbagai kegiatan dalam Masjid Salman. Saat ini akun anda sedang kami verifikasi, mohon tunggu beberapa saat.</string>
     <string name="verification_title">Akun Sedang Diferivikasi</string>
     <string name="contact_us_text">Hubungi kami</string>
+    <string name="ketik_pesanmu_di_sini">Ketik pesanmu di sini ...</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>
