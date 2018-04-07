@@ -34,14 +34,25 @@ public class APIConnector{
 
     public void doLogin(final String email, final String password, final ApiCallback<String> callback) {
         String hashedPassword = getMD5(password);
-        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<String>() {
+        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<BaseResponse<String>>() {
             @Override
-            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                callback.onSuccess(response.body());
+            public void onResponse(@NonNull Call<BaseResponse<String>> call, @NonNull Response<BaseResponse<String>> response) {
+                BaseResponse<String> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Error"));
+                    return;
+                }
+
+                if (responseBody.getError() == null) {
+                    callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                } else {
+                    String token = responseBody.getData();
+                    callback.onSuccess(token);
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<BaseResponse<String>> call, @NonNull Throwable t) {
                 callback.onFailure(t);
             }
         });

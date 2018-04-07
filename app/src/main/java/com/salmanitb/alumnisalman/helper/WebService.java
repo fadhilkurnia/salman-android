@@ -23,7 +23,7 @@ public interface WebService {
     @POST("login")
     BaseResponse<String> doLogin(@Field("email") String email,
                                  @Field("password") String hashedPassword,
-                                 Callback<String> callback);
+                                 Callback<BaseResponse<String>> callback);
 
 
     public class APIServiceImplementation {
