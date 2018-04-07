@@ -11,8 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.model.About;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +30,18 @@ public class ContactFragment extends Fragment {
 
     @BindView(R.id.popupSendEmail)
     LinearLayout popupSendEmail;
+
+    @BindView(R.id.app_description)
+    TextView appDescription;
+
+    @BindView(R.id.txt_address)
+    TextView txtAddress;
+
+    @BindView(R.id.txt_phone)
+    TextView txtPhone;
+
+    @BindView(R.id.txt_email)
+    TextView txtEmail;
 
     @OnClick(R.id.btn_show_popup)
     public void showPopup() {
@@ -49,8 +66,25 @@ public class ContactFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
         ButterKnife.bind(this, rootView);
+
+        final Gson gson = new Gson();
+        APIConnector.getInstance().getAbout(new APIConnector.ApiCallback<About>() {
+            @Override
+            public void onSuccess(About response) {
+                appDescription.setText(response.getAbout());
+                txtAddress.setText(response.getAddress());
+                txtPhone.setText(response.getPhone());
+                txtEmail.setText(response.getEmail());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(rootView.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return rootView;
     }
 }
