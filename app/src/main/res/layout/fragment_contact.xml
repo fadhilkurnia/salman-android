@@ -22,7 +22,7 @@
                 android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/logo_salman" />
+                android:src="@drawable/logo_kalam" />
 
             <ImageView
                 android:layout_width="80dp"
