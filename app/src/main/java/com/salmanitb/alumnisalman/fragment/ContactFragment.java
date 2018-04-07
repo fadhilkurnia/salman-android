@@ -59,7 +59,7 @@ public class ContactFragment extends Fragment {
 
     @OnClick(R.id.popupSendEmail)
     public void doNothing() {
-
+        hideSoftKeyboard();
     }
 
     public ContactFragment() {
