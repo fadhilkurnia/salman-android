@@ -33,7 +33,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,9 +66,9 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@id/news_time"
                     android:layout_marginLeft="18dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:maxLines="2"
                     android:text="Judul Berita"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -100,8 +103,8 @@
                     android:layout_marginBottom="18dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="10dp"
-                    android:text="1.234 tayang"
                     android:layout_toRightOf="@id/news_view_icon"
+                    android:text="1.234 tayang"
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
                     android:textColor="#FFFFFF" />
 
@@ -124,8 +127,8 @@
                     android:layout_marginBottom="18dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="10dp"
-                    android:text="123 suka"
                     android:layout_toRightOf="@id/news_like_icon"
+                    android:text="123 suka"
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
                     android:textColor="#FFFFFF" />
 
@@ -135,7 +138,7 @@
                 android:id="@+id/webview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_image_layout"/>
+                android:layout_below="@id/main_image_layout" />
 
         </RelativeLayout>
 
