@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -51,6 +52,7 @@ public class ContactFragment extends Fragment {
 
     @OnClick(R.id.popupBackground)
     public void hidePopup() {
+        hideSoftKeyboard();
         popupSendEmail.setVisibility(View.GONE);
         popupBackground.setVisibility(View.GONE);
     }
@@ -69,7 +71,6 @@ public class ContactFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
         ButterKnife.bind(this, rootView);
 
-        final Gson gson = new Gson();
         APIConnector.getInstance().getAbout(new APIConnector.ApiCallback<About>() {
             @Override
             public void onSuccess(About response) {
@@ -86,5 +87,15 @@ public class ContactFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void hideSoftKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }
     }
 }

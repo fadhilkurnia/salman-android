@@ -15,6 +15,8 @@ public class About {
     String phone;
     @SerializedName("text_email")
     String email;
+    @SerializedName("detail")
+    String error;
 
 
     public String getAbout() {
@@ -47,5 +49,13 @@ public class About {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }
