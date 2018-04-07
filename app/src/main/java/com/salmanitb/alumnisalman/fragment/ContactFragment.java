@@ -1,6 +1,7 @@
 package com.salmanitb.alumnisalman.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +27,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ContactFragment extends Fragment {
+
+    String name = "Paijo Abdullah";
 
     @BindView(R.id.popupBackground)
     RelativeLayout popupBackground;
@@ -44,6 +48,9 @@ public class ContactFragment extends Fragment {
     @BindView(R.id.txt_email)
     TextView txtEmail;
 
+    @BindView(R.id.input_message)
+    EditText inputMessage;
+
     @OnClick(R.id.btn_show_popup)
     public void showPopup() {
         popupBackground.setVisibility(View.VISIBLE);
@@ -60,6 +67,31 @@ public class ContactFragment extends Fragment {
     @OnClick(R.id.popupSendEmail)
     public void doNothing() {
         hideSoftKeyboard();
+    }
+
+    @OnClick(R.id.btn_send_email)
+    public void sendEmail() {
+        if (inputMessage.getText().toString().trim().equals("")) {
+            hidePopup();
+            Toast.makeText(getActivity(), "Pesan tidak dapat kosong!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String messageContent = inputMessage.getText().toString().trim();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{txtEmail.getText().toString()});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Pesan dari " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, messageContent);
+
+        try {
+            startActivity(Intent.createChooser(intent, "Kirim Pesan"));
+            inputMessage.setText("");
+        } catch (android.content.ActivityNotFoundException ex) {
+            hidePopup();
+            Toast.makeText(getActivity(), "Tidak ada aplikasi pengirim email!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public ContactFragment() {
