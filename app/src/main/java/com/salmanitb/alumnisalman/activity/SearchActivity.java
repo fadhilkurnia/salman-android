@@ -35,7 +35,6 @@ public class SearchActivity extends AppCompatActivity {
         // Locate the editText in search_list_item.xml
         editSearch = (android.support.v7.widget.SearchView) findViewById(R.id.search);
 
-
         //Locate the recyclerView in search_list_item
         recyclerView = (RecyclerView) findViewById(R.id.alumniSearchListRecycler);
 

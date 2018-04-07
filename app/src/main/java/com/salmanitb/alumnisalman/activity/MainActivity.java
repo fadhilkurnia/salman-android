@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setVisibility(View.GONE);
 //                    toolbar.setTitle(R.string.title_profile);
                     loadFragment(profilFragment);
-                    toolbar.setVisibility(View.VISIBLE);
+//                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_map:
                     toolbar.setVisibility(View.GONE);
 //                    toolbar.setTitle(R.string.title_map);
                     loadFragment(mapFragment);
-                    toolbar.setVisibility(View.VISIBLE);
+//                    toolbar.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_contact:
                     toolbar.setVisibility(View.GONE);

@@ -12,11 +12,9 @@
         android:id="@+id/searchMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        map:cameraBearing="112.5"
         map:cameraTargetLat="-6.8919607"
         map:cameraTargetLng="107.6156134"
-        map:cameraTilt="30"
-        map:cameraZoom="13"
+        map:cameraZoom="5"
         map:mapType="normal"
         map:uiCompass="false"
         map:uiRotateGestures="true"
@@ -33,19 +31,29 @@
         <Spinner
             android:id="@+id/city_spinner"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="80dp"
-            android:background="@android:color/white"/>
+            android:background="@drawable/layout_background_white"/>
 
         <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="85dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_dropdown"
+            />
+
+        <ImageButton
             android:id="@+id/search_alumni"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_search"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_search"
+            android:background="@drawable/layout_background_brown"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             />
 

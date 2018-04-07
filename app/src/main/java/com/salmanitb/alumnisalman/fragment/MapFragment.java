@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -53,7 +54,7 @@ public class MapFragment extends Fragment {
         // Apply the adapter to the spinner
         city_spinner.setAdapter(adapter);
 
-        Button search = (Button) rootView.findViewById(R.id.search_alumni);
+        ImageButton search = (ImageButton) rootView.findViewById(R.id.search_alumni);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
