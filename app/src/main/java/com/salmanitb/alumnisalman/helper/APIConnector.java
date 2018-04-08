@@ -62,7 +62,11 @@ public class APIConnector{
     public void getAbout(final ApiCallback<About> callback) {
         WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
             @Override
-            public void onResponse(Call<About> call, Response<About> response) {
+            public void onResponse(@NonNull Call<About> call, @NonNull Response<About> response) {
+                if (response.body() == null) {
+                    callback.onFailure(new Throwable("Empty response"));
+                    return;
+                }
                 callback.onSuccess(response.body());
             }
 

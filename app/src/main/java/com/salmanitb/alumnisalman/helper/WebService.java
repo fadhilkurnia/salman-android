@@ -8,6 +8,7 @@ import com.salmanitb.alumnisalman.model.BaseResponse;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -49,9 +50,12 @@ public interface WebService {
             builder.connectTimeout(60, TimeUnit.SECONDS);
             builder.writeTimeout(60, TimeUnit.SECONDS);
 
-            Gson gson = new GsonBuilder().create();
+            Gson gson = new GsonBuilder().serializeNulls().create();
 
-            OkHttpClient client = builder.build();
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient client = builder.addInterceptor(interceptor).build();
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(WebService.BASE_URL)
