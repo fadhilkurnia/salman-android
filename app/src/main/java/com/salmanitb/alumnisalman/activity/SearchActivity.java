@@ -29,6 +29,19 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String searchQuery;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                searchQuery= null;
+            } else {
+                searchQuery= extras.getString("SEARCH_QUERY");
+            }
+        } else {
+            searchQuery= (String) savedInstanceState.getSerializable("SEARCH_QUERY");
+        }
+
         setContentView(R.layout.activity_search);
 
         //Locate the recyclerView in search_list_item
@@ -51,13 +64,26 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setFocusable(true);
         searchView.requestFocus();
         searchView.setFocusableInTouchMode(true);
+        if (searchQuery != null) {
+            searchView.setQuery(searchQuery, true);
+            getAlumniList(searchQuery);
+            // Binds the adapter to the listview
+            recyclerView.setAdapter(adapter);
+//            Log.d("Users ", "" + users.size());
 
-        // Locate the editText in search_list_item.xml
-        editSearch = (android.support.v7.widget.SearchView) findViewById(R.id.search);
+        }
 
-        editSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                getAlumniList(query);
+                if (adapter.getItemCount() == 0) {
+                    searchView.setQueryHint("Ketikkan nama farah!");
+                } else {
+                }
+                // Binds the adapter to the listview
+                recyclerView.setAdapter(adapter);
+
                 return false;
             }
 
@@ -75,6 +101,7 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
     private void getAlumniList(String query) {

@@ -114,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
         city = new City("Papua", -4.8703029, 135.5597428);
         cities.add(city);
 
-
-
     }
 
     private void loadFragment(Fragment fragment) {
