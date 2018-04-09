@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,23 +19,25 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.SearchActivity;
+import com.salmanitb.alumnisalman.model.City;
+
+import static com.salmanitb.alumnisalman.activity.MainActivity.cities;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MapFragment extends Fragment {
 
-
     private GoogleMap googleMap;
-
 
     public MapFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +56,7 @@ public class MapFragment extends Fragment {
         // Apply the adapter to the spinner
         city_spinner.setAdapter(adapter);
 
-        Button search = (Button) rootView.findViewById(R.id.search_alumni);
+        ImageButton search = (ImageButton) rootView.findViewById(R.id.search_alumni);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,14 +80,54 @@ public class MapFragment extends Fragment {
                 Log.d("SearchFragment", "google map ready");
                 googleMap = map;
 
-                LatLng bandung = new LatLng(-6.8919607, 107.6156134);
-                googleMap.addMarker(new MarkerOptions().position(bandung)
-                        .title("Marker in Sydney"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(bandung));
+                googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                    @Override
+                    public void onMapLoaded() {
+                    for (City city : cities) {
+                        if (city.getName().equals("Bandung")) {
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(city.getLatitute(), city.getLongitude())));
+                        }
+                    }
+                    generatePinOnMap();
+                    }
+
+
+
+                });
+
+                googleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+                    @Override
+                    public void onCameraMove() {
+                        generatePinOnMap();
+                    }
+                });
+
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+
+                        Intent intent = new Intent(getContext(), SearchActivity.class);
+                        intent.putExtra("SEARCH_QUERY", marker.getTitle());
+                        startActivity(intent);
+
+                        return false;
+                    }
+                });
 
                 }
             });
-
     }
 
+    private void generatePinOnMap() {
+
+//        Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.northeast.toString());
+//        Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.southwest.toString());
+        for (City city : cities) {
+            LatLng pos = new LatLng(city.getLatitute(), city.getLongitude());
+            if (googleMap.getProjection().getVisibleRegion().latLngBounds.contains(pos)) {
+                googleMap.addMarker(new MarkerOptions().position(pos)
+                        .title(city.getName()));
+            }
+        }
+    }
 }

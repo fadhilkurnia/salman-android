@@ -23,8 +23,8 @@ public class User {
     private String lmd;
     private String activities;
     private String year_activities;
-    private Double latitude;
-    private Double longitude;
+    private double latitude;
+    private double longitude;
 
     public User() {
     }

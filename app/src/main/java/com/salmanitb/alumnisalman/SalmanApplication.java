@@ -9,11 +9,11 @@ import com.salmanitb.alumnisalman.helper.PreferenceManager;
  */
 
 public class SalmanApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         PreferenceManager.getInstance().setApplicationCOntext(getApplicationContext());
-
     }
 }

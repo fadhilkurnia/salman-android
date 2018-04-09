@@ -64,6 +64,7 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
 
         public TextView txtName;
         public TextView txtEmail;
+        public TextView txtAddress;
         public ImageView imgPhoto;
         public View layout;
 
@@ -71,7 +72,8 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
             super(itemView);
             layout = itemView;
             txtName = (TextView) itemView.findViewById(R.id.txt_display_name);
-            txtEmail = (TextView) itemView.findViewById(R.id.txt_address);
+            txtEmail= (TextView) itemView.findViewById(R.id.txt_email);
+            txtAddress = (TextView) itemView.findViewById(R.id.txt_address);
             imgPhoto = (ImageView) itemView.findViewById(R.id.img_photo);
 
         }

@@ -2,21 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="?selectableItemBackground"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_photo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/profile" />
 
@@ -32,36 +30,31 @@
                 android:id="@+id/txt_display_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="7dp"
                 android:maxLines="1"
                 android:text="Farah Ghezi Athaya"
-                android:textSize="13sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:text="farahgheatha@gmail.com" />
 
             <TextView
                 android:id="@+id/txt_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:textSize="10sp"
+                android:textSize="13sp"
                 android:maxLines="1"
-                android:text="Alamatnya" />
-
+                android:text="Padang" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/txt_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_gravity="right"
-            android:gravity="center_vertical|right"
-            android:text="7.5"
-            android:textStyle="bold"
-            android:textSize="17sp" />
-
     </LinearLayout>
 
     <LinearLayout
