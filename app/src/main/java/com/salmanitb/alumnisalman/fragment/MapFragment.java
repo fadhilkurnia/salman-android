@@ -19,9 +19,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.SearchActivity;
+import com.salmanitb.alumnisalman.model.City;
+
+import static com.salmanitb.alumnisalman.activity.MainActivity.cities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,13 +79,54 @@ public class MapFragment extends Fragment {
             .getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap map) {
-                Log.d("SearchFragment", "google map ready");
-                googleMap = map;
+                    Log.d("SearchFragment", "google map ready");
+                    googleMap = map;
 
-                LatLng bandung = new LatLng(-6.8919607, 107.6156134);
-                googleMap.addMarker(new MarkerOptions().position(bandung)
-                        .title("Marker in Sydney"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(bandung));
+                    googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                        @Override
+                        public void onMapLoaded() {
+                            Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.northeast.toString());
+                            Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.southwest.toString());
+
+                            for (City city : cities) {
+
+                                if (city.getName().equals("Bandung")) {
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(city.getLatitute(), city.getLongitude())));
+                                }
+
+                                LatLng pos = new LatLng(city.getLatitute(), city.getLongitude());
+
+                                if (googleMap.getProjection().getVisibleRegion().latLngBounds.contains(pos)) {
+                                    googleMap.addMarker(new MarkerOptions().position(pos)
+                                            .title(city.getName()));
+                                }
+                            }
+
+                        }
+
+
+
+                    });
+
+                    googleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+                        @Override
+                        public void onCameraMove() {
+                            Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.northeast.toString());
+                            Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.southwest.toString());
+
+                            for (City city : cities) {
+
+                                LatLng pos = new LatLng(city.getLatitute(), city.getLongitude());
+
+                                if (googleMap.getProjection().getVisibleRegion().latLngBounds.contains(pos)) {
+                                    googleMap.addMarker(new MarkerOptions().position(pos)
+                                            .title(city.getName()));
+                                }
+                            }
+
+                        }
+                    });
+
 
                 }
             });
