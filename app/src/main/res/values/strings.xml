@@ -24,6 +24,7 @@
     <string name="verification_title">Akun Sedang Diverifikasi</string>
     <string name="contact_us_text">Hubungi kami</string>
     <string name="ketik_pesanmu_di_sini">Ketik pesanmu di sini ...</string>
+    <string name="image_button_to_go_to_search_activity">Image Button to go to search activity</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>
