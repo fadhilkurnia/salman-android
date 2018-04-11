@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
+import com.salmanitb.alumnisalman.helper.RegistrationChecker;
+import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 import java.util.ArrayList;
 
@@ -24,12 +27,12 @@ public class RegistrationActivity extends AppCompatActivity {
     @BindView(R.id.step_progress)
     LinearLayout progressStep;
 
-    Fragment firstStep;
-    Fragment secondStep;
-    Fragment thirdStep;
-    Fragment fourthStep;
-    Fragment fifthStep;
-    ArrayList<Fragment> stepFragments;
+    RegistrationStepFragment firstStep;
+    RegistrationStepFragment secondStep;
+    RegistrationStepFragment thirdStep;
+    RegistrationStepFragment fourthStep;
+    RegistrationStepFragment fifthStep;
+    ArrayList<RegistrationStepFragment> stepFragments;
     int stepId = 0;
 
     @Override
@@ -41,8 +44,8 @@ public class RegistrationActivity extends AppCompatActivity {
         firstStep = new RegistrationPersonalFragment();
         secondStep = new RegistrationAlmamaterFragment();
         thirdStep = new RegistrationActivityFragment();
-        fourthStep = new RegistrationActivityFragment();
-        fifthStep = new RegistrationActivityFragment();
+        fourthStep = new RegistrationPersonalFragment();
+        fifthStep = new RegistrationPersonalFragment();
 
         stepFragments = new ArrayList<>();
         stepFragments.add(firstStep);
@@ -69,6 +72,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_next)
     protected void gotoNextStep() {
+
+        if (!stepFragments.get(stepId).checkInput()) {
+            Toast.makeText(this, "Pastikan semua data sudah terisi dengan benar!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (stepId < stepFragments.size()-1) {
             // set current step indicator to true (finished) before change to next step
             View indicator = progressStep.getChildAt(stepId*2+1);

@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegistrationActivityFragment extends Fragment {
+public class RegistrationActivityFragment extends RegistrationStepFragment {
 
 
     public RegistrationActivityFragment() {
@@ -28,4 +29,8 @@ public class RegistrationActivityFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_registration_activity, container, false);
     }
 
+    @Override
+    public boolean checkInput() {
+        return false;
+    }
 }
