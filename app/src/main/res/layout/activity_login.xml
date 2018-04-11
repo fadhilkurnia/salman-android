@@ -43,7 +43,7 @@
         android:id="@+id/input_layout_email"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="90dp">
 
         <EditText
             android:id="@+id/input_email"
