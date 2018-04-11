@@ -47,9 +47,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.salmanitb.alumnisalman.activity.MainActivity" />
         </activity>
-        <activity android:name=".activity.ConfirmActivity"/>
+        <activity android:name=".activity.ConfirmActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.EditProfileActivity"/>
+        <activity android:name=".activity.EditProfileActivity" />
+        <activity android:name=".activity.RegistrationActivity"></activity>
     </application>
 
 </manifest>

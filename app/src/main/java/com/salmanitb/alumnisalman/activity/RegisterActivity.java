@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_register)
     public void gotoRegisterForm() {
-        Intent intent = new Intent(this, RegisterFormActivity.class);
+        Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 

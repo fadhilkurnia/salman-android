@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryDark"
+    android:orientation="vertical"
+    tools:context="com.salmanitb.alumnisalman.activity.RegistrationActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_verification" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:maxHeight="200dp"
+        android:text="Masukan data pribadi anda"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:elevation="10dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="13"
+            android:background="@color/accent" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_status_true"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="5"
+            android:background="@color/accent" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_status_true"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="5"
+            android:background="@color/accent" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_status_active"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="5"
+            android:background="@color/primaryLight" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_status_false"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="5"
+            android:background="@color/primaryLight" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/circle_status_false"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="13"
+            android:background="@color/primaryLight" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/registration_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="-10dp" />
+
+</LinearLayout>

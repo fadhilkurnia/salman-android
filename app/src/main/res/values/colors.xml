@@ -11,4 +11,11 @@
     <color name="popupbackground">#db160e01</color>
     <color name="textLight">#FFFFFF</color>
     <color name="edit_profile_background">#E0E0E0</color>
+    <color name="blue">#3f51b5</color>
+
+    <color name="primaryDark">#AF5539</color>
+    <color name="primary">#FABE69</color>
+    <color name="primaryLight">#DDD8B3</color>
+    <color name="accent">#006C7D</color>
+    <color name="accentDark">#043E6D</color>
 </resources>
