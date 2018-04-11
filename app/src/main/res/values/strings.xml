@@ -14,6 +14,7 @@
     <string name="alumni_masjid_salman_itb">Alumni Masjid Salman ITB</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tincidunt varius consequat. Aenean a cursus orci. Fusce id ultricies nisi. Nunc eros lectus, porttitor quis sodales ac, suscipit non purus. Quisque sed hendrerit sem. Etiam dolor est, feugiat in posuere ultrices, vulputate nec justo.</string>
     <string name="app_version">Aplikasi Alumni Salman v.1.0</string>
+    <string name="default_about">Aplikasi Alumni Salman merupakan wadah komunikasi antara Masjid Salman dan Alumninya. Para alumni dapat mengetahui kabar kegiatan di Masjid Salman melalui artikel yang dimuat dalam aplikasi ini. Terdapat juga fitur pencarian alumni yang dapat memberikan info persebaran alumni di berbagai tempat. Jika ada kritik atau saran tentang aplikasi ini silahkan hubungi kami melalui kontak yang ada di bawa ini.</string>
     <string name="default_address">Jalan Ganeca No 7, Lb. Siliwangi, Coblong, Kota Bandung, Jawa Barat 40132</string>
     <string name="default_phone">+6222 2507 675</string>
     <string name="default_email">alumni@salmanitb.com</string>
@@ -25,6 +26,7 @@
     <string name="contact_us_text">Hubungi kami</string>
     <string name="ketik_pesanmu_di_sini">Ketik pesanmu di sini ...</string>
     <string name="image_button_to_go_to_search_activity">Image Button to go to search activity</string>
+    <string name="app_title">Aplikasi Alumni Salman</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>

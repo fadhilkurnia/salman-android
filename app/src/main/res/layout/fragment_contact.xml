@@ -49,7 +49,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="8dp"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/default_about"
             android:textSize="12sp" />
 
         <LinearLayout
