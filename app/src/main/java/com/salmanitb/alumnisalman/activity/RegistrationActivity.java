@@ -11,17 +11,19 @@ import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    static Fragment firstStep;
-    static Fragment secondStep;
-    static Fragment thirdStep;
-    static Fragment fourthStep;
-    static Fragment fifthStep;
-    Fragment[] stepFragments = {firstStep, secondStep, thirdStep, fourthStep, fifthStep};
+    Fragment firstStep;
+    Fragment secondStep;
+    Fragment thirdStep;
+    Fragment fourthStep;
+    Fragment fifthStep;
+    ArrayList<Fragment> stepFragments;
     int stepId = 0;
 
     @Override
@@ -36,7 +38,14 @@ public class RegistrationActivity extends AppCompatActivity {
         fourthStep = new RegistrationActivityFragment();
         fifthStep = new RegistrationActivityFragment();
 
-        loadStepFragment(stepFragments[stepId]);
+        stepFragments = new ArrayList<>();
+        stepFragments.add(firstStep);
+        stepFragments.add(secondStep);
+        stepFragments.add(thirdStep);
+        stepFragments.add(fourthStep);
+        stepFragments.add(fifthStep);
+
+        loadStepFragment(stepFragments.get(stepId));
     }
 
     public void loadStepFragment(Fragment fragment) {
@@ -48,14 +57,15 @@ public class RegistrationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_next)
     protected void gotoNextStep() {
-        if (stepId < stepFragments.length -1) {
+        if (stepId < stepFragments.size() -1) {
             stepId++;
-            loadStepFragment(stepFragments[stepId]);
+            loadStepFragment(stepFragments.get(stepId));
             return;
         }
 
         Intent i = new Intent(this, ConfirmActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // finish(); finish hanya activity ini, tapi setFlag ngeclear semuanya
         startActivity(i);
 
     }
