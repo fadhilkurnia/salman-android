@@ -4,23 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment">
 
+
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/parent_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorBackground"
@@ -198,32 +184,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/primaryDark"
-                    android:gravity="end"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <Button
-                        android:id="@+id/btn_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"
-                        android:drawableRight="@drawable/ic_chevron_right_white"
-                        android:text="Lanjut"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-
-    </LinearLayout>
 
 
 </FrameLayout>
