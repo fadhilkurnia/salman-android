@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.salmanitb.alumnisalman.R;
-import com.salmanitb.alumnisalman.RegistrationPersonalFragment;
+import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 
 import butterknife.ButterKnife;
 
