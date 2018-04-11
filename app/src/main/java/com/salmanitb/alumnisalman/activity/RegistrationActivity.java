@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
@@ -13,10 +15,14 @@ import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    @BindView(R.id.step_progress)
+    LinearLayout progressStep;
 
     Fragment firstStep;
     Fragment secondStep;
@@ -49,6 +55,12 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void loadStepFragment(Fragment fragment) {
+        // Change current step indicator color to active
+        View indicator = progressStep.getChildAt(stepId*2+1);
+        indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_active));
+        View line = progressStep.getChildAt(stepId*2);
+        line.setBackgroundColor(getResources().getColor(R.color.accent));
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.registration_frame, fragment);
         transaction.addToBackStack(null);
@@ -57,15 +69,19 @@ public class RegistrationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_next)
     protected void gotoNextStep() {
-        if (stepId < stepFragments.size() -1) {
+        if (stepId < stepFragments.size()-1) {
+            // set current step indicator to true (finished) before change to next step
+            View indicator = progressStep.getChildAt(stepId*2+1);
+            indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_true));
+
             stepId++;
             loadStepFragment(stepFragments.get(stepId));
+
             return;
         }
 
         Intent i = new Intent(this, ConfirmActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        // finish(); finish hanya activity ini, tapi setFlag ngeclear semuanya
         startActivity(i);
 
     }
