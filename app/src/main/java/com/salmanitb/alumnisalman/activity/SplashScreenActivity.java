@@ -2,6 +2,7 @@ package com.salmanitb.alumnisalman.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -50,7 +51,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         } else { // no cached user data found
-            gotoLogin();
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    gotoLogin();
+                }
+            }, 500);
         }
 
     }
