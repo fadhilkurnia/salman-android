@@ -1,4 +1,4 @@
-package com.salmanitb.alumnisalman;
+package com.salmanitb.alumnisalman.fragment;
 
 
 import android.os.Bundle;
@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegistrationJobFragment extends Fragment {
+public class RegistrationJobFragment extends RegistrationStepFragment {
 
 
     public RegistrationJobFragment() {
@@ -26,4 +29,8 @@ public class RegistrationJobFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_registration_job, container, false);
     }
 
+    @Override
+    public boolean checkInput() {
+        return true;
+    }
 }

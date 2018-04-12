@@ -31,6 +31,6 @@ public class RegistrationAlmamaterFragment extends RegistrationStepFragment {
 
     @Override
     public boolean checkInput() {
-        return false;
+        return true;
     }
 }

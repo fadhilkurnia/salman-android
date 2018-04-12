@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
+import com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment;
+import com.salmanitb.alumnisalman.fragment.RegistrationJobFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
@@ -49,8 +51,8 @@ public class RegistrationActivity extends AppCompatActivity {
         firstStep = new RegistrationPersonalFragment();
         secondStep = new RegistrationAlmamaterFragment();
         thirdStep = new RegistrationActivityFragment();
-        fourthStep = new RegistrationPersonalFragment();
-        fifthStep = new RegistrationPersonalFragment();
+        fourthStep = new RegistrationJobFragment();
+        fifthStep = new RegistrationConfirmationFragment();
 
         stepFragments = new ArrayList<>();
         stepFragments.add(firstStep);
@@ -64,17 +66,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void loadStepFragment(Fragment fragment) {
         // Change step icon and description
-        switch (stepId) {
-            case 1:
-                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
-                txtStepDescription.setText("Masukan data almamater sarjana Anda");
-                break;
-            default:
-                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
-                txtStepDescription.setText("Masukan data almamater sarjana Anda");
-                break;
-        }
-        
+        changeRegistrationIcon();
+
         // Change current step indicator color to active
         View indicator = progressStep.getChildAt(stepId*2+1);
         indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_active));
@@ -110,6 +103,31 @@ public class RegistrationActivity extends AppCompatActivity {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
 
+    }
+
+    private void changeRegistrationIcon() {
+        switch (stepId) {
+            case 1:
+                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
+                txtStepDescription.setText("Masukan data almamater sarjana (S1) Anda");
+                break;
+            case 2:
+                imgStepIcon.setImageResource(R.drawable.ic_mail);
+                txtStepDescription.setText("Masukan data kegiatan yang pernah anda ikuti di Masjid Salman");
+                break;
+            case 3:
+                imgStepIcon.setImageResource(R.drawable.ic_phone);
+                txtStepDescription.setText("Masukan data pekerjaan Anda saat ini");
+                break;
+            case 4:
+                imgStepIcon.setImageResource(R.drawable.ic_address);
+                txtStepDescription.setText("Jawab pertanyaan dari kami, dan pastikan data Anda sudah benar");
+                break;
+            default:
+                imgStepIcon.setImageResource(R.drawable.ic_action_profile);
+                txtStepDescription.setText("Masukan data personal dan domisili Anda");
+                break;
+        }
     }
 
     @Override
