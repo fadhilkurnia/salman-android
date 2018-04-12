@@ -18,7 +18,6 @@ public class PreferenceManager {
     private Context mApplicationContext;
 
     private final String KEY_USER_AUTH= "KEY_USER_AUTH";
-    private final String KEY_USER_LOGIN = "KEY_USER_LOGIN";
     private final String KEY_USER_TOKEN = "KEY_USER_TOKEN";
     private final String KEY_ABOUT_DATA = "KEY_ABOUT_DATA";
 

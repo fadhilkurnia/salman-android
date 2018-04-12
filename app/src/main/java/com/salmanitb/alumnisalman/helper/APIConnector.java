@@ -83,7 +83,7 @@ public class APIConnector{
     }
 
 
-    private static String getMD5(String input) {
+    public static String getMD5(String input) {
         if (input == null)
             input = "";
         try {
