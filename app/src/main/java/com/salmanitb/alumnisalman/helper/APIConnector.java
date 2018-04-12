@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.math.BigInteger;
@@ -59,6 +60,34 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    public void checkEmail(String email, final ApiCallback<CheckEmailResponse> callback) {
+        Call<BaseResponse<CheckEmailResponse>> call = WebService.APIServiceImplementation.getInstance().checkEmail(email);
+        call.enqueue(new Callback<BaseResponse<CheckEmailResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<CheckEmailResponse>> call, Response<BaseResponse<CheckEmailResponse>> response) {
+                BaseResponse<CheckEmailResponse> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<CheckEmailResponse>> call, Throwable t) {
                 callback.onFailure(t);
             }
         });

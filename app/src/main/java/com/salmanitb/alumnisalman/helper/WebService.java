@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.concurrent.TimeUnit;
@@ -30,6 +31,10 @@ public interface WebService {
     @POST("login")
     Call<BaseResponse<UserAuth>> doLogin(@Field("email") String email,
                                  @Field("password") String hashedPassword);
+
+    @FormUrlEncoded
+    @POST("email")
+    Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
     @GET("abouts/1/?format=json")
     Call<About> getAbout();
