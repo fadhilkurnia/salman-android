@@ -12,6 +12,9 @@ import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     public void doLogin() {
         final String email = inputEmail.getText().toString();
         final String password = inputPassword.getText().toString();
+
+        if (!checkInput(email, password))
+            return;
 
         UserAuth userAuth = new UserAuth();
         userAuth.setEmail(email);
@@ -64,6 +70,33 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+    }
+
+    private boolean checkInput(String email, String password) {
+        if (email.trim().equals("") || password.trim().equals("")) {
+            Toast.makeText(this, "Pastikan email dan password sudah terisi!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!validateEmail(email)) {
+            Toast.makeText(this, "Pastikan alamat email anda benar!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (password.trim().length() < 6) {
+            Toast.makeText(this, "Kata sandi harus lebih dari 6 karakter!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
     }
 
     private void gotoConfirmation() {
