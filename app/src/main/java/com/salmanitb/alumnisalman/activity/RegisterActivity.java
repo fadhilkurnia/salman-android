@@ -53,6 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, RegistrationActivity.class);
                 intent.putExtra(REGISTRATION_EMAIL, email);
                 intent.putExtra(REGISTRATION_PASSWORD, password);
+
+                inputEmail.setText("");
+                inputPassword.setText("");
+                inputRepassword.setText("");
+
                 startActivity(intent);
             }
 
