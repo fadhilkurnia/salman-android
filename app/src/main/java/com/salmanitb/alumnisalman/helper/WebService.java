@@ -36,6 +36,7 @@ public interface WebService {
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
+
     @GET("abouts/1/?format=json")
     Call<About> getAbout();
 
