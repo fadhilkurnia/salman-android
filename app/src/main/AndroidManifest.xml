@@ -31,13 +31,7 @@
             android:value="AIzaSyC_4iTLKM1ZZYjM-7OxCOAxFFtcNKQOiKA" />
 
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.RegisterFormActivity" />
         <activity
@@ -50,7 +44,14 @@
         <activity android:name=".activity.ConfirmActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.EditProfileActivity" />
-        <activity android:name=".activity.RegistrationActivity"></activity>
+        <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

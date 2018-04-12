@@ -84,6 +84,8 @@ public class APIConnector{
 
 
     private static String getMD5(String input) {
+        if (input == null)
+            input = "";
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());

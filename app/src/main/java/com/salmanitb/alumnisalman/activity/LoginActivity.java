@@ -49,14 +49,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        UserAuth userAuth = PreferenceManager.getInstance().getUserAuth();
-        if (userAuth != null) {
-            Intent i = new Intent(this, ConfirmActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-            return;
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
