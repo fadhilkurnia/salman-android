@@ -45,8 +45,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(UserAuth response) {
                 response.setPassword(password);
                 PreferenceManager.getInstance().setUserAuth(response);
-                Intent intent = new Intent(context, ConfirmActivity.class);
-                startActivity(intent);
+                if (response.isVerified())
+                    gotoMain();
+                else
+                    gotoConfirmation();
             }
 
             @Override
@@ -62,6 +64,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+    }
+
+    private void gotoConfirmation() {
+        Intent i = new Intent(this, ConfirmActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+    }
+
+    private void gotoMain() {
+        Intent i = new Intent(this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 
 }
