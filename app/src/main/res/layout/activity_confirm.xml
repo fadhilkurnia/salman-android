@@ -48,14 +48,14 @@
         android:text="@string/data_anda_belum_benar_ubah_data"
         android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/txt_contact_us"
+
+    <Button
+        android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_edit_profile"
-        android:layout_marginTop="5dp"
-        android:text="@string/contact_us_text"
-        android:textAlignment="center"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:text="Keluar" />
 
 </RelativeLayout>
