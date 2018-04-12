@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Kata Sandi"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ulangi Kata Sandi"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
 

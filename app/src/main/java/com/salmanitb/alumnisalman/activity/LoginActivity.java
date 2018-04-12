@@ -73,18 +73,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean checkInput(String email, String password) {
-        if (email.trim().equals("") || password.trim().equals("")) {
+        if (email.trim().equals("") || password.equals("")) {
             Toast.makeText(this, "Pastikan email dan password sudah terisi!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (!validateEmail(email)) {
             Toast.makeText(this, "Pastikan alamat email anda benar!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (password.trim().length() < 6) {
-            Toast.makeText(this, "Kata sandi harus lebih dari 6 karakter!", Toast.LENGTH_SHORT).show();
             return false;
         }
 

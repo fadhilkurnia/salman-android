@@ -1,6 +1,7 @@
 package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
@@ -8,6 +9,7 @@ import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.math.BigInteger;
+import java.net.ConnectException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -60,7 +62,8 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
-                callback.onFailure(t);
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
@@ -88,7 +91,8 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<CheckEmailResponse>> call, Throwable t) {
-                callback.onFailure(t);
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
