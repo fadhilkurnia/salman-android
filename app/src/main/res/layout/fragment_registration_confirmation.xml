@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.salmanitb.alumnisalman.RegistrationConfirmationFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Pernyataan"
+            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/separator" />
+
+        <CheckBox
+            android:id="@+id/is_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saya menyatakan data yang saya berikan adalah data yang benar, dan saya bersedia jika data yang saya berikan diklarifikasi kepada pihak yang terkait."
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
