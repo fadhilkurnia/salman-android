@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +34,10 @@ public class RegistrationActivity extends AppCompatActivity {
     ImageView imgStepIcon;
     @BindView(R.id.txt_step_description)
     TextView txtStepDescription;
+    @BindView(R.id.btn_back)
+    Button btnBack;
+    @BindView(R.id.btn_next)
+    Button btnNext;
 
     RegistrationStepFragment firstStep;
     RegistrationStepFragment secondStep;
@@ -74,10 +79,31 @@ public class RegistrationActivity extends AppCompatActivity {
         View line = progressStep.getChildAt(stepId*2);
         line.setBackgroundColor(getResources().getColor(R.color.accent));
 
+        // Handle exception for back button
+        if (stepId == 0)
+            btnBack.setVisibility(View.GONE);
+        else
+            btnBack.setVisibility(View.VISIBLE);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.registration_frame, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @OnClick(R.id.btn_back)
+    protected void gotoPreviousStep() {
+        if (stepId == 0)
+            return;
+
+        // set current step indicator to false before change to previous step
+        View indicator = progressStep.getChildAt(stepId*2+1);
+        indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_false));
+        View line = progressStep.getChildAt(stepId*2);
+        line.setBackgroundColor(getResources().getColor(R.color.primaryLight));
+
+        stepId--;
+        loadStepFragment(stepFragments.get(stepId));
     }
 
     @OnClick(R.id.btn_next)
