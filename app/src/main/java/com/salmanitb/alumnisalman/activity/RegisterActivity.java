@@ -3,7 +3,9 @@ package com.salmanitb.alumnisalman.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
@@ -25,6 +27,10 @@ public class RegisterActivity extends AppCompatActivity {
     EditText inputPassword;
     @BindView(R.id.input_repasword)
     EditText inputRepassword;
+    @BindView(R.id.btn_register)
+    Button btnRegister;
+    @BindView(R.id.txt_login)
+    TextView txtLogin;
 
     @OnClick(R.id.txt_login)
     public void gotoLogin() {
@@ -39,9 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
         final String password = inputPassword.getText().toString();
         final String repassword = inputRepassword.getText().toString();
 
+        disableInput();
         APIConnector.getInstance().checkEmail(email, new APIConnector.ApiCallback<CheckEmailResponse>() {
             @Override
             public void onSuccess(CheckEmailResponse response) {
+                enableInput();
                 if (!response.isAvailable()) {
                     Toast.makeText(RegisterActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
@@ -64,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                enableInput();
             }
         });
 
@@ -95,4 +104,23 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    private void disableInput() {
+        inputEmail.setEnabled(false);
+        inputPassword.setEnabled(false);
+        inputRepassword.setEnabled(false);
+        btnRegister.setEnabled(false);
+        btnRegister.setBackgroundColor(getResources().getColor(R.color.separator));
+        txtLogin.setEnabled(false);
+    }
+
+    private void enableInput() {
+        inputEmail.setEnabled(true);
+        inputPassword.setEnabled(true);
+        inputRepassword.setEnabled(true);
+        btnRegister.setEnabled(true);
+        btnRegister.setBackgroundColor(getResources().getColor(R.color.accent));
+        txtLogin.setEnabled(true);
+    }
+
 }
