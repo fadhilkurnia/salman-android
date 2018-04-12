@@ -10,6 +10,8 @@ public class UserAuth {
 
     @SerializedName("email")
     String email;
+    @SerializedName("password")
+    String hashedPassword;
     @SerializedName("token")
     String token;
     @SerializedName("verified")
@@ -21,6 +23,14 @@ public class UserAuth {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 
     public String getToken() {
