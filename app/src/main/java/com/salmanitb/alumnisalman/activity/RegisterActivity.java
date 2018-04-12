@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!checkInput(email, password, repassword))
                     return;
 
-                Intent intent = new Intent(RegisterActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, RegistrationIntroActivity.class);
                 intent.putExtra(REGISTRATION_EMAIL, email);
                 intent.putExtra(REGISTRATION_PASSWORD, password);
 

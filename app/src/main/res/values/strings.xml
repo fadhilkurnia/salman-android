@@ -27,6 +27,8 @@
     <string name="ketik_pesanmu_di_sini">Ketik pesanmu di sini ...</string>
     <string name="image_button_to_go_to_search_activity">Image Button to go to search activity</string>
     <string name="app_title">Aplikasi Alumni Salman</string>
+    <string name="registration_intro_title">Lanjut Pendaftaran Alumni</string>
+    <string name="registration_description">Untuk melanjutkan pendaftaran, Anda harus mengisi data yang kami perlukan. Data yang ada akan digunakan untuk mendukung kegiatan di Masjid Salman serta mempererat tali silaturahim antar alumni. \n\n Kami menjamin kerahasiaan data yang Anda berikan.</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>
