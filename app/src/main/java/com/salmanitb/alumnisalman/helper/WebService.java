@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +28,7 @@ public interface WebService {
     @POST("login")
     BaseResponse<String> doLogin(@Field("email") String email,
                                  @Field("password") String hashedPassword,
-                                 Callback<BaseResponse<String>> callback);
+                                 Callback<BaseResponse<UserAuth>> callback);
 
     @GET("abouts/1/?format=json")
     Call<About> getAbout();

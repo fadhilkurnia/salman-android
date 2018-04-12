@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -33,27 +34,30 @@ public class APIConnector{
     }
 
 
-    public void doLogin(final String email, final String password, final ApiCallback<String> callback) {
+    public void doLogin(final String email, final String password, final ApiCallback<UserAuth> callback) {
         String hashedPassword = getMD5(password);
-        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<BaseResponse<String>>() {
+        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<BaseResponse<UserAuth>>() {
             @Override
-            public void onResponse(@NonNull Call<BaseResponse<String>> call, @NonNull Response<BaseResponse<String>> response) {
-                BaseResponse<String> responseBody = response.body();
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
                 if (responseBody == null) {
                     callback.onFailure(new Throwable("Error"));
                     return;
                 }
 
-                if (responseBody.getError() == null) {
-                    callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
                 } else {
-                    String token = responseBody.getData();
-                    callback.onSuccess(token);
+                    callback.onSuccess(responseBody.getData());
                 }
+
             }
 
             @Override
-            public void onFailure(@NonNull Call<BaseResponse<String>> call, @NonNull Throwable t) {
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
                 callback.onFailure(t);
             }
         });
