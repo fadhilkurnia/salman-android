@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
@@ -25,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText inputEmail;
     @BindView(R.id.input_password)
     EditText inputPassword;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
+    @BindView(R.id.txt_register)
+    TextView txtRegister;
 
     @OnClick(R.id.txt_register)
     public void gotoRegister() {
@@ -46,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         userAuth.setPassword(password);
 
         final Context context = this;
+        disableInput();
         APIConnector.getInstance().doLogin(userAuth.getEmail(), userAuth.getPassword(), new APIConnector.ApiCallback<UserAuth>() {
             @Override
             public void onSuccess(UserAuth response) {
@@ -60,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                enableInput();
             }
         });
     }
@@ -104,6 +112,22 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
+    }
+
+    private void disableInput() {
+        inputEmail.setEnabled(false);
+        inputPassword.setEnabled(false);
+        btnLogin.setEnabled(false);
+        btnLogin.setBackgroundColor(getResources().getColor(R.color.separator));
+        txtRegister.setEnabled(false);
+    }
+
+    private void enableInput() {
+        inputEmail.setEnabled(true);
+        inputPassword.setEnabled(true);
+        btnLogin.setEnabled(true);
+        btnLogin.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        txtRegister.setEnabled(true);
     }
 
 }
