@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail.setEnabled(false);
         inputPassword.setEnabled(false);
         btnLogin.setEnabled(false);
-        btnLogin.setBackgroundColor(getResources().getColor(R.color.separator));
+        btnLogin.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         txtRegister.setEnabled(false);
     }
 

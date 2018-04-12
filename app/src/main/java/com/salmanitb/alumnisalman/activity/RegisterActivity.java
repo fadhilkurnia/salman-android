@@ -1,8 +1,11 @@
 package com.salmanitb.alumnisalman.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -119,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
         inputPassword.setEnabled(true);
         inputRepassword.setEnabled(true);
         btnRegister.setEnabled(true);
-        btnRegister.setBackgroundColor(getResources().getColor(R.color.accent));
+        btnRegister.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         txtLogin.setEnabled(true);
     }
 
