@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
@@ -17,6 +18,7 @@ import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -25,6 +27,8 @@ import butterknife.ButterKnife;
 public class RegistrationPersonalFragment extends RegistrationStepFragment {
 
 
+    @BindView(R.id.txt_error)
+    TextView txtError;
     @BindView(R.id.input_name)
     EditText inputName;
     @BindView(R.id.input_email)
@@ -58,6 +62,9 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
 
     @Override
     public boolean checkInput() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
+
         String name = inputName.getText().toString().trim();
         String phone = inputPhone.getText().toString().trim();
         String country = inputCountry.getText().toString().trim();
@@ -65,9 +72,20 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         String address = inputAddress.getText().toString().trim();
 
         if (name.equals("") || phone.equals("") || country.equals("") || city.equals("") || address.equals("")) {
+            txtError.setVisibility(View.VISIBLE);
+            if (name.equals(""))
+                stringBuilder.append("  - Kolom nama masih kosong\n");
+            if (phone.equals(""))
+                stringBuilder.append("  - Kolom nomor telepon masih kosong\n");
+            if (country.equals(""))
+                stringBuilder.append("  - Kolom negara masih kososng\n");
+            if (address.equals(""))
+                stringBuilder.append("  - Kolom alamat masih kosong\n");
             showToast("Data belum terisi semuanya");
             return false;
         }
+
+        // TODO: check city use google geocoding API
 
         RegistrationActivity.applicationUser.setName(name);
         RegistrationActivity.applicationUser.setPhonenumber(phone);
@@ -82,4 +100,10 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     private void showToast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
+
+    @OnClick(R.id.txt_error)
+    protected void hideError() {
+        txtError.setVisibility(View.GONE);
+    }
+
 }

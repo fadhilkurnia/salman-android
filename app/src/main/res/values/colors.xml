@@ -18,4 +18,5 @@
     <color name="primaryLight">#DDD8B3</color>
     <color name="accent">#006C7D</color>
     <color name="accentDark">#043E6D</color>
+    <color name="warning">#f57c00</color>
 </resources>
