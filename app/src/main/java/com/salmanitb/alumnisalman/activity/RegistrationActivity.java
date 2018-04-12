@@ -6,14 +6,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
-import com.salmanitb.alumnisalman.helper.RegistrationChecker;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 import java.util.ArrayList;
@@ -26,6 +27,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
     @BindView(R.id.step_progress)
     LinearLayout progressStep;
+    @BindView(R.id.img_step_icon)
+    ImageView imgStepIcon;
+    @BindView(R.id.txt_step_description)
+    TextView txtStepDescription;
 
     RegistrationStepFragment firstStep;
     RegistrationStepFragment secondStep;
@@ -58,6 +63,18 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void loadStepFragment(Fragment fragment) {
+        // Change step icon and description
+        switch (stepId) {
+            case 1:
+                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
+                txtStepDescription.setText("Masukan data almamater sarjana Anda");
+                break;
+            default:
+                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
+                txtStepDescription.setText("Masukan data almamater sarjana Anda");
+                break;
+        }
+        
         // Change current step indicator color to active
         View indicator = progressStep.getChildAt(stepId*2+1);
         indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_active));
