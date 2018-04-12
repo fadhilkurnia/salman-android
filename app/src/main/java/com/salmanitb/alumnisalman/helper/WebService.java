@@ -15,6 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -25,10 +26,10 @@ import retrofit2.http.POST;
 public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
 
+    @FormUrlEncoded
     @POST("login")
-    BaseResponse<String> doLogin(@Field("email") String email,
-                                 @Field("password") String hashedPassword,
-                                 Callback<BaseResponse<UserAuth>> callback);
+    Call<BaseResponse<UserAuth>> doLogin(@Field("email") String email,
+                                 @Field("password") String hashedPassword);
 
     @GET("abouts/1/?format=json")
     Call<About> getAbout();

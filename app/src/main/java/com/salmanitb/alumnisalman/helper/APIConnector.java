@@ -36,12 +36,14 @@ public class APIConnector{
 
     public void doLogin(final String email, final String password, final ApiCallback<UserAuth> callback) {
         String hashedPassword = getMD5(password);
-        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<BaseResponse<UserAuth>>() {
+
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword);
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
             @Override
             public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
                 BaseResponse<UserAuth> responseBody = response.body();
                 if (responseBody == null) {
-                    callback.onFailure(new Throwable("Error"));
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
                     return;
                 }
 
@@ -53,7 +55,6 @@ public class APIConnector{
                 } else {
                     callback.onSuccess(responseBody.getData());
                 }
-
             }
 
             @Override
