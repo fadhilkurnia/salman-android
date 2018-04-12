@@ -19,6 +19,7 @@ import com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationJobFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.User;
 
 import java.util.ArrayList;
 
@@ -47,11 +48,19 @@ public class RegistrationActivity extends AppCompatActivity {
     ArrayList<RegistrationStepFragment> stepFragments;
     int stepId = 0;
 
+    public static User applicationUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
+
+        Intent currentIntent = getIntent();
+        String email = currentIntent.getStringExtra(RegisterActivity.REGISTRATION_EMAIL);
+
+        applicationUser = new User();
+        applicationUser.setEmail(email);
 
         firstStep = new RegistrationPersonalFragment();
         secondStep = new RegistrationAlmamaterFragment();
