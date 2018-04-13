@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class GeocodingArea {
-    @SerializedName("norteast")
+    @SerializedName("northeast")
     GeocodingArea northeast;
     @SerializedName("southwest")
     GeocodingArea southwest;

@@ -127,7 +127,7 @@ public class APIConnector{
             @Override
             public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
                 GeocodingResponse responseBody = response.body();
-                if (responseBody == null || responseBody.getStatus().equals("OK")) {
+                if (responseBody == null || !responseBody.getStatus().equals("OK")) {
                     callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
                     return;
                 }

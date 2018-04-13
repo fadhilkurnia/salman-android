@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class GeocodingResult {
-    @SerializedName("address_component")
+    @SerializedName("address_components")
     GeocodingAddressComponent addressComponent[];
     @SerializedName("formatted_address")
     String formattedAddress;

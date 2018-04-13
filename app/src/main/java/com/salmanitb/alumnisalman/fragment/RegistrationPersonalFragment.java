@@ -3,6 +3,7 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
@@ -108,7 +110,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
 
             @Override
             public void onFailure(Throwable t) {
-                stringBuilder.append("  - Harap periksa negara atau kota yang diisi");
+                stringBuilder.append("  - Periksa negara atau kota yang diisi");
                 txtError.setText(stringBuilder.toString());
                 txtError.setVisibility(View.VISIBLE);
                 showToast("Negara atau kota yang dimasukan salah!");
@@ -127,9 +129,11 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     }
 
     private void formatUserAddress(GeocodingResponse geocodingResponse) {
+        Gson gson = new Gson();
+        Log.d("DEBUG", gson.toJson(geocodingResponse.getResults()));
         for (GeocodingAddressComponent address: geocodingResponse.getResults()[0].getAddressComponent()) {
             if (isMember(address.getTypes(), "country"))
-                RegistrationActivity.applicationUser.setCountry(address.getShortName());
+                RegistrationActivity.applicationUser.setCountry(address.getLongName());
             if (isMember(address.getTypes(), "administrative_area_level_2")) {
                 String cityName = address.getShortName();
                 String cityNameWord[] = cityName.split(" ", 2);
