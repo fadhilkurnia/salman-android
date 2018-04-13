@@ -9,23 +9,23 @@ import com.google.gson.annotations.SerializedName;
 public class GeocodingCoordinate {
 
     @SerializedName("lat")
-    float latitude;
+    double latitude;
     @SerializedName("lng")
-    float longitude;
+    double longitude;
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }

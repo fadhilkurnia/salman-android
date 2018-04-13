@@ -3,7 +3,6 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
@@ -129,8 +127,6 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     }
 
     private void formatUserAddress(GeocodingResponse geocodingResponse) {
-        Gson gson = new Gson();
-        Log.d("DEBUG", gson.toJson(geocodingResponse.getResults()));
         for (GeocodingAddressComponent address: geocodingResponse.getResults()[0].getAddressComponent()) {
             if (isMember(address.getTypes(), "country"))
                 RegistrationActivity.applicationUser.setCountry(address.getLongName());
@@ -143,6 +139,20 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
                 RegistrationActivity.applicationUser.setCity(cityName);
             }
         }
+        RegistrationActivity
+                .applicationUser
+                .setLatitude(
+                        geocodingResponse.getResults()[0]
+                                .getGeometry()
+                                .getLocation()
+                                .getLatitude());
+        RegistrationActivity
+                .applicationUser
+                .setLongitude(
+                        geocodingResponse.getResults()[0]
+                                .getGeometry()
+                                .getLocation()
+                                .getLatitude());
     }
 
     private boolean isMember(String data[], String element) {
