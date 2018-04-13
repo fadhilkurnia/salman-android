@@ -37,12 +37,13 @@ public interface WebService {
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
 
-    @GET("abouts/1/?format=json")
+    @GET("about")
     Call<About> getAbout();
 
 
     public class APIServiceImplementation {
         private static WebService webService;
+        private static GeocodingWebService geocodingWebService;
 
         public static WebService getInstance() {
             if (webService == null) {
@@ -51,8 +52,14 @@ public interface WebService {
             return webService;
         }
 
-        private WebService create() {
+        public static GeocodingWebService getGeocodingInstance() {
+            if (geocodingWebService == null)
+                geocodingWebService = new APIServiceImplementation().createGeocodingWebService();
 
+            return geocodingWebService;
+        }
+
+        private WebService create() {
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
             builder.readTimeout(60, TimeUnit.SECONDS);
             builder.connectTimeout(60, TimeUnit.SECONDS);
@@ -72,6 +79,28 @@ public interface WebService {
                     .build();
 
             return retrofit.create(WebService.class);
+        }
+
+        private GeocodingWebService createGeocodingWebService() {
+            OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+            builder.readTimeout(60, TimeUnit.SECONDS);
+            builder.connectTimeout(60, TimeUnit.SECONDS);
+            builder.writeTimeout(60, TimeUnit.SECONDS);
+
+            Gson gson = new GsonBuilder().serializeNulls().create();
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient client = builder.addInterceptor(interceptor).build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(GeocodingWebService.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+
+            return retrofit.create(GeocodingWebService.class);
         }
 
     }

@@ -10,9 +10,9 @@ import retrofit2.http.GET;
  */
 
 public interface GeocodingWebService {
-    String BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+    String BASE_URL = "https://maps.googleapis.com/";
 
-    @GET("")
+    @GET("maps/api/geocode/json")
     Call<GeocodingResponse> checkAddress(String address);
 
 }

@@ -3,9 +3,11 @@ package com.salmanitb.alumnisalman.helper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.math.BigInteger;
@@ -111,6 +113,24 @@ public class APIConnector{
             @Override
             public void onFailure(Call<About> call, Throwable t) {
                 callback.onFailure(t);
+            }
+        });
+    }
+
+    public void checkAddress(final String address, final ApiCallback<GeocodingResponse> callback) {
+        Call<GeocodingResponse> call = WebService.APIServiceImplementation.getGeocodingInstance().checkAddress(address);
+        call.enqueue(new Callback<GeocodingResponse>() {
+            @Override
+            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+                GeocodingResponse responseBody = response.body();
+                Gson gson = new Gson();
+                Log.d("MAP_CHECKER", gson.toJson(responseBody));
+            }
+
+            @Override
+            public void onFailure(Call<GeocodingResponse> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
