@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 
@@ -30,7 +31,7 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
     }
 
     @Override
-    public boolean checkInput() {
-        return true;
+    public void checkInput(RegistrationCheckerCallback callback) {
+        callback.onFinishChecking(true);
     }
 }
