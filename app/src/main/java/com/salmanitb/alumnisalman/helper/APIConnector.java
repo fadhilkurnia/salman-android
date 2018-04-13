@@ -116,22 +116,30 @@ public class APIConnector{
         });
     }
 
-    public GeocodingResponse checkAddress(final String address) {
+    public void checkAddress(final String address, final ApiCallback<GeocodingResponse> callback) {
         Call<GeocodingResponse> call = WebService.APIServiceImplementation
                 .getGeocodingInstance()
                 .checkAddress(
                         GeocodingWebService.GOOGLE_KEY,
                         address,
                         GeocodingWebService.DEFAULT_LANGUAGE);
-        GeocodingResponse response = null;
-        try {
-            response = call.execute().body();
-            if (response != null && !response.getStatus().equals("OK")) response = null;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        call.enqueue(new Callback<GeocodingResponse>() {
+            @Override
+            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+                GeocodingResponse responseBody = response.body();
+                if (responseBody == null || responseBody.getStatus().equals("OK")) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                callback.onSuccess(responseBody);
+            }
 
-        return response;
+            @Override
+            public void onFailure(Call<GeocodingResponse> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
     }
 
 

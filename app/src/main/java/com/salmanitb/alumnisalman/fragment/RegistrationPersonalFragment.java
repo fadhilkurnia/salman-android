@@ -64,8 +64,8 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     }
 
     @Override
-    public void checkInput(RegistrationCheckerCallback callback) {
-        StringBuilder stringBuilder = new StringBuilder();
+    public void checkInput(final RegistrationCheckerCallback callback) {
+        final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
 
         final String name = inputName.getText().toString().trim();
@@ -90,27 +90,31 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         }
 
         final boolean[] isSucces = {false};
-        GeocodingResponse geocoding = APIConnector.getInstance().checkAddress(city + " " + country);
-        if (geocoding == null) {
-            stringBuilder.append("  - Harap periksa negara atau kota yang diisi");
-            txtError.setText(stringBuilder.toString());
-            txtError.setVisibility(View.VISIBLE);
-            showToast("Negara atau kota yang dimasukan salah!");
-            callback.onFinishChecking(false);
-        }
+        APIConnector.getInstance().checkAddress(city + " " + country, new APIConnector.ApiCallback<GeocodingResponse>() {
+            @Override
+            public void onSuccess(GeocodingResponse response) {
+                formatUserAddress(response);
+                inputCountry.setText(RegistrationActivity.applicationUser.getCountry());
+                inputCity.setText(RegistrationActivity.applicationUser.getCity());
 
-        formatUserAddress(geocoding);
-        inputCountry.setText(RegistrationActivity.applicationUser.getCountry());
-        inputCity.setText(RegistrationActivity.applicationUser.getCity());
+                RegistrationActivity.applicationUser.setName(name);
+                RegistrationActivity.applicationUser.setPhonenumber(phone);
+                RegistrationActivity.applicationUser.setCountry(country);
+                RegistrationActivity.applicationUser.setCity(city);
+                RegistrationActivity.applicationUser.setAddress(address);
+                RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
+                callback.onFinishChecking(true);
+            }
 
-        RegistrationActivity.applicationUser.setName(name);
-        RegistrationActivity.applicationUser.setPhonenumber(phone);
-        RegistrationActivity.applicationUser.setCountry(country);
-        RegistrationActivity.applicationUser.setCity(city);
-        RegistrationActivity.applicationUser.setAddress(address);
-        RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
-
-        callback.onFinishChecking(true);
+            @Override
+            public void onFailure(Throwable t) {
+                stringBuilder.append("  - Harap periksa negara atau kota yang diisi");
+                txtError.setText(stringBuilder.toString());
+                txtError.setVisibility(View.VISIBLE);
+                showToast("Negara atau kota yang dimasukan salah!");
+                callback.onFinishChecking(false);
+            }
+        });
     }
 
     private void showToast(String text) {
