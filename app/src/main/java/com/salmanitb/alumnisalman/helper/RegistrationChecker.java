@@ -7,5 +7,5 @@ import android.app.Fragment;
  */
 
 public interface RegistrationChecker {
-    boolean checkInput();
+    void checkInput(final RegistrationCheckerCallback callback);
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.GeocodingAddressComponent;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
@@ -63,7 +64,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     }
 
     @Override
-    public boolean checkInput() {
+    public void checkInput(RegistrationCheckerCallback callback) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
 
@@ -85,7 +86,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             txtError.setText(stringBuilder.toString());
             txtError.setVisibility(View.VISIBLE);
             showToast("Data belum terisi semuanya!");
-            return false;
+            callback.onFinishChecking(false);
         }
 
         final boolean[] isSucces = {false};
@@ -95,7 +96,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             txtError.setText(stringBuilder.toString());
             txtError.setVisibility(View.VISIBLE);
             showToast("Negara atau kota yang dimasukan salah!");
-            return false;
+            callback.onFinishChecking(false);
         }
 
         formatUserAddress(geocoding);
@@ -109,7 +110,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         RegistrationActivity.applicationUser.setAddress(address);
         RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
 
-        return true;
+        callback.onFinishChecking(true);
     }
 
     private void showToast(String text) {

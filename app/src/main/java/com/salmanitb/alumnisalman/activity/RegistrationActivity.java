@@ -18,6 +18,7 @@ import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationJobFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
+import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.User;
 
@@ -118,24 +119,27 @@ public class RegistrationActivity extends AppCompatActivity {
     @OnClick(R.id.btn_next)
     protected void gotoNextStep() {
 
-        if (!stepFragments.get(stepId).checkInput()) {
-            return;
-        }
+        stepFragments.get(stepId).checkInput(new RegistrationCheckerCallback() {
+            @Override
+            public void onFinishChecking(boolean isSuccess) {
+                if (isSuccess) {
+                    if (stepId < stepFragments.size()-1) {
+                        // set current step indicator to true (finished) before change to next step
+                        View indicator = progressStep.getChildAt(stepId*2+1);
+                        indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_true));
 
-        if (stepId < stepFragments.size()-1) {
-            // set current step indicator to true (finished) before change to next step
-            View indicator = progressStep.getChildAt(stepId*2+1);
-            indicator.setBackground(getResources().getDrawable(R.drawable.circle_status_true));
+                        stepId++;
+                        loadStepFragment(stepFragments.get(stepId));
 
-            stepId++;
-            loadStepFragment(stepFragments.get(stepId));
+                        return;
+                    }
 
-            return;
-        }
-
-        Intent i = new Intent(this, ConfirmActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
+                    Intent i = new Intent(RegistrationActivity.this, ConfirmActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                }
+            }
+        });
 
     }
 
