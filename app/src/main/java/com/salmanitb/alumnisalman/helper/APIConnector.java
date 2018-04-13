@@ -3,7 +3,6 @@ package com.salmanitb.alumnisalman.helper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
@@ -127,8 +126,10 @@ public class APIConnector{
             @Override
             public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
                 GeocodingResponse responseBody = response.body();
-                Gson gson = new Gson();
-                Log.d("MAP_CHECKER", gson.toJson(responseBody));
+                if (responseBody.getStatus().equals("OK"))
+                    callback.onSuccess(responseBody);
+                else
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
             }
 
             @Override

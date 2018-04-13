@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
-import com.salmanitb.alumnisalman.activity.RegisterActivity;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
@@ -92,7 +91,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         APIConnector.getInstance().checkAddress(city, new APIConnector.ApiCallback<GeocodingResponse>() {
             @Override
             public void onSuccess(GeocodingResponse response) {
-
+                formatUserAddress(response);
                 RegistrationActivity.applicationUser.setName(name);
                 RegistrationActivity.applicationUser.setPhonenumber(phone);
                 RegistrationActivity.applicationUser.setCountry(country);
@@ -108,8 +107,6 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             }
         });
 
-
-
         return isSucces[0];
     }
 
@@ -120,6 +117,10 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     @OnClick(R.id.txt_error)
     protected void hideError() {
         txtError.setVisibility(View.GONE);
+    }
+
+    private void formatUserAddress(GeocodingResponse geocodingResponse) {
+
     }
 
 }
