@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegisterActivity;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
+import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.GeocodingResponse;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,11 +67,11 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
 
-        String name = inputName.getText().toString().trim();
-        String phone = inputPhone.getText().toString().trim();
-        String country = inputCountry.getText().toString().trim();
-        String city = inputCity.getText().toString().trim();
-        String address = inputAddress.getText().toString().trim();
+        final String name = inputName.getText().toString().trim();
+        final String phone = inputPhone.getText().toString().trim();
+        final String country = inputCountry.getText().toString().trim();
+        final String city = inputCity.getText().toString().trim();
+        final String address = inputAddress.getText().toString().trim();
 
         if (name.equals("") || phone.equals("") || country.equals("") || city.equals("") || address.equals("")) {
             if (name.equals(""))
@@ -86,16 +88,29 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             return false;
         }
 
-        // TODO: check city use google geocoding API
+        final boolean[] isSucces = {false};
+        APIConnector.getInstance().checkAddress(city, new APIConnector.ApiCallback<GeocodingResponse>() {
+            @Override
+            public void onSuccess(GeocodingResponse response) {
 
-        RegistrationActivity.applicationUser.setName(name);
-        RegistrationActivity.applicationUser.setPhonenumber(phone);
-        RegistrationActivity.applicationUser.setCountry(country);
-        RegistrationActivity.applicationUser.setCity(city);
-        RegistrationActivity.applicationUser.setAddress(address);
-        RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
+                RegistrationActivity.applicationUser.setName(name);
+                RegistrationActivity.applicationUser.setPhonenumber(phone);
+                RegistrationActivity.applicationUser.setCountry(country);
+                RegistrationActivity.applicationUser.setCity(city);
+                RegistrationActivity.applicationUser.setAddress(address);
+                RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
+                isSucces[0] = true;
+            }
 
-        return true;
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+
+
+
+        return isSucces[0];
     }
 
     private void showToast(String text) {

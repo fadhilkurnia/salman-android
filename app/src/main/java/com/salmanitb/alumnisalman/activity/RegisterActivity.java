@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         if (password.length() < 6) {
-            Toast.makeText(this, "Kata sandi harus lebih dari 6 karakter!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kata sandi minimal 6 karakter!", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!password.equals(repassword)) {

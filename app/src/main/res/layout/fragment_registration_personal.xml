@@ -165,7 +165,9 @@
                     android:background="@drawable/edit_text_background"
                     android:lines="1"
                     android:maxLines="1"
+                    android:nextFocusDown="@id/input_city"
                     android:nextFocusForward="@id/input_city"
+                    android:nextFocusRight="@id/input_city"
                     android:padding="5dp"
                     android:singleLine="true" />
             </LinearLayout>

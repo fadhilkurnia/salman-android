@@ -11,7 +11,6 @@ import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.math.BigInteger;
-import java.net.ConnectException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -118,7 +117,12 @@ public class APIConnector{
     }
 
     public void checkAddress(final String address, final ApiCallback<GeocodingResponse> callback) {
-        Call<GeocodingResponse> call = WebService.APIServiceImplementation.getGeocodingInstance().checkAddress(address);
+        Call<GeocodingResponse> call = WebService.APIServiceImplementation
+                .getGeocodingInstance()
+                .checkAddress(
+                        GeocodingWebService.GOOGLE_KEY,
+                        address,
+                        GeocodingWebService.DEFAULT_LANGUAGE);
         call.enqueue(new Callback<GeocodingResponse>() {
             @Override
             public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
@@ -153,5 +157,6 @@ public class APIConnector{
             throw new RuntimeException(e);
         }
     }
+
 
 }
