@@ -39,6 +39,10 @@
             android:background="@drawable/edit_text_background"
             android:lines="1"
             android:maxLines="1"
+            android:nextFocusDown="@id/input_major"
+            android:nextFocusForward="@id/input_major"
+            android:nextFocusRight="@id/input_major"
+            android:padding="5dp"
             android:singleLine="true" />
 
         <LinearLayout
@@ -69,6 +73,10 @@
                     android:background="@drawable/edit_text_background"
                     android:lines="1"
                     android:maxLines="1"
+                    android:nextFocusDown="@id/input_year"
+                    android:nextFocusForward="@id/input_year"
+                    android:nextFocusRight="@id/input_year"
+                    android:padding="5dp"
                     android:singleLine="true" />
             </LinearLayout>
 
@@ -91,8 +99,10 @@
                     android:layout_height="40dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/edit_text_background"
+                    android:inputType="number"
                     android:lines="1"
                     android:maxLines="1"
+                    android:padding="5dp"
                     android:singleLine="true" />
             </LinearLayout>
 
