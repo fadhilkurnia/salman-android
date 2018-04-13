@@ -15,6 +15,7 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.GeocodingAddressComponent;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
 
 import butterknife.BindView;
@@ -88,26 +89,27 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         }
 
         final boolean[] isSucces = {false};
-        APIConnector.getInstance().checkAddress(city, new APIConnector.ApiCallback<GeocodingResponse>() {
-            @Override
-            public void onSuccess(GeocodingResponse response) {
-                formatUserAddress(response);
-                RegistrationActivity.applicationUser.setName(name);
-                RegistrationActivity.applicationUser.setPhonenumber(phone);
-                RegistrationActivity.applicationUser.setCountry(country);
-                RegistrationActivity.applicationUser.setCity(city);
-                RegistrationActivity.applicationUser.setAddress(address);
-                RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
-                isSucces[0] = true;
-            }
+        GeocodingResponse geocoding = APIConnector.getInstance().checkAddress(city + " " + country);
+        if (geocoding == null) {
+            stringBuilder.append("  - Harap periksa negara atau kota yang diisi");
+            txtError.setText(stringBuilder.toString());
+            txtError.setVisibility(View.VISIBLE);
+            showToast("Negara atau kota yang dimasukan salah!");
+            return false;
+        }
 
-            @Override
-            public void onFailure(Throwable t) {
+        formatUserAddress(geocoding);
+        inputCountry.setText(RegistrationActivity.applicationUser.getCountry());
+        inputCity.setText(RegistrationActivity.applicationUser.getCity());
 
-            }
-        });
+        RegistrationActivity.applicationUser.setName(name);
+        RegistrationActivity.applicationUser.setPhonenumber(phone);
+        RegistrationActivity.applicationUser.setCountry(country);
+        RegistrationActivity.applicationUser.setCity(city);
+        RegistrationActivity.applicationUser.setAddress(address);
+        RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
 
-        return isSucces[0];
+        return true;
     }
 
     private void showToast(String text) {
@@ -120,7 +122,23 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     }
 
     private void formatUserAddress(GeocodingResponse geocodingResponse) {
+        for (GeocodingAddressComponent address: geocodingResponse.getResults()[0].getAddressComponent()) {
+            if (isMember(address.getTypes(), "country"))
+                RegistrationActivity.applicationUser.setCountry(address.getShortName());
+            if (isMember(address.getTypes(), "administrative_area_level_2")) {
+                String cityName = address.getShortName();
+                String cityNameWord[] = cityName.split(" ", 2);
+                if (cityNameWord.length > 1)
+                    cityName = cityNameWord[1];
 
+                RegistrationActivity.applicationUser.setCity(cityName);
+            }
+        }
+    }
+
+    private boolean isMember(String data[], String element) {
+        for (String aData : data) if (aData.equals(element)) return true;
+        return false;
     }
 
 }

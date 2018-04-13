@@ -9,6 +9,7 @@ import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -115,29 +116,22 @@ public class APIConnector{
         });
     }
 
-    public void checkAddress(final String address, final ApiCallback<GeocodingResponse> callback) {
+    public GeocodingResponse checkAddress(final String address) {
         Call<GeocodingResponse> call = WebService.APIServiceImplementation
                 .getGeocodingInstance()
                 .checkAddress(
                         GeocodingWebService.GOOGLE_KEY,
                         address,
                         GeocodingWebService.DEFAULT_LANGUAGE);
-        call.enqueue(new Callback<GeocodingResponse>() {
-            @Override
-            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
-                GeocodingResponse responseBody = response.body();
-                if (responseBody.getStatus().equals("OK"))
-                    callback.onSuccess(responseBody);
-                else
-                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
-            }
+        GeocodingResponse response = null;
+        try {
+            response = call.execute().body();
+            if (response != null && !response.getStatus().equals("OK")) response = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            @Override
-            public void onFailure(Call<GeocodingResponse> call, Throwable t) {
-                Log.e("Error", t.getMessage());
-                callback.onFailure(new Throwable("Periksa koneksi anda!"));
-            }
-        });
+        return response;
     }
 
 

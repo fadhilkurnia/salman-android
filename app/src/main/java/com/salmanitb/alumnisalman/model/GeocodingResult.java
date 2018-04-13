@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class GeocodingResult {
     @SerializedName("address_component")
-    GeocodingAddressComponent addressComponent;
+    GeocodingAddressComponent addressComponent[];
     @SerializedName("formatted_address")
     String formattedAddress;
     @SerializedName("geometry")
@@ -18,11 +18,11 @@ public class GeocodingResult {
     @SerializedName("types")
     String[] types;
 
-    public GeocodingAddressComponent getAddressComponent() {
+    public GeocodingAddressComponent[] getAddressComponent() {
         return addressComponent;
     }
 
-    public void setAddressComponent(GeocodingAddressComponent addressComponent) {
+    public void setAddressComponent(GeocodingAddressComponent[] addressComponent) {
         this.addressComponent = addressComponent;
     }
 
