@@ -87,6 +87,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             txtError.setVisibility(View.VISIBLE);
             showToast("Data belum terisi semuanya!");
             callback.onFinishChecking(false);
+            return;
         }
 
         final boolean[] isSucces = {false};
