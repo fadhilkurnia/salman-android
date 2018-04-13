@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/warning"
-            android:padding="5dp"
+            android:padding="10dp"
             android:textColor="@color/white"
             android:visibility="gone" />
 
@@ -98,6 +98,9 @@
             android:inputType="phone"
             android:lines="1"
             android:maxLines="1"
+            android:nextFocusDown="@id/input_country"
+            android:nextFocusForward="@id/input_country"
+            android:nextFocusRight="@id/input_country"
             android:padding="5dp"
             android:singleLine="true" />
 

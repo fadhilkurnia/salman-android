@@ -72,7 +72,6 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         String address = inputAddress.getText().toString().trim();
 
         if (name.equals("") || phone.equals("") || country.equals("") || city.equals("") || address.equals("")) {
-            txtError.setVisibility(View.VISIBLE);
             if (name.equals(""))
                 stringBuilder.append("  - Kolom nama masih kosong\n");
             if (phone.equals(""))
@@ -81,7 +80,9 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
                 stringBuilder.append("  - Kolom negara masih kososng\n");
             if (address.equals(""))
                 stringBuilder.append("  - Kolom alamat masih kosong\n");
-            showToast("Data belum terisi semuanya");
+            txtError.setText(stringBuilder.toString());
+            txtError.setVisibility(View.VISIBLE);
+            showToast("Data belum terisi semuanya!");
             return false;
         }
 

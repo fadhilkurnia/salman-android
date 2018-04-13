@@ -119,7 +119,6 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void gotoNextStep() {
 
         if (!stepFragments.get(stepId).checkInput()) {
-            Toast.makeText(this, "Pastikan semua data sudah terisi dengan benar!", Toast.LENGTH_SHORT).show();
             return;
         }
 
