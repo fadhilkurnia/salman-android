@@ -1,0 +1,136 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/txt_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/warning"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Konfirmasi data"
+            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/separator" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Mohon periksa kembali data yang anda tulis:"
+            android:textSize="11dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_confirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Nama: Nama Orang\nEmail: email@salman.com"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Pertanyaan acak"
+            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/separator" />
+
+        <TextView
+            android:id="@+id/txt_question_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Siapa tokoh nasional yang meresmikan Masjid Salman ITB?"
+            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+        <EditText
+            android:id="@+id/input_answer_1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="top|start"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:lines="2"
+            android:maxLines="2"
+            android:nextFocusDown="@id/input_major"
+            android:nextFocusForward="@id/input_major"
+            android:nextFocusRight="@id/input_major"
+            android:padding="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/txt_question_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Pada tahun berapa Masjid Salman ITB diresmikan?"
+            android:textAppearance="@style/TextAppearance.Design.Hint" />
+
+        <EditText
+            android:id="@+id/input_answer_2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:gravity="top|start"
+            android:lines="2"
+            android:maxLines="2"
+            android:nextFocusDown="@id/input_major"
+            android:nextFocusForward="@id/input_major"
+            android:nextFocusRight="@id/input_major"
+            android:padding="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Pernyataan"
+            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/separator" />
+
+        <CheckBox
+            android:id="@+id/is_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_confirmation"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

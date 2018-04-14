@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/activity_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:maxWidth="30dp"
+        android:text="Lainnya"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/activity_start_year"
+        android:layout_width="20dp"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edit_text_background_disabled"
+        android:enabled="false"
+        android:hint="@string/tahun_mulai"
+        android:inputType="number"
+        android:lines="1"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textSize="10sp" />
+
+    <EditText
+        android:id="@+id/activity_end_year"
+        android:layout_width="20dp"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edit_text_background_disabled"
+        android:enabled="false"
+        android:hint="@string/tahun_selesai"
+        android:inputType="number"
+        android:lines="1"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textSize="10sp" />
+
+
+</LinearLayout>

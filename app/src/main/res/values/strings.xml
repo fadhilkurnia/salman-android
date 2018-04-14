@@ -14,6 +14,7 @@
     <string name="alumni_masjid_salman_itb">Alumni Masjid Salman ITB</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tincidunt varius consequat. Aenean a cursus orci. Fusce id ultricies nisi. Nunc eros lectus, porttitor quis sodales ac, suscipit non purus. Quisque sed hendrerit sem. Etiam dolor est, feugiat in posuere ultrices, vulputate nec justo.</string>
     <string name="app_version">Aplikasi Alumni Salman v.1.0</string>
+    <string name="default_about">Aplikasi Alumni Salman merupakan wadah komunikasi antara Masjid Salman dan Alumninya. Para alumni dapat mengetahui kabar kegiatan di Masjid Salman melalui artikel yang dimuat dalam aplikasi ini. Terdapat juga fitur pencarian alumni yang dapat memberikan info persebaran alumni di berbagai tempat. Jika ada kritik atau saran tentang aplikasi ini silahkan hubungi kami melalui kontak yang ada di bawa ini.</string>
     <string name="default_address">Jalan Ganeca No 7, Lb. Siliwangi, Coblong, Kota Bandung, Jawa Barat 40132</string>
     <string name="default_phone">+6222 2507 675</string>
     <string name="default_email">alumni@salmanitb.com</string>
@@ -21,9 +22,16 @@
     <string name="send">Kirim</string>
     <string name="data_anda_belum_benar_ubah_data">Data anda belum benar? <b>ubah data</b></string>
     <string name="verification_description">Kami berusaha memastikan semua pengguna aplikasi ini adalah Alumni Salman yang pernah aktif di berbagai kegiatan dalam Masjid Salman. Saat ini akun anda sedang kami verifikasi, mohon tunggu beberapa saat.</string>
-    <string name="verification_title">Akun Sedang Diferivikasi</string>
+    <string name="verification_title">Akun Sedang Diverifikasi</string>
     <string name="contact_us_text">Hubungi kami</string>
     <string name="ketik_pesanmu_di_sini">Ketik pesanmu di sini ...</string>
+    <string name="image_button_to_go_to_search_activity">Image Button to go to search activity</string>
+    <string name="app_title">Aplikasi Alumni Salman</string>
+    <string name="registration_intro_title">Lanjut Pendaftaran Alumni</string>
+    <string name="registration_description">Untuk melanjutkan pendaftaran, Anda harus mengisi data yang kami perlukan. Data yang ada akan digunakan untuk mendukung kegiatan di Masjid Salman serta mempererat tali silaturahim antar alumni. \n\n Kami menjamin kerahasiaan data yang Anda berikan.</string>
+    <string name="tahun_selesai">tahun\nselesai</string>
+    <string name="tahun_mulai">tahun\nmulai</string>
+    <string name="text_confirmation">Saya menyatakan data yang saya berikan adalah data yang benar, dan saya bersedia jika data yang saya berikan diklarifikasi kepada pihak yang terkait.</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>
@@ -34,6 +42,54 @@
         <item>London</item>
         <item>Paris</item>
         <item>United Stated</item>
+    </string-array>
+
+    <string-array name="default_registered_activity">
+        <item>Aksara</item>
+        <item>Biologi Terapan (Bioter)</item>
+        <item>Keluaga Mahasiswa Islam Pascasarjana ITB (Kamil)</item>
+        <item>Korps Relawan Salman (Korsa)</item>
+        <item>Pembinaan Anak-anak Salman (PAS)</item>
+        <item>Reklame Kreasi Masa (Reklamasa)</item>
+        <item>Rumah Visi</item>
+        <item>Unit Pengembangan Tilawati Qur'an Al-Muhandis (UPTQ)</item>
+        <item>Lembaga Kemahasiswaan (BASIS)</item>
+        <item>Asrama Salman</item>
+        <item>Keluarga Mahasiswa Islam ITB (GAMAIS)</item>
+        <item>Keluarga Remaja Islam Salman (Karisma)</item>
+        <item>Majelis Ta'lim (Mata)</item>
+        <item>P3R/P3I</item>
+        <item>Pusat Teknologi Tepat Guna (Pustena)</item>
+        <item>Rumah Sahabat (Rusa)</item>
+        <item>Salman Entrepreneur Club (SEC)</item>
+        <item>Salman Komunikasi Aspirasi Umat (SKAU)</item>
+        <item>Salman Media Center</item>
+    </string-array>
+
+    <string-array name="default_registered_profession">
+        <item>Dosen/Guru</item>
+        <item>Profesional</item>
+        <item>Wirausahawan/Pengusaha</item>
+        <item>Praktisi Kesehatan</item>
+        <item>Penulis</item>
+        <item>Trainer</item>
+        <item>Mahasiswa Pascasarjana</item>
+        <item>Pegawai Negeri Sipil</item>
+        <item>Karyawan Swasta</item>
+        <item>Pejabat Pemerintahan</item>
+        <item>Ustadz/Mubaligh</item>
+        <item>Politikus</item>
+        <item>Freelancer</item>
+        <item>Ibu Rumah Tangga</item>
+    </string-array>
+
+    <string-array name="default_registered_question">
+        <item>Siapakah tokoh nasional yang meresmikan Masjid Salman ITB?</item>
+        <item>Pada tahun berapakah Masjid Salman ITB diresmikan?</item>
+        <item>Berapa jumlah tiang yang ada dalam Masjid Salman ITB?</item>
+        <item>Dimanakah letak Asrama Masjid Salman ITB?</item>
+        <item>Dimanakah letak Kantin Masjid Salman ITB?</item>
+        <item>Dimanakah letak Gedung Kayu?</item>
     </string-array>
 
 </resources>
