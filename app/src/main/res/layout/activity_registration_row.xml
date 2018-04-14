@@ -22,6 +22,7 @@
         android:layout_weight="1"
         android:background="@drawable/edit_text_background_disabled"
         android:enabled="false"
+        android:focusable="false"
         android:hint="@string/tahun_mulai"
         android:inputType="number"
         android:lines="1"

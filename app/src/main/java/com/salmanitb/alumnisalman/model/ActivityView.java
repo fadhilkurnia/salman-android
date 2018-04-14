@@ -92,8 +92,6 @@ public class ActivityView extends LinearLayout {
             }
         });
 
-        // TODO: Add Date Picker when year clicked
-
     }
 
 }

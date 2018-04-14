@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
@@ -81,21 +82,49 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
 
     @Override
     public void checkInput(RegistrationCheckerCallback callback) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
+
         StringBuilder sbActivity = new StringBuilder();
         StringBuilder sbTime = new StringBuilder();
+        int counter = 0;
         for (ActivityView activity: inputActivity) {
             if (activity.isChecked()) {
+                counter++;
                 sbActivity.append(activity.getTitle());
                 sbActivity.append(", ");
 
-                // TODO: check year length
-                if (!activity.getStartYear().equals("0"))
-                    sbTime.append(activity.getStartYear());
+                String startYear = activity.getStartYear();
+                String endYear = activity.getEndYear();
+                if (startYear.length() != 4 || endYear.length() != 4) {
+                    stringBuilder.append("  - Format tahun untuk ")
+                            .append(activity.getTitle())
+                            .append(" salah, contoh yang benar : 2004\n");
+                    txtError.setText(stringBuilder.toString());
+                    txtError.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), "Terjadi kesalahan input", Toast.LENGTH_SHORT).show();
+                    callback.onFinishChecking(false);
+                    return;
+                }
+                sbTime.append(activity.getStartYear());
                 sbTime.append("-");
-                if (!activity.getEndYear().equals("0"))
-                    sbTime.append(activity.getEndYear());
+                sbTime.append(activity.getEndYear());
                 sbTime.append(", ");
             }
+        }
+
+        if (counter == 0 && !checkBoxOthers.isChecked()) {
+            stringBuilder.append("  - Minimal ada kegiatan lainnya yang dimasukan\n");
+            txtError.setText(stringBuilder.toString());
+            txtError.setVisibility(View.VISIBLE);
+            Toast.makeText(getActivity(), "Terjadi kesalahan input", Toast.LENGTH_SHORT).show();
+            callback.onFinishChecking(false);
+            return;
+        }
+
+        if (sbActivity.length() > 2) {
+            sbActivity.delete(sbActivity.length()-2, sbActivity.length());
+            sbTime.delete(sbActivity.length()-2, sbActivity.length());
         }
 
         RegistrationActivity.applicationUser.setActivities(sbActivity.toString());
