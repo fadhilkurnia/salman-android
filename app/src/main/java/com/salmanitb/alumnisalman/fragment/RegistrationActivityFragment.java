@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.activity.RegistrationActivity;
+import com.salmanitb.alumnisalman.helper.RegistrationChecker;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.ActivityView;
@@ -79,7 +81,25 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
 
     @Override
     public void checkInput(RegistrationCheckerCallback callback) {
-        // TODO: check input, then insert to user object
+        StringBuilder sbActivity = new StringBuilder();
+        StringBuilder sbTime = new StringBuilder();
+        for (ActivityView activity: inputActivity) {
+            if (activity.isChecked()) {
+                sbActivity.append(activity.getTitle());
+                sbActivity.append(", ");
+
+                // TODO: check year length
+                if (!activity.getStartYear().equals("0"))
+                    sbTime.append(activity.getStartYear());
+                sbTime.append("-");
+                if (!activity.getEndYear().equals("0"))
+                    sbTime.append(activity.getEndYear());
+                sbTime.append(", ");
+            }
+        }
+
+        RegistrationActivity.applicationUser.setActivities(sbActivity.toString());
+        RegistrationActivity.applicationUser.setYearActivities(sbTime.toString());
         callback.onFinishChecking(true);
     }
 }

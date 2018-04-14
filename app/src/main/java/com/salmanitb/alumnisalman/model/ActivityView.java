@@ -46,6 +46,10 @@ public class ActivityView extends LinearLayout {
         checkBox.setText(title);
     }
 
+    public boolean isChecked() {
+        return checkBox.isChecked();
+    }
+
     public String getStartYear() {
         return txtStartYear.getText().toString();
     }
@@ -87,6 +91,8 @@ public class ActivityView extends LinearLayout {
                 }
             }
         });
+
+        // TODO: Add Date Picker when year clicked
 
     }
 
