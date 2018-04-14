@@ -12,6 +12,16 @@
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/txt_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/warning"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -42,122 +52,45 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/leftColumn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dosen / Guru"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profesional"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wirausahawan/ Pengusaha"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Praktisi Kesehatan"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Penulis"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Trainer"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mahasiswa Pascasarjana"
-                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/rightColumn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aparatur Sipil Negara (ASN)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Karyawan Swasta"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pejabat Pemerintahan"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ustadz / Mubaligh"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Politikus"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Freelancer"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ibu Rumah Tangga"
-                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/checkbox_others"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lainnya"
-            android:textSize="12sp" />
+            android:text="Lainnya" />
 
         <EditText
+            android:id="@+id/input_others"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/edit_text_background_disabled"
             android:enabled="false"
+            android:hint="Pekerjaan lainnya yang belum ada di atas"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -165,13 +98,21 @@
             android:text="Nama Instansi"
             android:textAppearance="@style/TextAppearance.Design.Hint" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pisahkan dengan koma untuk lebih dari satu instansi"
+            android:textAppearance="@style/Widget.AppCompat.Button.Small" />
+
         <EditText
+            android:id="@+id/input_company"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/edit_text_background"
             android:lines="1"
             android:maxLines="1"
+            android:padding="5dp"
             android:singleLine="true" />
 
 

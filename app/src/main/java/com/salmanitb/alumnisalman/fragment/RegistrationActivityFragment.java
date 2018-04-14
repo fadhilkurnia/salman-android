@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -113,6 +114,11 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
             }
         }
 
+        if (sbActivity.length() > 2) {
+            sbActivity.delete(sbActivity.length()-2, sbActivity.length());
+            sbTime.delete(sbActivity.length()-2, sbActivity.length());
+        }
+
         if (counter == 0 && !checkBoxOthers.isChecked()) {
             stringBuilder.append("  - Minimal ada kegiatan lainnya yang dimasukan\n");
             txtError.setText(stringBuilder.toString());
@@ -122,13 +128,18 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
             return;
         }
 
-        if (sbActivity.length() > 2) {
-            sbActivity.delete(sbActivity.length()-2, sbActivity.length());
-            sbTime.delete(sbActivity.length()-2, sbActivity.length());
+        if (checkBoxOthers.isChecked()) {
+            sbActivity.append(", ").append(inputOthers.getText().toString());
         }
 
         RegistrationActivity.applicationUser.setActivities(sbActivity.toString());
         RegistrationActivity.applicationUser.setYearActivities(sbTime.toString());
         callback.onFinishChecking(true);
     }
+
+    @OnClick(R.id.txt_error)
+    protected void hide() {
+        txtError.setVisibility(View.GONE);
+    }
+
 }
