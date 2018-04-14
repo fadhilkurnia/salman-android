@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
     EditText inputAnswer1;
     @BindView(R.id.input_answer_2)
     EditText inputAnswer2;
+    @BindView(R.id.is_agree)
+    CheckBox isAgree;
 
     public RegistrationConfirmationFragment() {
         // Required empty public constructor
@@ -78,6 +81,15 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         String answer2 = inputAnswer2.getText().toString().trim();
         if (answer1.equals("") || answer2.equals("")) {
             stringBuilder.append("  - Ada pertanyaan yang belum dijawab\n");
+            txtError.setText(stringBuilder.toString());
+            txtError.setVisibility(View.VISIBLE);
+            Toast.makeText(getActivity(), "Terjadi kesalahan input", Toast.LENGTH_SHORT).show();
+            callback.onFinishChecking(false);
+            return;
+        }
+
+        if (!isAgree.isChecked()) {
+            stringBuilder.append("  - Pastikan Anda sudah menyetujui pernyataan yang ada\n");
             txtError.setText(stringBuilder.toString());
             txtError.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "Terjadi kesalahan input", Toast.LENGTH_SHORT).show();
