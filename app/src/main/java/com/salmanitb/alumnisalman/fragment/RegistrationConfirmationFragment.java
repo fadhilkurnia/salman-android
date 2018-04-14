@@ -3,6 +3,7 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,11 +59,12 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         // Generate random question from default data
         String questions[] = getResources().getStringArray(R.array.default_registered_question);
         Random random = new Random(System.currentTimeMillis());
-        int idx = random.nextInt()%questions.length;
-        txtQuestion1.setText(questions[idx]);
-        int nextIdx = random.nextInt()%questions.length;
+        int idx = random.nextInt(questions.length);
+        int nextIdx = random.nextInt(questions.length);
         while (idx == nextIdx)
-            nextIdx = random.nextInt()%questions.length;
+            nextIdx = random.nextInt(questions.length);
+        Log.d("SALMAN_APP", "idx: " + idx + " nextIdx: " + nextIdx + " length: " + questions.length);
+        txtQuestion1.setText(questions[idx]);
         txtQuestion2.setText(questions[nextIdx]);
 
         // Show user data

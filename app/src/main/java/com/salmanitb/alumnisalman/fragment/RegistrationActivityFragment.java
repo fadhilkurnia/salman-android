@@ -116,7 +116,7 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
 
         if (sbActivity.length() > 2) {
             sbActivity.delete(sbActivity.length()-2, sbActivity.length());
-            sbTime.delete(sbActivity.length()-2, sbActivity.length());
+            sbTime.delete(sbTime.length()-2, sbTime.length());
         }
 
         if (counter == 0 && !checkBoxOthers.isChecked()) {

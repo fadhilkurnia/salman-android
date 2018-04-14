@@ -107,6 +107,7 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
             job.append(", ").append(inputOthers.getText().toString());
         }
 
+        RegistrationActivity.applicationUser.setJob(job.toString());
         RegistrationActivity.applicationUser.setCompany(inputCompany.getText().toString());
 
         callback.onFinishChecking(true);
