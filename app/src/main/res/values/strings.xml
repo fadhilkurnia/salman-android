@@ -43,4 +43,43 @@
         <item>United Stated</item>
     </string-array>
 
+    <string-array name="default_registered_activity">
+        <item>Aksara</item>
+        <item>Biologi Terapan (Bioter)</item>
+        <item>Keluaga Mahasiswa Islam Pascasarjana ITB (Kamil)</item>
+        <item>Korps Relawan Salman (Korsa)</item>
+        <item>Pembinaan Anak-anak Salman (PAS)</item>
+        <item>Reklame Kreasi Masa (Reklamasa)</item>
+        <item>Rumah Visi</item>
+        <item>Unit Pengembangan Tilawati Qur'an Al-Muhandis (UPTQ)</item>
+        <item>Lembaga Kemahasiswaan (BASIS)</item>
+        <item>Asrama Salman</item>
+        <item>Keluarga Mahasiswa Islam ITB (GAMAIS)</item>
+        <item>Keluarga Remaja Islam Salman (Karisma)</item>
+        <item>Majelis Ta'lim (Mata)</item>
+        <item>P3R/P3I</item>
+        <item>Pusat Teknologi Tepat Guna (Pustena)</item>
+        <item>Rumah Sahabat (Rusa)</item>
+        <item>Salman Entrepreneur Club (SEC)</item>
+        <item>Salman Komunikasi Aspirasi Umat (SKAU)</item>
+        <item>Salman Media Center</item>
+    </string-array>
+
+    <string-array name="default_registered_profession">
+        <item>Dosen/Guru</item>
+        <item>Profesional</item>
+        <item>Wirausahawan/Pengusaha</item>
+        <item>Praktisi Kesehatan</item>
+        <item>Penulis</item>
+        <item>Trainer</item>
+        <item>Mahasiswa Pascasarjana</item>
+        <item>Pegawai Negeri Sipil</item>
+        <item>Karyawan Swasta</item>
+        <item>Pejabat Pemerintahan</item>
+        <item>Ustadz/Mubaligh</item>
+        <item>Politikus</item>
+        <item>Freelancer</item>
+        <item>Ibu Rumah Tangga</item>
+    </string-array>
+
 </resources>

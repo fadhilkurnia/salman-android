@@ -72,221 +72,31 @@
             android:textAppearance="@style/Widget.AppCompat.Button.Small" />
 
         <LinearLayout
-            android:id="@+id/layout_activity"
+            android:id="@+id/activity_row_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/layout_activity_left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aksara"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Biologi Terapan (Bioter)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keluarga Mahasiswa Pasca Sarjana ITB (Kamil)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Korps Relawan Salman (Korsa)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pembinaan Anak-anak Salman (PAS)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reklame Kreasi Masa (Reklamasa)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rumah Visi"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unit Pengembangan Tilawatil Qur'an Al-Muhandis (UPTQ)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lembaga Kemahasiswaan (BASIS)"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_activity_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asrama Salman"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keluarga Mahasiswa Islam ITB (GAMAIS)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keluarga Remaja Islam Salman (Karisma)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Majelis Ta'lim (Mata)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="P3R/P3I"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pusat Teknologi Tepat Guna (Pustena)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rumah Sahabat (Rusa)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salman Entrepreneur Club (SEC)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salman Komunikasi Aspirasi Umat (SKAU)"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salman Media Center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:maxWidth="30dp"
-                android:text="Keluarga Mahasiswa Islam ITB (Gamais)"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_width="20dp"
-                android:layout_height="35dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background_disabled"
-                android:enabled="false"
-                android:hint="@string/tahun_mulai"
-                android:lines="1"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAlignment="center"
-                android:textSize="10sp" />
-
-            <EditText
-                android:layout_width="20dp"
-                android:layout_height="35dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background_disabled"
-                android:enabled="false"
-                android:hint="@string/tahun_selesai"
-                android:lines="1"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textAlignment="center"
-                android:textSize="10sp" />
+            android:orientation="vertical">
 
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/checkbox_others"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lainnya"
             android:textSize="12sp" />
 
         <EditText
+            android:id="@+id/input_others"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/edit_text_background_disabled"
             android:enabled="false"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tahun Aktif"
-            android:textAppearance="@style/TextAppearance.Design.Hint" />
-
-        <EditText
-            android:id="@+id/input_active_year"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/edit_text_background"
-            android:lines="1"
-            android:maxLines="1"
-            android:padding="5dp"
             android:singleLine="true" />
 
     </LinearLayout>

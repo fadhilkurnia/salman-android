@@ -17,52 +17,49 @@ import com.salmanitb.alumnisalman.R;
  */
 
 public class ActivityView extends LinearLayout {
-    String title;
-    int startYear;
-    int endYear;
-    boolean isChecked;
 
     private CheckBox checkBox;
     private EditText txtStartYear;
     private EditText txtEndYear;
 
+    public ActivityView(Context context, String title) {
+        super(context);
+        inflateLayout(context);
+        setTitle(title);
+    }
+
     public ActivityView(Context context) {
         super(context);
         inflateLayout(context);
-        isChecked = false;
     }
 
     public ActivityView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         inflateLayout(context);
-        isChecked = false;
     }
 
     public String getTitle() {
-        return title;
+        return checkBox.getText().toString();
     }
 
     public void setTitle(String title) {
-        this.title = title;
         checkBox.setText(title);
     }
 
-    public int getStartYear() {
-        return startYear;
+    public String getStartYear() {
+        return txtStartYear.getText().toString();
     }
 
     public void setStartYear(int startYear) {
-        this.startYear = startYear;
         txtStartYear.setText(String.valueOf(startYear));
     }
 
     public void setEndYear(int endYear) {
-        this.endYear = endYear;
         txtStartYear.setText(String.valueOf(endYear));
     }
 
-    public Integer getEndYear() {
-        return endYear;
+    public String getEndYear() {
+        return txtEndYear.getText().toString();
     }
 
     public void inflateLayout(final Context context) {
