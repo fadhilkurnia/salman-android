@@ -95,9 +95,12 @@
             android:layout_marginStart="30dp"
             android:background="@drawable/edit_text_background_disabled"
             android:enabled="false"
+            android:hint="Kegiatan lainnya yang pernah diikuti"
             android:lines="1"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
