@@ -29,6 +29,8 @@
     <string name="app_title">Aplikasi Alumni Salman</string>
     <string name="registration_intro_title">Lanjut Pendaftaran Alumni</string>
     <string name="registration_description">Untuk melanjutkan pendaftaran, Anda harus mengisi data yang kami perlukan. Data yang ada akan digunakan untuk mendukung kegiatan di Masjid Salman serta mempererat tali silaturahim antar alumni. \n\n Kami menjamin kerahasiaan data yang Anda berikan.</string>
+    <string name="tahun_selesai">tahun\nselesai</string>
+    <string name="tahun_mulai">tahun\nmulai</string>
 
     <string-array name="cities_array">
         <item>Bandung</item>
