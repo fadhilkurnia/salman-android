@@ -9,6 +9,7 @@ public class User {
     private String uid;
     private String name;
     private String email;
+    private String password;
     private String image;
     private String sex;
     private String job;
@@ -248,5 +249,13 @@ public class User {
 
     public void setAnswer2(String answer2) {
         this.answer2 = answer2;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

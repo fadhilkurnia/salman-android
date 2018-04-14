@@ -59,9 +59,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Intent currentIntent = getIntent();
         String email = currentIntent.getStringExtra(RegisterActivity.REGISTRATION_EMAIL);
+        String password = currentIntent.getStringExtra(RegisterActivity.REGISTRATION_PASSWORD);
 
         applicationUser = new User();
         applicationUser.setEmail(email);
+        applicationUser.setPassword(password);
 
         firstStep = new RegistrationPersonalFragment();
         secondStep = new RegistrationAlmamaterFragment();
