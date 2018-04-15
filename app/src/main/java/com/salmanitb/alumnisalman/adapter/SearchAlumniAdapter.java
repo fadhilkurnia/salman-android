@@ -93,6 +93,6 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
     }
 
     public interface OnItemClickListener {
-        void onItemClick(User tutor);
+        void onItemClick(User alumni);
     }
 }

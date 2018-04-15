@@ -2,11 +2,13 @@ package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
@@ -92,6 +94,37 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<CheckEmailResponse>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void searchUser(String query, final ApiCallback<SearchUserResponse> callback) {
+        Call<BaseResponse<SearchUserResponse>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        call.enqueue(new Callback<BaseResponse<SearchUserResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<SearchUserResponse>> call, Response<BaseResponse<SearchUserResponse>> response) {
+                BaseResponse<SearchUserResponse> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                    Log.e("API Search", responseBody.getData().toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<SearchUserResponse>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }

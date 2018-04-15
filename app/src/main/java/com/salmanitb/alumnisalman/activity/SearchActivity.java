@@ -9,9 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.adapter.SearchAlumniAdapter;
+import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
+import com.salmanitb.alumnisalman.model.About;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.User;
 
 import java.util.ArrayList;
@@ -53,8 +58,8 @@ public class SearchActivity extends AppCompatActivity {
         final Context context = this;
         adapter = new SearchAlumniAdapter(this, new ArrayList<User>(), new SearchAlumniAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(User tutor) {
-
+            public void onItemClick(User user) {
+                Toast.makeText(getApplicationContext(),user.getName() + "clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -106,9 +111,26 @@ public class SearchActivity extends AppCompatActivity {
 
     private void getAlumniList(String query) {
 
-        for (int i = 0; i < users.size(); i++) {
-            adapter.add(i, users.get(i));
-        }
+//        for (int i = 0; i < users.size(); i++) {
+//            adapter.add(i, users.get(i));
+//        }
+        APIConnector.getInstance().searchUser(query, new APIConnector.ApiCallback<SearchUserResponse>() {
+            @Override
+            public void onSuccess(SearchUserResponse response) {
+//                appDescription.setText(response.getAbout());
+//                txtAddress.setText(response.getAddress());
+//                txtPhone.setText(response.getPhone());
+//                txtEmail.setText(response.getEmail());
+//                PreferenceManager.getInstance().setAboutData(response);
+//                Log.e("API Search", response.getName().toString());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+//                Toast.makeText(, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
