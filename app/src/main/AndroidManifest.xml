@@ -16,6 +16,7 @@
         android:required="true" />
 
     <application
+        android:name=".SalmanApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,13 +31,7 @@
             android:value="AIzaSyC_4iTLKM1ZZYjM-7OxCOAxFFtcNKQOiKA" />
 
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.RegisterFormActivity" />
         <activity
@@ -46,9 +41,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.salmanitb.alumnisalman.activity.MainActivity" />
         </activity>
-        <activity android:name=".activity.ConfirmActivity"></activity>
+        <activity android:name=".activity.ConfirmActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.EditProfileActivity"></activity>
+        <activity android:name=".activity.EditProfileActivity" />
+        <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.RegistrationIntroActivity"></activity>
     </application>
 
 </manifest>

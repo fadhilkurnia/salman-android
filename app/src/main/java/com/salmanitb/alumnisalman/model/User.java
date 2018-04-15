@@ -9,6 +9,7 @@ public class User {
     private String uid;
     private String name;
     private String email;
+    private String password;
     private String image;
     private String sex;
     private String job;
@@ -25,6 +26,11 @@ public class User {
     private String year_activities;
     private double latitude;
     private double longitude;
+
+    private String question1;
+    private String question2;
+    private String answer1;
+    private String answer2;
 
     public User() {
     }
@@ -223,5 +229,69 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getYear_university() {
+        return year_university;
+    }
+
+    public void setYear_university(String year_university) {
+        this.year_university = year_university;
+    }
+
+    public String getYear_activities() {
+        return year_activities;
+    }
+
+    public void setYear_activities(String year_activities) {
+        this.year_activities = year_activities;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getQuestion1() {
+        return question1;
+    }
+
+    public void setQuestion1(String question1) {
+        this.question1 = question1;
+    }
+
+    public String getQuestion2() {
+        return question2;
+    }
+
+    public void setQuestion2(String question2) {
+        this.question2 = question2;
+    }
+
+    public String getAnswer1() {
+        return answer1;
+    }
+
+    public void setAnswer1(String answer1) {
+        this.answer1 = answer1;
+    }
+
+    public String getAnswer2() {
+        return answer2;
+    }
+
+    public void setAnswer2(String answer2) {
+        this.answer2 = answer2;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

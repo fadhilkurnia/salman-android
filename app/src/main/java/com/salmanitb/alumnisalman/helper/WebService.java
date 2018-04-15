@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -24,17 +27,23 @@ import retrofit2.http.POST;
 public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
 
+    @FormUrlEncoded
     @POST("login")
-    BaseResponse<String> doLogin(@Field("email") String email,
-                                 @Field("password") String hashedPassword,
-                                 Callback<BaseResponse<String>> callback);
+    Call<BaseResponse<UserAuth>> doLogin(@Field("email") String email,
+                                 @Field("password") String hashedPassword);
 
-    @GET("abouts/1/?format=json")
+    @FormUrlEncoded
+    @POST("email")
+    Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
+
+
+    @GET("about")
     Call<About> getAbout();
 
 
     public class APIServiceImplementation {
         private static WebService webService;
+        private static GeocodingWebService geocodingWebService;
 
         public static WebService getInstance() {
             if (webService == null) {
@@ -43,8 +52,14 @@ public interface WebService {
             return webService;
         }
 
-        private WebService create() {
+        public static GeocodingWebService getGeocodingInstance() {
+            if (geocodingWebService == null)
+                geocodingWebService = new APIServiceImplementation().createGeocodingWebService();
 
+            return geocodingWebService;
+        }
+
+        private WebService create() {
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
             builder.readTimeout(60, TimeUnit.SECONDS);
             builder.connectTimeout(60, TimeUnit.SECONDS);
@@ -64,6 +79,28 @@ public interface WebService {
                     .build();
 
             return retrofit.create(WebService.class);
+        }
+
+        private GeocodingWebService createGeocodingWebService() {
+            OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+            builder.readTimeout(60, TimeUnit.SECONDS);
+            builder.connectTimeout(60, TimeUnit.SECONDS);
+            builder.writeTimeout(60, TimeUnit.SECONDS);
+
+            Gson gson = new GsonBuilder().serializeNulls().create();
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient client = builder.addInterceptor(interceptor).build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(GeocodingWebService.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+
+            return retrofit.create(GeocodingWebService.class);
         }
 
     }

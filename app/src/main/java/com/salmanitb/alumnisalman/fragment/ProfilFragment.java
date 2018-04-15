@@ -12,8 +12,12 @@ import android.widget.ImageView;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.EditProfileActivity;
+import com.salmanitb.alumnisalman.activity.LoginActivity;
+import com.salmanitb.alumnisalman.activity.MainActivity;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -31,6 +35,7 @@ public class ProfilFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profil, container, false);
+        ButterKnife.bind(this, rootView);
 
         Button edit_profile = (Button) rootView.findViewById(R.id.edit_profile_icon);
         edit_profile.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +49,13 @@ public class ProfilFragment extends Fragment{
         return rootView;
     }
 
+    @OnClick(R.id.btn_logout)
+    protected void doLogout() {
+        PreferenceManager.getInstance().setUserAuth(null);
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+    }
 
 
 }
