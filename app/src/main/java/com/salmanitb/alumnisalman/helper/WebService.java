@@ -44,7 +44,7 @@ public interface WebService {
             @Field("alamat") String address,
             @Field("latitude") double latitude,
             @Field("longitude") double longitude,
-            @Field("phone") String phone,
+            @Field("no_hp") String phone,
             @Field("univ") String university,
             @Field("jurusan") String major,
             @Field("ang_kuliah") String yearUniversity,

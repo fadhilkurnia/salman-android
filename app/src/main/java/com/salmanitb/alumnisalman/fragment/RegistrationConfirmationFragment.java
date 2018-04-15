@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
+import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
@@ -93,9 +94,8 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         stringBuilder.append("Angkatan LMD/LSI   : " + user.getLmd() + "\n");
         stringBuilder.append("Aktivitas   : \n");
         for(SalmanActivity activity: SalmanApplication.getCurrentUser().getActivities()) {
-            stringBuilder.append("     - " + activity.toString());
+            stringBuilder.append("     - " + activity.toString() + "\n");
         }
-        stringBuilder.append("Tahun Aktivitas   : " + user.getYearUniversity() + "\n\n");
 
         stringBuilder.append("Kampus   : " + user.getUniversity() + "\n");
         stringBuilder.append("Juruan   : " + user.getMajor() + "\n");
@@ -107,7 +107,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
     }
 
     @Override
-    public void checkInput(RegistrationCheckerCallback callback) {
+    public void checkInput(final RegistrationCheckerCallback callback) {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Harap perhatikan data yang anda input, terjadi kesalahan:\n");
 
@@ -136,9 +136,18 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         SalmanApplication.getCurrentUser().setAnswer1(inputAnswer1.getText().toString());
         SalmanApplication.getCurrentUser().setAnswer2(inputAnswer2.getText().toString());
 
-        // TODO: send data to register API
+        APIConnector.getInstance().doRegister(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<String>() {
+            @Override
+            public void onSuccess(String response) {
+                callback.onFinishChecking(true);
+            }
 
-        callback.onFinishChecking(true);
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                callback.onFinishChecking(false);
+            }
+        });
     }
 
     @OnClick(R.id.txt_error)

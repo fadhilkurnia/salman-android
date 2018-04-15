@@ -138,8 +138,10 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
         SalmanApplication.getCurrentUser().setLmd(inputLMD.getText().toString());
         SalmanApplication.getCurrentUser().setActivities(new ArrayList<SalmanActivity>());
         for (ActivityView activityView: inputActivity) {
-            SalmanActivity salmanActivity = new SalmanActivity(activityView.getTitle(), activityView.getStartYear(), activityView.getEndYear());
-            SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+            if (activityView.isChecked()) {
+                SalmanActivity salmanActivity = new SalmanActivity(activityView.getTitle(), activityView.getStartYear(), activityView.getEndYear());
+                SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+            }
         }
         if (checkBoxOthers.isChecked()) {
             if (SalmanApplication.getCurrentUser().getActivities() == null)
