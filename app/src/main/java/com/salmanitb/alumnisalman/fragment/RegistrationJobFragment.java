@@ -105,7 +105,9 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
         }
 
         if (checkboxOthers.isChecked()) {
-            job.append(", ").append(inputOthers.getText().toString());
+            if (counter > 0)
+                job.append(", ");
+            job.append(inputOthers.getText().toString());
         }
 
         SalmanApplication.getCurrentUser().setJob(job.toString());
