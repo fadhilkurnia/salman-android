@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.User;
 
 import java.util.Random;
@@ -76,7 +78,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
 
     private void showUserData() {
         StringBuilder stringBuilder = new StringBuilder();
-        User user = RegistrationActivity.applicationUser;
+        User user = SalmanApplication.getCurrentUser();
         stringBuilder.append("Nama   : " + user.getName() + "\n");
         stringBuilder.append("Email  : " + user.getEmail() + "\n");
         stringBuilder.append("Password  : ");
@@ -89,12 +91,15 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         stringBuilder.append("Alamat : " + user.getAddress() + "\n\n");
 
         stringBuilder.append("Angkatan LMD/LSI   : " + user.getLmd() + "\n");
-        stringBuilder.append("Aktivitas   : " + user.getActivities() + "\n");
-        stringBuilder.append("Tahun Aktivitas   : " + user.getYear_activities() + "\n\n");
+        stringBuilder.append("Aktivitas   : \n");
+        for(SalmanActivity activity: SalmanApplication.getCurrentUser().getActivities()) {
+            stringBuilder.append("     - " + activity.toString());
+        }
+        stringBuilder.append("Tahun Aktivitas   : " + user.getYearUniversity() + "\n\n");
 
         stringBuilder.append("Kampus   : " + user.getUniversity() + "\n");
         stringBuilder.append("Juruan   : " + user.getMajor() + "\n");
-        stringBuilder.append("Angkatan   : " + user.getYear_university() + "\n\n");
+        stringBuilder.append("Angkatan   : " + user.getYearUniversity() + "\n\n");
 
         stringBuilder.append("Pekerjaan   : " + user.getJob() + "\n");
         stringBuilder.append("Institusi   : " + user.getCompany() + "\n");
@@ -126,10 +131,10 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
             return;
         }
 
-        RegistrationActivity.applicationUser.setQuestion1(txtQuestion1.getText().toString());
-        RegistrationActivity.applicationUser.setQuestion2(txtQuestion2.getText().toString());
-        RegistrationActivity.applicationUser.setAnswer1(inputAnswer1.getText().toString());
-        RegistrationActivity.applicationUser.setAnswer2(inputAnswer2.getText().toString());
+        SalmanApplication.getCurrentUser().setQuestion1(txtQuestion1.getText().toString());
+        SalmanApplication.getCurrentUser().setQuestion2(txtQuestion2.getText().toString());
+        SalmanApplication.getCurrentUser().setAnswer1(inputAnswer1.getText().toString());
+        SalmanApplication.getCurrentUser().setAnswer2(inputAnswer2.getText().toString());
 
         // TODO: send data to register API
 

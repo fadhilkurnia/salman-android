@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
@@ -107,8 +108,8 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
             job.append(", ").append(inputOthers.getText().toString());
         }
 
-        RegistrationActivity.applicationUser.setJob(job.toString());
-        RegistrationActivity.applicationUser.setCompany(inputCompany.getText().toString());
+        SalmanApplication.getCurrentUser().setJob(job.toString());
+        SalmanApplication.getCurrentUser().setCompany(inputCompany.getText().toString());
 
         callback.onFinishChecking(true);
     }
