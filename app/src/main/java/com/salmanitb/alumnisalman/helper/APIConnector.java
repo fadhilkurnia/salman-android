@@ -184,6 +184,11 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
 
     public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
         Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
