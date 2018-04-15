@@ -78,24 +78,28 @@ public class ProfilFragment extends Fragment{
     @OnClick (R.id.btn_edit_personal)
     protected void editPersonal() {
         Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        intent.putExtra("FRAGMENT_ID","PERSONAL");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_almamater)
     protected void editAlmamater() {
         Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        intent.putExtra("FRAGMENT_ID","ALMAMATER");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_pekerjaan)
     protected void editPekerjaan() {
         Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        intent.putExtra("FRAGMENT_ID","PEKERJAAN");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_kegiatan)
     protected void editKegiatan() {
         Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        intent.putExtra("FRAGMENT_ID","KEGIATAN");
         startActivity(intent);
     }
 

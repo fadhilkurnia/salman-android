@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -76,14 +77,41 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         ButterKnife.bind(this);
 
-        editPersonal = new RegistrationPersonalFragment();
-        editAlmamater = new RegistrationAlmamaterFragment();
-        editPekerjaan = new RegistrationJobFragment();
-        editKegiatan = new RegistrationActivityFragment();
+        String fragmentID;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                fragmentID = null;
+            } else {
+                fragmentID = extras.getString("FRAGMENT_ID");
+            }
+        } else {
+            fragmentID = (String) savedInstanceState.getSerializable("FRAGMENT_ID");
+        }
+
+        laodFragment(fragmentID);
+
+
+    }
+
+    private void laodFragment(String fragmentID) {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.edit_profile_frame, editPersonal);
-        transaction.addToBackStack(null);
+        if (fragmentID == null) {
+            Log.d("EDIT_PROFILE", "null fragment ID");
+        } else if (fragmentID.equals("PERSONAL")) {
+            editPersonal = new RegistrationPersonalFragment();
+            transaction.replace(R.id.edit_profile_frame, editPersonal);
+        } else if (fragmentID.equals("ALMAMATER")) {
+            editAlmamater = new RegistrationAlmamaterFragment();
+            transaction.replace(R.id.edit_profile_frame, editAlmamater);
+        } else if (fragmentID.equals("PEKERJAAN")) {
+            editPekerjaan = new RegistrationJobFragment();
+            transaction.replace(R.id.edit_profile_frame, editPekerjaan);
+        } else if (fragmentID.equals("KEGIATAN")) {
+            editKegiatan = new RegistrationActivityFragment();
+            transaction.replace(R.id.edit_profile_frame, editKegiatan);
+        }
         transaction.commit();
 
     }
