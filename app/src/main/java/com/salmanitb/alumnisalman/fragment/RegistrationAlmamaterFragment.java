@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
@@ -70,9 +71,9 @@ public class RegistrationAlmamaterFragment extends RegistrationStepFragment {
             return;
         }
 
-        RegistrationActivity.applicationUser.setUniversity(campus);
-        RegistrationActivity.applicationUser.setMajor(major);
-        RegistrationActivity.applicationUser.setYearUniversity(year);
+        SalmanApplication.getCurrentUser().setUniversity(campus);
+        SalmanApplication.getCurrentUser().setMajor(major);
+        SalmanApplication.getCurrentUser().setYearUniversity(year);
 
         callback.onFinishChecking(true);
     }

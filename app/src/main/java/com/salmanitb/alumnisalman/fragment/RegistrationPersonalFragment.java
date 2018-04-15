@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
@@ -58,7 +59,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_registration_personal, container, false);
         ButterKnife.bind(this, rootView);
-        inputEmail.setText(RegistrationActivity.applicationUser.getEmail());
+        inputEmail.setText(SalmanApplication.getCurrentUser().getEmail());
 
         return rootView;
     }
@@ -95,15 +96,15 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
             @Override
             public void onSuccess(GeocodingResponse response) {
                 formatUserAddress(response);
-                inputCountry.setText(RegistrationActivity.applicationUser.getCountry());
-                inputCity.setText(RegistrationActivity.applicationUser.getCity());
+                inputCountry.setText(SalmanApplication.getCurrentUser().getCountry());
+                inputCity.setText(SalmanApplication.getCurrentUser().getCity());
 
-                RegistrationActivity.applicationUser.setName(name);
-                RegistrationActivity.applicationUser.setPhonenumber(phone);
-                RegistrationActivity.applicationUser.setCountry(country);
-                RegistrationActivity.applicationUser.setCity(city);
-                RegistrationActivity.applicationUser.setAddress(address);
-                RegistrationActivity.applicationUser.setSex(radiomMale.isChecked()? "Pria" : "Wanita");
+                SalmanApplication.getCurrentUser().setName(name);
+                SalmanApplication.getCurrentUser().setPhonenumber(phone);
+                SalmanApplication.getCurrentUser().setCountry(country);
+                SalmanApplication.getCurrentUser().setCity(city);
+                SalmanApplication.getCurrentUser().setAddress(address);
+                SalmanApplication.getCurrentUser().setSex(radiomMale.isChecked()? "Pria" : "Wanita");
                 callback.onFinishChecking(true);
             }
 
@@ -130,25 +131,23 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     private void formatUserAddress(GeocodingResponse geocodingResponse) {
         for (GeocodingAddressComponent address: geocodingResponse.getResults()[0].getAddressComponent()) {
             if (isMember(address.getTypes(), "country"))
-                RegistrationActivity.applicationUser.setCountry(address.getLongName());
+                SalmanApplication.getCurrentUser().setCountry(address.getLongName());
             if (isMember(address.getTypes(), "administrative_area_level_2")) {
                 String cityName = address.getShortName();
                 String cityNameWord[] = cityName.split(" ", 2);
                 if (cityNameWord.length > 1)
                     cityName = cityNameWord[1];
 
-                RegistrationActivity.applicationUser.setCity(cityName);
+                SalmanApplication.getCurrentUser().setCity(cityName);
             }
         }
-        RegistrationActivity
-                .applicationUser
+        SalmanApplication.getCurrentUser()
                 .setLatitude(
                         geocodingResponse.getResults()[0]
                                 .getGeometry()
                                 .getLocation()
                                 .getLatitude());
-        RegistrationActivity
-                .applicationUser
+        SalmanApplication.getCurrentUser()
                 .setLongitude(
                         geocodingResponse.getResults()[0]
                                 .getGeometry()

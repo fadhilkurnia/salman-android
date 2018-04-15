@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.WebService;
@@ -21,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         final Context context = this;
-        UserAuth userAuth = PreferenceManager.getInstance().getUserAuth();
+        UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
         if (userAuth != null) {
 
             // Handle unverified user
