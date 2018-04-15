@@ -31,6 +31,8 @@ public class SearchActivity extends AppCompatActivity {
     SearchAlumniAdapter adapter;
     SearchView editSearch;
 
+    ArrayList<User> alumni;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,28 +67,27 @@ public class SearchActivity extends AppCompatActivity {
 
         searchView = (SearchView) findViewById(R.id.search);
         searchView.setIconifiedByDefault(false);
-        searchView.setQueryHint("Ketikkan nama farah!");
+        searchView.setQueryHint("Ketikkan minimal 2 huruf!");
         searchView.setFocusable(true);
         searchView.requestFocus();
         searchView.setFocusableInTouchMode(true);
         if (searchQuery != null) {
             searchView.setQuery(searchQuery, true);
             getAlumniList(searchQuery);
-            // Binds the adapter to the listview
+            if (adapter.getItemCount() == 0)
+                searchView.setQueryHint("Ketikkan minimal 2 huruf!");
             recyclerView.setAdapter(adapter);
-//            Log.d("Users ", "" + users.size());
-
         }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getAlumniList(query);
-                if (adapter.getItemCount() == 0) {
-                    searchView.setQueryHint("Ketikkan nama farah!");
+                if (query.length() >= 2) {
+                    getAlumniList(query);
                 } else {
+                    adapter.removeAll();
+                    Toast.makeText(SearchActivity.this, "Minimal 2 huruf!", Toast.LENGTH_SHORT).show();
                 }
-                // Binds the adapter to the listview
                 recyclerView.setAdapter(adapter);
 
                 return false;
@@ -94,40 +95,45 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                getAlumniList(newText);
-                if (adapter.getItemCount() == 0) {
-                    searchView.setQueryHint("Ketikkan nama farah!");
+
+                if (newText.length() >= 2) {
+                    getAlumniList(newText);
                 } else {
+                    adapter.removeAll();
                 }
-
-                // Binds the adapter to the listview
                 recyclerView.setAdapter(adapter);
-
                 return false;
             }
         });
-
     }
 
     private void getAlumniList(String query) {
 
-//        for (int i = 0; i < users.size(); i++) {
-//            adapter.add(i, users.get(i));
-//        }
-        APIConnector.getInstance().searchUser(query, new APIConnector.ApiCallback<SearchUserResponse>() {
+        APIConnector.getInstance().searchUser(query, new APIConnector.ApiCallback<ArrayList<SearchUserResponse>>() {
             @Override
-            public void onSuccess(SearchUserResponse response) {
-//                appDescription.setText(response.getAbout());
-//                txtAddress.setText(response.getAddress());
-//                txtPhone.setText(response.getPhone());
-//                txtEmail.setText(response.getEmail());
-//                PreferenceManager.getInstance().setAboutData(response);
-//                Log.e("API Search", response.getName().toString());
+            public void onSuccess(ArrayList<SearchUserResponse> response) {
+
+                if (alumni == null)
+                    alumni = new ArrayList<User>();
+                else
+                    alumni.clear();
+
+                if (response.isEmpty()) {
+                    Toast.makeText(SearchActivity.this, "Pencarian tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    adapter.removeAll();
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    for (SearchUserResponse s : response) {
+                        User user = new User("1", s.getName(), s.getEmail(), s.getUrlImg(), s.getCity());
+                        alumni.add(user);
+                    }
+                    adapter.addAll(alumni);
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
-//                Toast.makeText(, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

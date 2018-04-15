@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -100,12 +101,12 @@ public class APIConnector{
         });
     }
 
-    public void searchUser(String query, final ApiCallback<SearchUserResponse> callback) {
-        Call<BaseResponse<SearchUserResponse>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
-        call.enqueue(new Callback<BaseResponse<SearchUserResponse>>() {
+    public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
+        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        call.enqueue(new Callback<BaseResponse<ArrayList<SearchUserResponse>>>() {
             @Override
-            public void onResponse(Call<BaseResponse<SearchUserResponse>> call, Response<BaseResponse<SearchUserResponse>> response) {
-                BaseResponse<SearchUserResponse> responseBody = response.body();
+            public void onResponse(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Response<BaseResponse<ArrayList<SearchUserResponse>>> response) {
+                BaseResponse<ArrayList<SearchUserResponse>> responseBody = response.body();
                 if (responseBody == null) {
                     callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
                     return;
@@ -124,7 +125,7 @@ public class APIConnector{
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<SearchUserResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
