@@ -34,7 +34,7 @@ public interface WebService {
 
     @FormUrlEncoded
     @POST("register")
-    Call<String> doRegister(
+    Call<BaseResponse<UserAuth>> doRegister(
             @Field("nama") String name,
             @Field("email") String email,
             @Field("password") String hashedPassword,

@@ -21,6 +21,7 @@ import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.User;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.Random;
 
@@ -136,9 +137,9 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         SalmanApplication.getCurrentUser().setAnswer1(inputAnswer1.getText().toString());
         SalmanApplication.getCurrentUser().setAnswer2(inputAnswer2.getText().toString());
 
-        APIConnector.getInstance().doRegister(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<String>() {
+        APIConnector.getInstance().doRegister(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<UserAuth>() {
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(UserAuth response) {
                 callback.onFinishChecking(true);
             }
 

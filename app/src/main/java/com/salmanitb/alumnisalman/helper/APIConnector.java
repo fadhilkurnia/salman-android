@@ -74,7 +74,7 @@ public class APIConnector{
         });
     }
 
-    public void doRegister(final User user, final ApiCallback<String> callback) {
+    public void doRegister(final User user, final ApiCallback<UserAuth> callback) {
         String hashedPassword = getMD5(user.getPassword());
         Gson gson = new Gson();
         ArrayList<String> activities = new ArrayList<>();
@@ -88,7 +88,7 @@ public class APIConnector{
             sb.append(activity.getEndYear());
             activitiesYear.add(sb.toString());
         }
-        Call<String> call = WebService.APIServiceImplementation.getInstance().doRegister(
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doRegister(
                 user.getName(),
                 user.getEmail(),
                 hashedPassword,
@@ -113,14 +113,23 @@ public class APIConnector{
                 user.getAnswer2()
         );
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                callback.onSuccess(response.body());
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
+                if (responseBody != null) {
+                    if (!responseBody.isSuccess()) {
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                        return;
+                    }
+                    callback.onSuccess(responseBody.getData());
+                    return;
+                }
+                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
