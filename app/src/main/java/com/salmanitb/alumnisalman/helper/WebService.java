@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.concurrent.TimeUnit;
@@ -19,6 +20,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by Fadhil Imam Kurnia on 07/04/2018.
@@ -62,10 +64,11 @@ public interface WebService {
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
+    @GET("/user/{id}")
+    Call<BaseResponse<User>> getProfil(@Path("id") int uid);
 
     @GET("about")
     Call<About> getAbout();
-
 
     public class APIServiceImplementation {
         private static WebService webService;

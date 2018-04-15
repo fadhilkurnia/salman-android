@@ -165,6 +165,29 @@ public class APIConnector{
         });
     }
 
+    public void getProfil(int uid, final ApiCallback<User> callback) {
+        WebService.APIServiceImplementation.getInstance().getProfil(uid).enqueue(new Callback<BaseResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                if (response.body() == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                if (!response.body().isSuccess()) {
+                    callback.onFailure(new Throwable(response.body().getError().getMessage()));
+                    return;
+                }
+                callback.onSuccess(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
     public void getAbout(final ApiCallback<About> callback) {
         WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
             @Override
