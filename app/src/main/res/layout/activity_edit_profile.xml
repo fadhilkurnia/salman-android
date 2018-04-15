@@ -6,44 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.salmanitb.alumnisalman.activity.EditProfileActivity"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     android:id="@+id/edit_profile_layout">
 
-    <FrameLayout
-        android:id="@+id/edit_profile_frame"
+    <android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:foregroundGravity="bottom"
+    android:background="@color/colorPrimaryDark">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textColor="@color/textLight"
+        android:textAllCaps="false"
+        android:layout_gravity="left|start|center_vertical"
+        android:textSize="18sp" />
+
+        <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:text="Save"
+        android:textColor="@color/textLight"
+        android:background="@android:color/transparent"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="55dp"-->
-        <!--android:paddingLeft="10dp"-->
-        <!--android:paddingRight="10dp"-->
-        <!--android:foregroundGravity="bottom"-->
-        <!--android:background="@color/colorPrimaryDark">-->
+        <FrameLayout
+            android:id="@+id/edit_profile_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Edit Profile"-->
-            <!--android:textColor="@color/textLight"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:layout_gravity="left|start|center_vertical"-->
-            <!--android:textSize="18sp"-->
-            <!--/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/save_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="end|center_vertical"-->
-            <!--android:text="Save"-->
-            <!--android:textColor="@color/textLight"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:textSize="18sp"-->
-            <!--/>-->
-
-    <!--</android.support.v7.widget.Toolbar>-->
+    </ScrollView>
 
 
     <!--<ScrollView-->
