@@ -99,19 +99,22 @@ public class APIConnector{
     }
 
     public void getAbout(final ApiCallback<About> callback) {
-        WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
+        Call<BaseResponse<About>> call = WebService.APIServiceImplementation.getInstance().getAbout("json");
+        call.enqueue(new Callback<BaseResponse<About>>() {
             @Override
-            public void onResponse(@NonNull Call<About> call, @NonNull Response<About> response) {
-                if (response.body() == null) {
-                    callback.onFailure(new Throwable("Empty response"));
+            public void onResponse(Call<BaseResponse<About>> call, Response<BaseResponse<About>> response) {
+                BaseResponse<About> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
                     return;
                 }
-                callback.onSuccess(response.body());
+                callback.onSuccess(responseBody.getData());
             }
 
             @Override
-            public void onFailure(Call<About> call, Throwable t) {
-                callback.onFailure(t);
+            public void onFailure(Call<BaseResponse<About>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
