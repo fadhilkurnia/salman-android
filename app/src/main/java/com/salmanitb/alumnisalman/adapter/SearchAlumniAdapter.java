@@ -11,8 +11,12 @@ import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.model.User;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.salmanitb.alumnisalman.helper.WebService.BASE_IMAGE_URL;
 
 /**
  * Created by hilmi on 13/03/2018.
@@ -20,11 +24,11 @@ import java.util.List;
 
 public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapter.ViewHolder> {
 
-    private List<User> values;
+    private ArrayList<User> values;
     private OnItemClickListener listener;
     private Context context;
 
-    public SearchAlumniAdapter(Context context, List<User> data, OnItemClickListener listener) {
+    public SearchAlumniAdapter(Context context, ArrayList<User> data, OnItemClickListener listener) {
         this.context = context;
         this.values = data;
         this.listener = listener;
@@ -54,17 +58,21 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
         notifyDataSetChanged();
     }
 
-    public void addAll(List<User> data) {
+    public void addAll(ArrayList<User> data) {
         values.clear();
         values.addAll(data);
         notifyDataSetChanged();
+    }
+
+    public void removeAll() {
+        values.clear();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtName;
         public TextView txtEmail;
-        public TextView txtAddress;
+        public TextView txtCity;
         public ImageView imgPhoto;
         public View layout;
 
@@ -73,7 +81,7 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
             layout = itemView;
             txtName = (TextView) itemView.findViewById(R.id.txt_display_name);
             txtEmail= (TextView) itemView.findViewById(R.id.txt_email);
-            txtAddress = (TextView) itemView.findViewById(R.id.txt_address);
+            txtCity = (TextView) itemView.findViewById(R.id.txt_address);
             imgPhoto = (ImageView) itemView.findViewById(R.id.img_photo);
 
         }
@@ -81,6 +89,16 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
         public void bind(final User alumni, final OnItemClickListener listener) {
             txtName.setText(alumni.getName());
             txtEmail.setText(alumni.getEmail());
+            txtCity.setText(alumni.getCity());
+
+//            Log.d("IMAGE_URL", alumni.getImageURL());
+            if (alumni.getImageURL() != null) {
+                if (!alumni.getImageURL().equals("")) {
+                    Picasso.get().load(BASE_IMAGE_URL + alumni.getImageURL()).into(imgPhoto);
+                }  else {
+                    Picasso.get().load(R.drawable.ic_person).into(imgPhoto);
+                }
+            }
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,6 +111,6 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
     }
 
     public interface OnItemClickListener {
-        void onItemClick(User tutor);
+        void onItemClick(User alumni);
     }
 }

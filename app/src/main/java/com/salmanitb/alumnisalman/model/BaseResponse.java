@@ -5,15 +5,15 @@ package com.salmanitb.alumnisalman.model;
  */
 
 public class BaseResponse<T> {
-    Boolean success;
+    boolean success;
     T data;
     Error error;
 
-    public Boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 

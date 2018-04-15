@@ -1,13 +1,25 @@
 package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
+import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
+import com.salmanitb.alumnisalman.model.User;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,52 +45,228 @@ public class APIConnector{
     }
 
 
-    public void doLogin(final String email, final String password, final ApiCallback<String> callback) {
+    public void doLogin(final String email, final String password, final ApiCallback<UserAuth> callback) {
         String hashedPassword = getMD5(password);
-        WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword, new Callback<BaseResponse<String>>() {
+
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doLogin(email, hashedPassword);
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
             @Override
-            public void onResponse(@NonNull Call<BaseResponse<String>> call, @NonNull Response<BaseResponse<String>> response) {
-                BaseResponse<String> responseBody = response.body();
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
                 if (responseBody == null) {
-                    callback.onFailure(new Throwable("Error"));
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
                     return;
                 }
 
-                if (responseBody.getError() == null) {
-                    callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
                 } else {
-                    String token = responseBody.getData();
-                    callback.onSuccess(token);
+                    callback.onSuccess(responseBody.getData());
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<BaseResponse<String>> call, @NonNull Throwable t) {
-                callback.onFailure(t);
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void doRegister(final User user, final ApiCallback<UserAuth> callback) {
+        String hashedPassword = getMD5(user.getPassword());
+        Gson gson = new Gson();
+        ArrayList<String> activities = new ArrayList<>();
+        ArrayList<String> activitiesYear = new ArrayList<>();
+        for (SalmanActivity activity : user.getActivities()) {
+            activities.add(activity.getTitle());
+            StringBuilder sb = new StringBuilder();
+            sb.append(activity.getStartYear());
+            if (!activity.getEndYear().trim().equals(""))
+                sb.append("-");
+            sb.append(activity.getEndYear());
+            activitiesYear.add(sb.toString());
+        }
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doRegister(
+                user.getName(),
+                user.getEmail(),
+                hashedPassword,
+                user.getSex(),
+                user.getCountry(),
+                user.getCity(),
+                user.getAddress(),
+                user.getLatitude(),
+                user.getLongitude(),
+                user.getPhonenumber(),
+                user.getUniversity(),
+                user.getMajor(),
+                user.getYearUniversity(),
+                user.getLmd(),
+                user.getJob(),
+                user.getCompany(),
+                gson.toJson(activities),
+                gson.toJson(activitiesYear),
+                user.getQuestion1(),
+                user.getQuestion2(),
+                user.getAnswer1(),
+                user.getAnswer2()
+        );
+
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
+                if (responseBody != null) {
+                    if (!responseBody.isSuccess()) {
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                        return;
+                    }
+                    callback.onSuccess(responseBody.getData());
+                    return;
+                }
+                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void checkEmail(String email, final ApiCallback<CheckEmailResponse> callback) {
+        Call<BaseResponse<CheckEmailResponse>> call = WebService.APIServiceImplementation.getInstance().checkEmail(email);
+        call.enqueue(new Callback<BaseResponse<CheckEmailResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<CheckEmailResponse>> call, Response<BaseResponse<CheckEmailResponse>> response) {
+                BaseResponse<CheckEmailResponse> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<CheckEmailResponse>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void getProfil(int uid, final ApiCallback<User> callback) {
+        WebService.APIServiceImplementation.getInstance().getProfil(uid).enqueue(new Callback<BaseResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                if (response.body() == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                if (!response.body().isSuccess()) {
+                    callback.onFailure(new Throwable(response.body().getError().getMessage()));
+                    return;
+                }
+                callback.onSuccess(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+
+    public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
+        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        call.enqueue(new Callback<BaseResponse<ArrayList<SearchUserResponse>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Response<BaseResponse<ArrayList<SearchUserResponse>>> response) {
+                BaseResponse<ArrayList<SearchUserResponse>> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                    Log.e("API Search", responseBody.getData().toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
 
     public void getAbout(final ApiCallback<About> callback) {
-        WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
+        Call<BaseResponse<About>> call = WebService.APIServiceImplementation.getInstance().getAbout("json");
+        call.enqueue(new Callback<BaseResponse<About>>() {
             @Override
-            public void onResponse(@NonNull Call<About> call, @NonNull Response<About> response) {
-                if (response.body() == null) {
-                    callback.onFailure(new Throwable("Empty response"));
+            public void onResponse(Call<BaseResponse<About>> call, Response<BaseResponse<About>> response) {
+                BaseResponse<About> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
                     return;
                 }
-                callback.onSuccess(response.body());
+                callback.onSuccess(responseBody.getData());
             }
 
             @Override
-            public void onFailure(Call<About> call, Throwable t) {
-                callback.onFailure(t);
+            public void onFailure(Call<BaseResponse<About>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void checkAddress(final String address, final ApiCallback<GeocodingResponse> callback) {
+        Call<GeocodingResponse> call = WebService.APIServiceImplementation
+                .getGeocodingInstance()
+                .checkAddress(
+                        GeocodingWebService.GOOGLE_KEY,
+                        address,
+                        GeocodingWebService.DEFAULT_LANGUAGE);
+        call.enqueue(new Callback<GeocodingResponse>() {
+            @Override
+            public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+                GeocodingResponse responseBody = response.body();
+                if (responseBody == null || !responseBody.getStatus().equals("OK")) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                callback.onSuccess(responseBody);
+            }
+
+            @Override
+            public void onFailure(Call<GeocodingResponse> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
 
 
-    private static String getMD5(String input) {
+    public static String getMD5(String input) {
+        if (input == null)
+            input = "";
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());
@@ -93,5 +281,6 @@ public class APIConnector{
             throw new RuntimeException(e);
         }
     }
+
 
 }

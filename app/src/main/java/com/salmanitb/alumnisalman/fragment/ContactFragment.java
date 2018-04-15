@@ -119,7 +119,7 @@ public class ContactFragment extends Fragment {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(getTag(), t.getMessage());
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

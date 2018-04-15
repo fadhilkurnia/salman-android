@@ -10,49 +10,52 @@
         android:id="@+id/icon_confirmation"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimaryDark" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circle_background"
+        android:padding="18dp"
+        android:src="@drawable/ic_verification" />
 
     <TextView
         android:id="@+id/txt_status"
-        android:layout_below="@id/icon_confirmation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:textStyle="bold"
-        android:textAlignment="center"
+        android:layout_below="@id/icon_confirmation"
         android:layout_marginTop="10dp"
-        android:text="@string/verification_title"/>
+        android:text="@string/verification_title"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_status_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_status"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/verification_description"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/verification_description"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/txt_edit_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_status_description"
-        android:textAlignment="center"
         android:layout_marginTop="80dp"
-        android:text="@string/data_anda_belum_benar_ubah_data"/>
+        android:text="@string/data_anda_belum_benar_ubah_data"
+        android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/txt_contact_us"
+
+    <Button
+        android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_below="@id/txt_edit_profile"
-        android:layout_marginTop="5dp"
-        android:text="@string/contact_us_text"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:text="Keluar" />
 
 </RelativeLayout>
