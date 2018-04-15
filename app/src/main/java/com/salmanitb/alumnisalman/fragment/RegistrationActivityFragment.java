@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegisterActivity;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationChecker;
@@ -133,9 +134,9 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
             sbActivity.append(", ").append(inputOthers.getText().toString());
         }
 
-        RegistrationActivity.applicationUser.setLmd(inputLMD.getText().toString());
-        RegistrationActivity.applicationUser.setActivities(sbActivity.toString());
-        RegistrationActivity.applicationUser.setYearActivities(sbTime.toString());
+        SalmanApplication.getCurrentUser().setLmd(inputLMD.getText().toString());
+        SalmanApplication.getCurrentUser().setActivities(sbActivity.toString());
+        SalmanApplication.getCurrentUser().setYearActivities(sbTime.toString());
         callback.onFinishChecking(true);
     }
 

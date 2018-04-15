@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment;
@@ -49,8 +50,6 @@ public class RegistrationActivity extends AppCompatActivity {
     ArrayList<RegistrationStepFragment> stepFragments;
     int stepId = 0;
 
-    public static User applicationUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +60,9 @@ public class RegistrationActivity extends AppCompatActivity {
         String email = currentIntent.getStringExtra(RegisterActivity.REGISTRATION_EMAIL);
         String password = currentIntent.getStringExtra(RegisterActivity.REGISTRATION_PASSWORD);
 
-        applicationUser = new User();
-        applicationUser.setEmail(email);
-        applicationUser.setPassword(password);
+        SalmanApplication.setCurrentUser(new User());
+        SalmanApplication.getCurrentUser().setEmail(email);
+        SalmanApplication.getCurrentUser().setPassword(password);
 
         firstStep = new RegistrationPersonalFragment();
         secondStep = new RegistrationAlmamaterFragment();

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
@@ -76,7 +77,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
 
     private void showUserData() {
         StringBuilder stringBuilder = new StringBuilder();
-        User user = RegistrationActivity.applicationUser;
+        User user = SalmanApplication.getCurrentUser();
         stringBuilder.append("Nama   : " + user.getName() + "\n");
         stringBuilder.append("Email  : " + user.getEmail() + "\n");
         stringBuilder.append("Password  : ");
@@ -126,10 +127,10 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
             return;
         }
 
-        RegistrationActivity.applicationUser.setQuestion1(txtQuestion1.getText().toString());
-        RegistrationActivity.applicationUser.setQuestion2(txtQuestion2.getText().toString());
-        RegistrationActivity.applicationUser.setAnswer1(inputAnswer1.getText().toString());
-        RegistrationActivity.applicationUser.setAnswer2(inputAnswer2.getText().toString());
+        SalmanApplication.getCurrentUser().setQuestion1(txtQuestion1.getText().toString());
+        SalmanApplication.getCurrentUser().setQuestion2(txtQuestion2.getText().toString());
+        SalmanApplication.getCurrentUser().setAnswer1(inputAnswer1.getText().toString());
+        SalmanApplication.getCurrentUser().setAnswer2(inputAnswer2.getText().toString());
 
         // TODO: send data to register API
 
