@@ -33,14 +33,14 @@
                 android:background="@color/colorPrimaryDark">
 
                 <Button
-                    android:id="@+id/edit_profile_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/btn_logout"
+                    android:layout_width="20dp"
+                    android:layout_height="22dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/ic_edit_profile" />
+                    android:background="@drawable/ic_logout" />
 
                 <TextView
                     android:id="@+id/txt_name"
@@ -83,17 +83,6 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="12dp" />
-
-                <!--<TextView-->
-                    <!--android:id="@+id/user_activities"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="10dp"-->
-                    <!--android:layout_marginTop="135dp"-->
-                    <!--android:text="081214841782"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="14dp" />-->
 
             </RelativeLayout>
 
@@ -154,20 +143,11 @@
                     android:paddingBottom="5dp">
 
                     <ImageButton
+                        android:id="@+id/btn_edit_personal"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_edit_button"/>
-
-                    <!--<Button-->
-                        <!--android:background="@android:color/darker_gray"-->
-                        <!--android:textColor="@color/white"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_alignParentEnd="true"-->
-                        <!--android:text="edit"-->
-                        <!--android:textSize="10dp"-->
-                        <!--android:layout_width="70dp"-->
-                        <!--android:layout_height="30dp" />-->
 
                     <ImageView
                         android:layout_width="20dp"
@@ -271,6 +251,7 @@
                     android:paddingBottom="5dp">
 
                     <ImageButton
+                        android:id="@+id/btn_edit_almamater"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_alignParentEnd="true"
@@ -338,6 +319,7 @@
                     android:paddingBottom="5dp">
 
                     <ImageButton
+                        android:id="@+id/btn_edit_pekerjaan"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_alignParentEnd="true"
@@ -442,6 +424,7 @@
                     android:paddingBottom="5dp">
 
                     <ImageButton
+                        android:id="@+id/btn_edit_kegiatan"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_alignParentEnd="true"
@@ -487,10 +470,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/white"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
+                    android:paddingTop="10dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -501,7 +484,7 @@
                     <TextView
                         android:id="@+id/lmd"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_alignParentTop="true"
                         android:paddingLeft="25dp"
                         android:text="Angkatan LMD"
@@ -519,12 +502,18 @@
 
                 </RelativeLayout>
 
-                <Button
-                    android:id="@+id/btn_logout"
-                    android:text="Keluar"
-                    android:drawableStart="@drawable/ic_exit_white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <!--<Button-->
+                    <!--android:id="@+id/btn_logout"-->
+                    <!--android:background="@android:color/darker_gray"-->
+                    <!--android:layout_marginEnd="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginStart="15dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:text="Keluar"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
 
             </LinearLayout>
 

@@ -58,7 +58,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_registration_personal, container, false);
         ButterKnife.bind(this, rootView);
-        inputEmail.setText(RegistrationActivity.applicationUser.getEmail());
+//        inputEmail.setText(RegistrationActivity.applicationUser.getEmail());
 
         return rootView;
     }
