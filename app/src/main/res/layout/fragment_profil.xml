@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     tools:context="com.salmanitb.alumnisalman.fragment.ProfilFragment">
 
@@ -83,16 +84,16 @@
                     android:textColor="@android:color/white"
                     android:textSize="12dp" />
 
-                <TextView
-                    android:id="@+id/user_activities"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="135dp"
-                    android:text="Aksara, Asrama Salman (2015)"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/user_activities"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginTop="135dp"-->
+                    <!--android:text="081214841782"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="14dp" />-->
 
             </RelativeLayout>
 
@@ -118,268 +119,405 @@
                 android:layout_below="@id/profile_layout"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cv"
+                <RelativeLayout
+                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
 
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_marginTop="13dp"
+                        android:text="Personal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/separator" />
 
-                        <TextView
-                            android:id="@+id/judul_jurusan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Pendidikan"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/user_major"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/judul_jurusan"
-                            android:layout_marginLeft="27dp"
-                            android:text="Teknik Informatika ITB 2015" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
 
-                    <RelativeLayout
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_edit_button"/>
+
+                    <!--<Button-->
+                        <!--android:background="@android:color/darker_gray"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:text="edit"-->
+                        <!--android:textSize="10dp"-->
+                        <!--android:layout_width="70dp"-->
+                        <!--android:layout_height="30dp" />-->
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_maps" />
+
+                    <TextView
+                        android:id="@+id/alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Alamat"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/judul2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Pekerjaan"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/user_job"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/judul2"
-                            android:layout_marginLeft="27dp"
-                            android:text="AI Engineer Google Silicon Valley" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/user_company"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_below="@id/alamat"
+                        android:layout_marginLeft="27dp"
+                        android:text="Jalan Dago Asri V no 7, Bandung" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/alamat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Alamat"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/user_company"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/alamat"
-                            android:layout_marginLeft="27dp"
-                            android:text="Jalan Dago Asri V no 7, Bandung" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
 
-                    <RelativeLayout
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_phone_receiver" />
+
+                    <TextView
+                        android:id="@+id/judul4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Handphone"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/activity_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Aktivitas"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/detail_activity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/activity_title"
-                            android:layout_marginLeft="27dp"
-                            android:text="Aksara, Asrama Salman"></TextView>
-
-                        <TextView
-                            android:id="@+id/year_activity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/detail_activity"
-                            android:layout_marginLeft="27dp"
-                            android:text="2015"/>
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/user_phonenumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/judul4"
+                        android:layout_marginLeft="27dp"
+                        android:text="0823228133254" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/judul4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Handphone"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/user_phonenumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_below="@+id/judul4"
-                            android:layout_marginLeft="27dp"
-                            android:text="0823228133254" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
+                <RelativeLayout
+                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
 
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
+                        android:layout_marginTop="13dp"
+                        android:text="Almamater"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/separator" />
 
-                        <TextView
-                            android:id="@+id/lmd"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Angkatan LMD"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/isi5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_below="@+id/lmd"
-                            android:layout_marginLeft="27dp"
-                            android:text="2015" />
 
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_edit_button"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_college" />
+
+                    <TextView
+                        android:id="@+id/judul_jurusan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Pendidikan"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_major"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/judul_jurusan"
+                        android:layout_marginLeft="27dp"
+                        android:text="Teknik Informatika ITB 2015" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="Pekerjaan"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/separator" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_edit_button"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_profesi" />
+
+                    <TextView
+                        android:id="@+id/judul2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Profesi"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_job"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/judul2"
+                        android:layout_marginLeft="27dp"
+                        android:text="AI Engineer" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_job" />
+
+                    <TextView
+                        android:id="@+id/instansi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Instansi"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_instansi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/instansi"
+                        android:layout_marginLeft="27dp"
+                        android:text="Google Silicon Valley" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="Kegiatan"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/separator" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageButton
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_edit_button"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="1dp"
+                        android:src="@drawable/ic_list" />
+
+                    <TextView
+                        android:id="@+id/activity_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Aktivitas"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detail_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/activity_title"
+                        android:layout_marginLeft="27dp"
+                        android:text="Aksara, Asrama Salman"/>
+
+                    <TextView
+                        android:id="@+id/year_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detail_activity"
+                        android:layout_marginLeft="27dp"
+                        android:text="2015"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_star" />
+
+                    <TextView
+                        android:id="@+id/lmd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="25dp"
+                        android:text="Angkatan LMD"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/isi5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/lmd"
+                        android:layout_marginLeft="27dp"
+                        android:text="122" />
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/btn_logout"
