@@ -17,6 +17,7 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
@@ -140,6 +141,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         APIConnector.getInstance().doRegister(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<UserAuth>() {
             @Override
             public void onSuccess(UserAuth response) {
+                PreferenceManager.getInstance().setUserAuth(response);
                 callback.onFinishChecking(true);
             }
 
