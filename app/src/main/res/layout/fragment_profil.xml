@@ -43,14 +43,34 @@
 
                 <TextView
                     android:id="@+id/txt_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
                     android:text="Muhammad Hilmi Asyrofi"
                     android:textAlignment="center"
+                    android:layout_centerHorizontal="true"
                     android:textColor="@android:color/white"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/man_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/man"
+                    android:layout_toLeftOf="@id/txt_name"
+                    android:layout_marginTop="97dp"
+                    android:layout_marginRight="5dp"/>
+
+
+                <ImageView
+                    android:id="@+id/woman_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/woman"
+                    android:layout_toLeftOf="@id/txt_name"
+                    android:layout_marginTop="97dp"
+                    android:layout_marginRight="5dp"/>
 
                 <TextView
                     android:id="@+id/user_email"
@@ -69,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="135dp"
-                    android:text="Aksara, Asrama Salman"
+                    android:text="Aksara, Asrama Salman (2015)"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="14dp" />
@@ -126,7 +146,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:paddingLeft="25dp"
-                            android:text="Jurusan"
+                            android:text="Pendidikan"
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
@@ -136,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/judul_jurusan"
                             android:layout_marginLeft="27dp"
-                            android:text="Teknik Informatika" />
+                            android:text="Teknik Informatika ITB 2015" />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -177,7 +197,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/judul2"
                             android:layout_marginLeft="27dp"
-                            android:text="AI Engineer" />
+                            android:text="AI Engineer Google Silicon Valley" />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -204,48 +224,7 @@
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/instansi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:paddingLeft="25dp"
-                            android:text="Instansi"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/user_company"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/instansi"
-                            android:layout_marginLeft="27dp"
-                            android:text="Google Silicon Valley" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/white"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/judul3"
+                            android:id="@+id/alamat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
@@ -255,12 +234,61 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/user_address"
+                            android:id="@+id/user_company"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/judul3"
+                            android:layout_below="@id/alamat"
                             android:layout_marginLeft="27dp"
                             android:text="Jalan Dago Asri V no 7, Bandung" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@android:color/white"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/activity_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Aktivitas"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/detail_activity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/activity_title"
+                            android:layout_marginLeft="27dp"
+                            android:text="Aksara, Asrama Salman"></TextView>
+
+                        <TextView
+                            android:id="@+id/year_activity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/detail_activity"
+                            android:layout_marginLeft="27dp"
+                            android:text="2015"/>
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -331,12 +359,12 @@
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/judul5"
+                            android:id="@+id/lmd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:paddingLeft="25dp"
-                            android:text="About"
+                            android:text="Angkatan LMD"
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
@@ -346,9 +374,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
-                            android:layout_below="@+id/judul5"
+                            android:layout_below="@+id/lmd"
                             android:layout_marginLeft="27dp"
-                            android:text="There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain" />
+                            android:text="2015" />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

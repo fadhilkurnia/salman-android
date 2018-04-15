@@ -29,11 +29,47 @@ public class User {
     public User() {
     }
 
+    public User(String uid, String name, String email) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+    }
+
     public User(String uid, String name, String email, String job) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.job = job;
+    }
+
+    public User(String uid, String name, String email, String job, String country) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+        this.job = job;
+        this.country = country;
+    }
+
+    public User(String uid, String name, String email, String image, String sex, String job, String company, String address, String city, String country, String phonenumber, String university, String year_university, String major, String lmd, String activities, String year_activities, double latitude, double longitude) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.sex = sex;
+        this.job = job;
+        this.company = company;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phonenumber = phonenumber;
+        this.university = university;
+        this.year_university = year_university;
+        this.major = major;
+        this.lmd = lmd;
+        this.activities = activities;
+        this.year_activities = year_activities;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
 
