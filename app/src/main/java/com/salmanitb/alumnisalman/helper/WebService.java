@@ -5,8 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -27,6 +29,7 @@ import retrofit2.http.Query;
 
 public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
+    String BASE_IMAGE_URL = "http://pplk2h.if.itb.ac.id/media/";
 
     @FormUrlEncoded
     @POST("login")
@@ -40,6 +43,9 @@ public interface WebService {
 
     @GET("about")
     Call<BaseResponse<About>> getAbout(@Query("format") String format);
+
+    @GET("search")
+    Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Query("q") String format);
 
 
     public class APIServiceImplementation {

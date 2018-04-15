@@ -2,17 +2,20 @@ package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,6 +95,37 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<CheckEmailResponse>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
+        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        call.enqueue(new Callback<BaseResponse<ArrayList<SearchUserResponse>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Response<BaseResponse<ArrayList<SearchUserResponse>>> response) {
+                BaseResponse<ArrayList<SearchUserResponse>> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                    Log.e("API Search", responseBody.getData().toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
