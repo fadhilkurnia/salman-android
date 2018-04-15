@@ -3,16 +3,21 @@ package com.salmanitb.alumnisalman.helper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +68,59 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void doRegister(final User user, final ApiCallback<String> callback) {
+        String hashedPassword = getMD5(user.getPassword());
+        Gson gson = new Gson();
+        ArrayList<String> activities = new ArrayList<>();
+        ArrayList<String> activitiesYear = new ArrayList<>();
+        for (SalmanActivity activity : user.getActivities()) {
+            activities.add(activity.getTitle());
+            StringBuilder sb = new StringBuilder();
+            sb.append(activity.getStartYear());
+            if (!activity.getEndYear().trim().equals(""))
+                sb.append("-");
+            sb.append(activity.getEndYear());
+            activitiesYear.add(sb.toString());
+        }
+        Call<String> call = WebService.APIServiceImplementation.getInstance().doRegister(
+                user.getName(),
+                user.getEmail(),
+                hashedPassword,
+                user.getSex(),
+                user.getCountry(),
+                user.getCity(),
+                user.getAddress(),
+                user.getLatitude(),
+                user.getLongitude(),
+                user.getPhonenumber(),
+                user.getUniversity(),
+                user.getMajor(),
+                user.getYearUniversity(),
+                user.getLmd(),
+                user.getJob(),
+                user.getCompany(),
+                gson.toJson(activities),
+                gson.toJson(activitiesYear),
+                user.getQuestion1(),
+                user.getQuestion2(),
+                user.getAnswer1(),
+                user.getAnswer2()
+        );
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }

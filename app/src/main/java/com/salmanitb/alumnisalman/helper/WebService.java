@@ -33,6 +33,32 @@ public interface WebService {
                                  @Field("password") String hashedPassword);
 
     @FormUrlEncoded
+    @POST("register")
+    Call<String> doRegister(
+            @Field("nama") String name,
+            @Field("email") String email,
+            @Field("password") String hashedPassword,
+            @Field("gender") String sex,
+            @Field("negara") String country,
+            @Field("kota") String city,
+            @Field("alamat") String address,
+            @Field("latitude") double latitude,
+            @Field("longitude") double longitude,
+            @Field("phone") String phone,
+            @Field("univ") String university,
+            @Field("jurusan") String major,
+            @Field("ang_kuliah") String yearUniversity,
+            @Field("ang_LMD") String lmd,
+            @Field("pekerjaan") String job,
+            @Field("instansi") String company,
+            @Field("aktifitas") String activity,
+            @Field("tahun_aktif") String yearActivity,
+            @Field("pertanyaan1") String question1,
+            @Field("pertanyaan2") String question2,
+            @Field("jawaban1") String answer1,
+            @Field("jawaban2") String answer2);
+
+    @FormUrlEncoded
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
