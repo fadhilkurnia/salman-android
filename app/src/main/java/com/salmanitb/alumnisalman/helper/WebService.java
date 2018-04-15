@@ -19,6 +19,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by Fadhil Imam Kurnia on 07/04/2018.
@@ -38,7 +39,7 @@ public interface WebService {
 
 
     @GET("about")
-    Call<About> getAbout();
+    Call<BaseResponse<About>> getAbout(@Query("format") String format);
 
 
     public class APIServiceImplementation {
