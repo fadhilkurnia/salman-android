@@ -2,6 +2,7 @@ package com.salmanitb.alumnisalman.helper;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
@@ -10,6 +11,7 @@ import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.User;
+import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
@@ -182,6 +184,32 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+
+    public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
+        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        call.enqueue(new Callback<BaseResponse<ArrayList<SearchUserResponse>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Response<BaseResponse<ArrayList<SearchUserResponse>>> response) {
+                BaseResponse<ArrayList<SearchUserResponse>> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                    Log.e("API Search", responseBody.getData().toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
@@ -189,19 +217,22 @@ public class APIConnector{
     }
 
     public void getAbout(final ApiCallback<About> callback) {
-        WebService.APIServiceImplementation.getInstance().getAbout().enqueue(new Callback<About>() {
+        Call<BaseResponse<About>> call = WebService.APIServiceImplementation.getInstance().getAbout("json");
+        call.enqueue(new Callback<BaseResponse<About>>() {
             @Override
-            public void onResponse(@NonNull Call<About> call, @NonNull Response<About> response) {
-                if (response.body() == null) {
-                    callback.onFailure(new Throwable("Empty response"));
+            public void onResponse(Call<BaseResponse<About>> call, Response<BaseResponse<About>> response) {
+                BaseResponse<About> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
                     return;
                 }
-                callback.onSuccess(response.body());
+                callback.onSuccess(responseBody.getData());
             }
 
             @Override
-            public void onFailure(Call<About> call, Throwable t) {
-                callback.onFailure(t);
+            public void onFailure(Call<BaseResponse<About>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
