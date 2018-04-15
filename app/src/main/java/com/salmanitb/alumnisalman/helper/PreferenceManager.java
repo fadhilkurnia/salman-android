@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 /**
@@ -18,6 +19,7 @@ public class PreferenceManager {
     private Context mApplicationContext;
 
     private final String KEY_USER_AUTH= "KEY_USER_AUTH";
+    private final String KEY_USER_DATA= "KEY_USER_AUTH";
     private final String KEY_USER_TOKEN = "KEY_USER_TOKEN";
     private final String KEY_ABOUT_DATA = "KEY_ABOUT_DATA";
 
@@ -44,6 +46,20 @@ public class PreferenceManager {
         SharedPreferences.Editor editor = preferences.edit();
         String json = gson.toJson(userAuth);
         editor.putString(KEY_USER_AUTH, json);
+        editor.apply();
+    }
+
+    public User getUserData() {
+        SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        String responseJSON = preferences.getString(KEY_USER_DATA, null);
+        return gson.fromJson(responseJSON, User.class);
+    }
+
+    public void setUserData(User user) {
+        SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String json = gson.toJson(user);
+        editor.putString(KEY_USER_DATA, json);
         editor.apply();
     }
 
