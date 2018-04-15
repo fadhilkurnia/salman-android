@@ -11,6 +11,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class UserAuth {
 
+    @SerializedName("id")
+    int id;
     @SerializedName("email")
     String email;
     @SerializedName("password")
@@ -21,6 +23,14 @@ public class UserAuth {
     boolean isVerified;
 
     private boolean isPasswordHashed = false;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

@@ -4,14 +4,18 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -72,6 +76,68 @@ public class APIConnector{
         });
     }
 
+    public void doRegister(final User user, final ApiCallback<UserAuth> callback) {
+        String hashedPassword = getMD5(user.getPassword());
+        Gson gson = new Gson();
+        ArrayList<String> activities = new ArrayList<>();
+        ArrayList<String> activitiesYear = new ArrayList<>();
+        for (SalmanActivity activity : user.getActivities()) {
+            activities.add(activity.getTitle());
+            StringBuilder sb = new StringBuilder();
+            sb.append(activity.getStartYear());
+            if (!activity.getEndYear().trim().equals(""))
+                sb.append("-");
+            sb.append(activity.getEndYear());
+            activitiesYear.add(sb.toString());
+        }
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doRegister(
+                user.getName(),
+                user.getEmail(),
+                hashedPassword,
+                user.getSex(),
+                user.getCountry(),
+                user.getCity(),
+                user.getAddress(),
+                user.getLatitude(),
+                user.getLongitude(),
+                user.getPhonenumber(),
+                user.getUniversity(),
+                user.getMajor(),
+                user.getYearUniversity(),
+                user.getLmd(),
+                user.getJob(),
+                user.getCompany(),
+                gson.toJson(activities),
+                gson.toJson(activitiesYear),
+                user.getQuestion1(),
+                user.getQuestion2(),
+                user.getAnswer1(),
+                user.getAnswer2()
+        );
+
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
+                if (responseBody != null) {
+                    if (!responseBody.isSuccess()) {
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                        return;
+                    }
+                    callback.onSuccess(responseBody.getData());
+                    return;
+                }
+                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
     public void checkEmail(String email, final ApiCallback<CheckEmailResponse> callback) {
         Call<BaseResponse<CheckEmailResponse>> call = WebService.APIServiceImplementation.getInstance().checkEmail(email);
         call.enqueue(new Callback<BaseResponse<CheckEmailResponse>>() {
@@ -100,6 +166,24 @@ public class APIConnector{
             }
         });
     }
+
+    public void getProfil(int uid, final ApiCallback<User> callback) {
+        WebService.APIServiceImplementation.getInstance().getProfil(uid).enqueue(new Callback<BaseResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                if (response.body() == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                if (!response.body().isSuccess()) {
+                    callback.onFailure(new Throwable(response.body().getError().getMessage()));
+                    return;
+                }
+                callback.onSuccess(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
 
     public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
         Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);

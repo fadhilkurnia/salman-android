@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
@@ -21,6 +22,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -37,16 +39,43 @@ public interface WebService {
                                  @Field("password") String hashedPassword);
 
     @FormUrlEncoded
+    @POST("register")
+    Call<BaseResponse<UserAuth>> doRegister(
+            @Field("nama") String name,
+            @Field("email") String email,
+            @Field("password") String hashedPassword,
+            @Field("gender") String sex,
+            @Field("negara") String country,
+            @Field("kota") String city,
+            @Field("alamat") String address,
+            @Field("latitude") double latitude,
+            @Field("longitude") double longitude,
+            @Field("no_hp") String phone,
+            @Field("univ") String university,
+            @Field("jurusan") String major,
+            @Field("ang_kuliah") String yearUniversity,
+            @Field("ang_LMD") String lmd,
+            @Field("pekerjaan") String job,
+            @Field("instansi") String company,
+            @Field("aktifitas") String activity,
+            @Field("tahun_aktif") String yearActivity,
+            @Field("pertanyaan1") String question1,
+            @Field("pertanyaan2") String question2,
+            @Field("jawaban1") String answer1,
+            @Field("jawaban2") String answer2);
+
+    @FormUrlEncoded
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
+    @GET("/user/{id}")
+    Call<BaseResponse<User>> getProfil(@Path("id") int uid);
 
     @GET("about")
     Call<BaseResponse<About>> getAbout(@Query("format") String format);
 
     @GET("search")
     Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Query("q") String format);
-
 
     public class APIServiceImplementation {
         private static WebService webService;

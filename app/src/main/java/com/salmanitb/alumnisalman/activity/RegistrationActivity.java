@@ -19,9 +19,12 @@ import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationConfirmationFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationJobFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
+import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.User;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.ArrayList;
 
@@ -135,9 +138,23 @@ public class RegistrationActivity extends AppCompatActivity {
                         return;
                     }
 
-                    Intent i = new Intent(RegistrationActivity.this, ConfirmActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
+                    // Get Profil data
+                    UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
+                    APIConnector.getInstance().getProfil(userAuth.getId(), new APIConnector.ApiCallback<User>() {
+                        @Override
+                        public void onSuccess(User response) {
+                            SalmanApplication.setCurrentUser(response);
+                            Intent i = new Intent(RegistrationActivity.this, ConfirmActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
+
                 }
             }
         });
