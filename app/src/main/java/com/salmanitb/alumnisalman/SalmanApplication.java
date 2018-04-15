@@ -21,8 +21,7 @@ public class SalmanApplication extends Application {
 
         PreferenceManager.getInstance().setApplicationCOntext(getApplicationContext());
 
-        // TODO: load current user from shared preferences
-        currentUser = new User();
+        currentUser = PreferenceManager.getInstance().getUserData();
         currentUserAuth = PreferenceManager.getInstance().getUserAuth();
         if (currentUserAuth != null) {
             currentUser.setEmail(currentUserAuth.getEmail());
@@ -34,6 +33,7 @@ public class SalmanApplication extends Application {
     }
 
     public static void setCurrentUser(User currentUser) {
+        PreferenceManager.getInstance().setUserData(currentUser);
         SalmanApplication.currentUser = currentUser;
     }
 

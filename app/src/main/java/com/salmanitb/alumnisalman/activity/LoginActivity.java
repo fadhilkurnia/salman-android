@@ -10,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
+import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.util.regex.Matcher;
@@ -109,9 +111,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void gotoMain() {
-        Intent i = new Intent(this, MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
+        UserAuth userAuth = PreferenceManager.getInstance().getUserAuth();
+        if (userAuth == null) {
+            Toast.makeText(this, "Terjadi kesalahan sistem", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Get all user data and save to local
+        APIConnector.getInstance().getProfil(userAuth.getId(), new APIConnector.ApiCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
+                SalmanApplication.setCurrentUser(response);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void disableInput() {
