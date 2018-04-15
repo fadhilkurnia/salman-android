@@ -5,9 +5,15 @@ package com.salmanitb.alumnisalman.model;
  */
 
 public class SalmanActivity {
-    String title;
-    String startYear;
-    String endYear;
+    private String title;
+    private String startYear;
+    private String endYear;
+
+    public SalmanActivity(String title, String startYear, String endYear) {
+        this.title = title;
+        this.startYear = startYear;
+        this.endYear = endYear;
+    }
 
     public String getTitle() {
         return title;

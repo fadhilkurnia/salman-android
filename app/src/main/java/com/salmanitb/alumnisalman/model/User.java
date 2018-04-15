@@ -173,11 +173,11 @@ public class User {
         this.university = university;
     }
 
-    public String getYear_university() {
+    public String getYearUniversity() {
         return year_university;
     }
 
-    public void setYear_university(String year_university) {
+    public void setYearUniversity(String year_university) {
         this.year_university = year_university;
     }
 

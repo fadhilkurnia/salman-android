@@ -21,6 +21,7 @@ import com.salmanitb.alumnisalman.helper.RegistrationChecker;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 import com.salmanitb.alumnisalman.model.ActivityView;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
 
 import java.util.ArrayList;
 
@@ -135,8 +136,17 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
         }
 
         SalmanApplication.getCurrentUser().setLmd(inputLMD.getText().toString());
-        SalmanApplication.getCurrentUser().setActivities(sbActivity.toString());
-        SalmanApplication.getCurrentUser().setYearActivities(sbTime.toString());
+        SalmanApplication.getCurrentUser().setActivities(new ArrayList<SalmanActivity>());
+        for (ActivityView activityView: inputActivity) {
+            SalmanActivity salmanActivity = new SalmanActivity(activityView.getTitle(), activityView.getStartYear(), activityView.getEndYear());
+            SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+        }
+        if (checkBoxOthers.isChecked()) {
+            if (SalmanApplication.getCurrentUser().getActivities() == null)
+                SalmanApplication.getCurrentUser().setActivities(new ArrayList<SalmanActivity>());
+            SalmanActivity salmanActivity = new SalmanActivity(inputOthers.getText().toString(), "", "");
+            SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+        }
         callback.onFinishChecking(true);
     }
 

@@ -18,6 +18,7 @@ import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.RegistrationActivity;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.User;
 
 import java.util.Random;
@@ -90,12 +91,15 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         stringBuilder.append("Alamat : " + user.getAddress() + "\n\n");
 
         stringBuilder.append("Angkatan LMD/LSI   : " + user.getLmd() + "\n");
-        stringBuilder.append("Aktivitas   : " + user.getActivities() + "\n");
-        stringBuilder.append("Tahun Aktivitas   : " + user.getYear_activities() + "\n\n");
+        stringBuilder.append("Aktivitas   : \n");
+        for(SalmanActivity activity: SalmanApplication.getCurrentUser().getActivities()) {
+            stringBuilder.append("     - " + activity.toString());
+        }
+        stringBuilder.append("Tahun Aktivitas   : " + user.getYearUniversity() + "\n\n");
 
         stringBuilder.append("Kampus   : " + user.getUniversity() + "\n");
         stringBuilder.append("Juruan   : " + user.getMajor() + "\n");
-        stringBuilder.append("Angkatan   : " + user.getYear_university() + "\n\n");
+        stringBuilder.append("Angkatan   : " + user.getYearUniversity() + "\n\n");
 
         stringBuilder.append("Pekerjaan   : " + user.getJob() + "\n");
         stringBuilder.append("Institusi   : " + user.getCompany() + "\n");
