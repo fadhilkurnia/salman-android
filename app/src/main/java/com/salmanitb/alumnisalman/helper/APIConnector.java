@@ -168,7 +168,7 @@ public class APIConnector{
     }
 
     public void getProfil(int uid, final ApiCallback<User> callback) {
-        WebService.APIServiceImplementation.getInstance().getProfil(uid).enqueue(new Callback<BaseResponse<User>>() {
+        WebService.APIServiceImplementation.getInstance().getProfil(uid, "json").enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 if (response.body() == null) {

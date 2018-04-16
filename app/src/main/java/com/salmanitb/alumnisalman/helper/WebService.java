@@ -68,8 +68,8 @@ public interface WebService {
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
-    @GET("/user/{id}")
-    Call<BaseResponse<User>> getProfil(@Path("id") int uid);
+    @GET("user/get/{id}")
+    Call<BaseResponse<User>> getProfil(@Path("id") int uid, @Query("format") String format);
 
     @GET("about")
     Call<BaseResponse<About>> getAbout(@Query("format") String format);

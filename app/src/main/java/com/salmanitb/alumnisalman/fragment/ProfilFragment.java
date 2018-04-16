@@ -5,22 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.EditProfileActivity;
 import com.salmanitb.alumnisalman.activity.LoginActivity;
-import com.salmanitb.alumnisalman.activity.MainActivity;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.salmanitb.alumnisalman.SalmanApplication.currentUser;
 
 
 /**
@@ -29,6 +31,9 @@ import butterknife.OnClick;
 public class ProfilFragment extends Fragment{
 
     boolean doubleLogoutToExitPressedOnce = false;
+
+    @BindView(R.id.txt_name)
+    TextView txtName;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -40,6 +45,10 @@ public class ProfilFragment extends Fragment{
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profil, container, false);
         ButterKnife.bind(this, rootView);
+
+        Gson gson = new Gson();
+        Log.d("DEBUG_SALMAN", gson.toJson(currentUser));
+        txtName.setText(currentUser.getName());
 
 //        Button edit_profile = (Button) rootView.findViewById(R.id.btn_logout);
 //        edit_profile.setOnClickListener(new View.OnClickListener() {
