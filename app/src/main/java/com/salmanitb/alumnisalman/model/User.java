@@ -1,47 +1,67 @@
 package com.salmanitb.alumnisalman.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
  * Created by hilmi on 13/03/2018.
  */
 
-public class User {
+public class User{
 
     // Personal Info
+    @SerializedName("id")
     private String uid;
+    @SerializedName("nama")
     private String name;
+    @SerializedName("email")
     private String email;
-    private String password;
+    @SerializedName("password")
+    private transient String password;
+    @SerializedName("no_hp")
     private String phonenumber;
+    @SerializedName("profile_image")
     private String imageURL;
+    @SerializedName("gender")
     private String sex;
 
     // Address info
+    @SerializedName("negara")
     private String country;
+    @SerializedName("kota")
     private String city;
+    @SerializedName("alamat")
     private String address;
+    @SerializedName("latitude")
     private double latitude;
+    @SerializedName("longitude")
     private double longitude;
 
     // Profession Info
+    @SerializedName("pekerjaan")
     private String job;
+    @SerializedName("instansi")
     private String company;
 
     // Almamater Info
+    @SerializedName("univ")
     private String university;
+    @SerializedName("ang_kuliah")
     private String year_university;
+    @SerializedName("jurusan")
     private String major;
 
     // Activity in Salman information
+    @SerializedName("ang_LMD")
     private String lmd;
-    ArrayList<SalmanActivity> activities;
+    protected transient ArrayList<SalmanActivity> activities;
 
     // Q&A information
-    private String question1;
-    private String question2;
-    private String answer1;
-    private String answer2;
+    private transient String question1;
+    private transient String question2;
+    private transient String answer1;
+    private transient String answer2;
 
     public User() {
     }

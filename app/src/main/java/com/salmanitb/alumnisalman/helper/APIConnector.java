@@ -9,6 +9,7 @@ import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
@@ -168,9 +169,9 @@ public class APIConnector{
     }
 
     public void getProfil(int uid, final ApiCallback<User> callback) {
-        WebService.APIServiceImplementation.getInstance().getProfil(uid, "json").enqueue(new Callback<BaseResponse<User>>() {
+        WebService.APIServiceImplementation.getInstance().getProfil(uid, "json").enqueue(new Callback<BaseResponse<ProfileResponse>>() {
             @Override
-            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+            public void onResponse(Call<BaseResponse<ProfileResponse>> call, Response<BaseResponse<ProfileResponse>> response) {
                 if (response.body() == null) {
                     callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
                     return;
@@ -179,11 +180,13 @@ public class APIConnector{
                     callback.onFailure(new Throwable(response.body().getError().getMessage()));
                     return;
                 }
-                callback.onSuccess(response.body().getData());
+                ProfileResponse user = response.body().getData();
+                user.decodeActivityData();
+                callback.onSuccess(user);
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<ProfileResponse>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }

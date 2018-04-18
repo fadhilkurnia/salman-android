@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
@@ -69,7 +70,7 @@ public interface WebService {
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
     @GET("user/get/{id}")
-    Call<BaseResponse<User>> getProfil(@Path("id") int uid, @Query("format") String format);
+    Call<BaseResponse<ProfileResponse>> getProfil(@Path("id") int uid, @Query("format") String format);
 
     @GET("about")
     Call<BaseResponse<About>> getAbout(@Query("format") String format);
