@@ -182,7 +182,7 @@ public class APIConnector{
                 }
                 ProfileResponse user = response.body().getData();
                 user.decodeActivityData();
-                callback.onSuccess(user);
+//                callback.onSuccess(user);
             }
 
             @Override

@@ -18,7 +18,7 @@ public class User{
     @SerializedName("email")
     private String email;
     @SerializedName("password")
-    private String password;
+    private transient String password;
     @SerializedName("no_hp")
     private String phonenumber;
     @SerializedName("profile_image")
@@ -55,13 +55,13 @@ public class User{
     // Activity in Salman information
     @SerializedName("ang_LMD")
     private String lmd;
-    ArrayList<SalmanActivity> activities;
+    protected transient ArrayList<SalmanActivity> activities;
 
     // Q&A information
-    private String question1;
-    private String question2;
-    private String answer1;
-    private String answer2;
+    private transient String question1;
+    private transient String question2;
+    private transient String answer1;
+    private transient String answer2;
 
     public User() {
     }
