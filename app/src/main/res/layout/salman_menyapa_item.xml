@@ -59,6 +59,7 @@
                 android:text="This is content of blog post Salman Menyapa\n test again"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
+
         </LinearLayout>
     </LinearLayout>
 
