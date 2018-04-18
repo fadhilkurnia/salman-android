@@ -57,9 +57,9 @@ public class ReadPostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Post post = (Post) intent.getSerializableExtra("POST");
 
-        newsTitle.setText(post.getHeadline());
-        Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(mainImage);
-        newsTime.setText(post.getDatetime());
+        newsTitle.setText(post.getTitle());
+        Picasso.get().load(post.getImageURL()).fit().centerCrop().into(mainImage);
+        newsTime.setText(post.getTime());
 
         final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Please wait ...", true);
         webView.getSettings().setJavaScriptEnabled(true);
