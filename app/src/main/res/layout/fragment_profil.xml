@@ -447,21 +447,31 @@
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/detail_activity"
+                    <LinearLayout
+                        android:id="@+id/activity_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/activity_title"
                         android:layout_marginLeft="27dp"
-                        android:text="Aksara, Asrama Salman"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/year_activity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/detail_activity"
-                        android:layout_marginLeft="27dp"
-                        android:text="2015"/>
+                    </LinearLayout>
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/detail_activity"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/activity_title"-->
+                        <!--android:layout_marginLeft="27dp"-->
+                        <!--android:text="Aksara, Asrama Salman"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/year_activity"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/detail_activity"-->
+                        <!--android:layout_marginLeft="27dp"-->
+                        <!--android:text="2015"/>-->
 
                 </RelativeLayout>
 

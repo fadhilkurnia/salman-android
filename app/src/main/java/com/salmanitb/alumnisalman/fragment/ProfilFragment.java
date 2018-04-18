@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,9 @@ public class ProfilFragment extends Fragment{
     @BindView(R.id.txt_name)
     TextView txtName;
 
+    @BindView(R.id.activity_list)
+    LinearLayout linearLayout;
+
     public ProfilFragment() {
         // Required empty public constructor
     }
@@ -49,6 +53,15 @@ public class ProfilFragment extends Fragment{
         Gson gson = new Gson();
         Log.d("DEBUG_SALMAN", gson.toJson(currentUser));
         txtName.setText(currentUser.getName());
+
+        for (int i = 0; i < 3; i++) {
+            int year_start = 2015 + i;
+            int year_end = 2017 + i;
+            TextView textView = new TextView(getContext());
+            textView.setText("Imam Tua, " + year_start + "-" + year_end);
+            linearLayout.addView(textView);
+        }
+
 
 //        Button edit_profile = (Button) rootView.findViewById(R.id.btn_logout);
 //        edit_profile.setOnClickListener(new View.OnClickListener() {
