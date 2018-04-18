@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/webview_image"
@@ -59,6 +59,59 @@
                 android:text="This is content of blog post Salman Menyapa\n test again"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
+            <RelativeLayout
+                android:id="@+id/main_image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/news_view_icon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/news_time"
+                    android:src="@drawable/ic_eye" />
+
+                <TextView
+                    android:id="@+id/news_view_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/news_view_icon"
+                    android:text="1.234 tayang"
+                    android:textAppearance="@style/Base.Widget.AppCompat.Button.Small" />
+
+                <ImageView
+                    android:id="@+id/news_like_icon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/news_view_count"
+                    android:src="@drawable/ic_love" />
+
+                <TextView
+                    android:id="@+id/news_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/news_like_icon"
+                    android:text="123 suka"
+                    android:textAppearance="@style/Base.Widget.AppCompat.Button.Small" />
+
+            </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -66,8 +119,8 @@
     <RelativeLayout
         android:id="@+id/separator"
         android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_height=".7dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:background="#944e342e"
