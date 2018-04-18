@@ -21,6 +21,8 @@ import com.salmanitb.alumnisalman.model.Post;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.http.POST;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +60,9 @@ public class SalmanMenyapaFragment extends Fragment {
     }
 
     private void preparePostData() {
-        Post post = new Post("Kamis, 1 Maret 2018", "KALAM Salman: Keterhubungan Antar Alumni Itu Penting", "5xUCnEixL-s",
+        Post post = new Post(
+                "KALAM Salman: Keterhubungan Antar Alumni Itu Penting",
+                null,
                 "Pembangunan jaringan merupakan hal yang vital dalam mengoptimalkan dakwah di Indonesia. Berkaitan dengan ini, Alumni Masjid Salman ITB seyogyanya senantiasa terhubung satu sama lain. Bahkan lebih lanjut lagi, saling membantu saat ada yang kesusahan.\n" +
                         "\n" +
                         "“Kita harus senantiasa bergandengan tangan, siapa yang jatuh, kita bantu. Lalu siapa yang naik, agar tidak lupa,” kata Ketua YPM Salman Syarif Hidayat, pada acara Pelantikan Pengurus Keluarga Alumni (KALAM) Salman ITB periode 2015-2019, Sabtu (24/1).\n" +
@@ -74,17 +78,22 @@ public class SalmanMenyapaFragment extends Fragment {
                         "“Insya Allah kita menyatukan potensi-potensi itu demi memiliki kekuatan yang lebih, dibanding sendiri-sendiri,” tutupnya.\n" +
                         "\n" +
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
-                "https://itb.ac.id/files/107/20140628/1403916610.jpg");
+                "https://itb.ac.id/files/107/20140628/1403916610.jpg",
+                "Kamis, 1 Maret 2018",
+                123,
+                123,
+                true
+                );
 
-        post = new Post(post.getDatetime(), post.getHeadline()+" I", post.getYoutubeVideoID(), post.getContent(), post.getImageLocation());
+        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getDatetime(), post.getHeadline()+"I", "", post.getContent(), post.getImageLocation());
+        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
 
         postAdapter.notifyDataSetChanged();

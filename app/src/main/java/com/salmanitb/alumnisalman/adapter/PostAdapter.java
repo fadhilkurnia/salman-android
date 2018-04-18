@@ -93,10 +93,10 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public void bind(final Post post, final OnItemClickListener listener) {
 
-            datetime.setText(post.getDatetime());
-            headline.setText(post.getHeadline());
-            content.setText(post.getContent());
-            Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(image);
+            datetime.setText(post.getTime());
+            headline.setText(post.getTitle());
+            content.setText(post.getShortContent());
+            Picasso.get().load(post.getImageURL()).fit().centerCrop().into(image);
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,9 +121,9 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         public void bind(final Post post, final OnItemClickListener listener) {
-            Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(headlineImage);
-            headlineTitle.setText(post.getHeadline());
-            headlineTime.setText(post.getDatetime());
+            Picasso.get().load(post.getImageURL()).fit().centerCrop().into(headlineImage);
+            headlineTitle.setText(post.getTitle());
+            headlineTime.setText(post.getTime());
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
