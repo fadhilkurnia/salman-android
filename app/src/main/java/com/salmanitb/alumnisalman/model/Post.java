@@ -7,56 +7,97 @@ package com.salmanitb.alumnisalman.model;
 import java.io.Serializable;
 
 public class Post implements Serializable {
-    private String datetime, headline, youtubeVideoID, content, imageLocation;
 
-    public Post() {
+    private int id;
+    private String title;
+    private String contentURL;
+    private String shortContent;
+    private String imageURL;
+    private String time;
+    private int loveCount;
+    private int viewCount;
+    private boolean likedByMe;
 
-    }
-    public Post(String datetime, String headline, String youtubeVideoID, String content, String imageLocation) {
-        this.datetime = datetime;
-        this.headline = headline;
-        this.youtubeVideoID = youtubeVideoID;
-        this.content = content;
-        this.imageLocation = imageLocation;
-    }
-
-    public String getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
-    }
-
-    public String getHeadline() {
-        return headline;
+    public Post(String title, String contentURL, String shortContent, String imageURL, String time, int loveCount, int viewCount, boolean likedByMe) {
+        this.title = title;
+        this.contentURL = contentURL;
+        this.shortContent = shortContent;
+        this.imageURL = imageURL;
+        this.time = time;
+        this.loveCount = loveCount;
+        this.viewCount = viewCount;
+        this.likedByMe = likedByMe;
     }
 
-    public void setHeadline(String headline) {
-        this.headline = headline;
+    public int getId() {
+        return id;
     }
 
-    public String getYoutubeVideoID() {
-        return youtubeVideoID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setYoutubeVideoID(String youtubeVideoID) {
-        this.youtubeVideoID = youtubeVideoID;
+    public String getTitle() {
+        return title;
     }
 
-    public String getContent() {
-        return content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getContentURL() {
+        return contentURL;
     }
 
-    public String getImageLocation() {
-        return imageLocation;
+    public void setContentURL(String contentURL) {
+        this.contentURL = contentURL;
     }
 
-    public void setImageLocation(String imageLocation){
-        this.imageLocation = imageLocation;
+    public String getShortContent() {
+        return shortContent;
+    }
+
+    public void setShortContent(String shortContent) {
+        this.shortContent = shortContent;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getLoveCount() {
+        return loveCount;
+    }
+
+    public void setLoveCount(int loveCount) {
+        this.loveCount = loveCount;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public boolean isLikedByMe() {
+        return likedByMe;
+    }
+
+    public void setLikedByMe(boolean likedByMe) {
+        this.likedByMe = likedByMe;
     }
 }
