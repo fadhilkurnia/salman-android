@@ -180,7 +180,9 @@ public class APIConnector{
                     callback.onFailure(new Throwable(response.body().getError().getMessage()));
                     return;
                 }
-                callback.onSuccess(response.body().getData().decodeActivityData(););
+                ProfileResponse user = response.body().getData();
+                user.decodeActivityData();
+                callback.onSuccess(user);
             }
 
             @Override
