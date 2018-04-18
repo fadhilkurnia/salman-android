@@ -20,7 +20,7 @@ public class PreferenceManager {
     private Context mApplicationContext;
 
     private final String KEY_USER_AUTH= "KEY_USER_AUTH";
-    private final String KEY_USER_DATA= "KEY_USER_AUTH";
+    private final String KEY_USER_DATA= "KEY_USER_DATA";
     private final String KEY_USER_TOKEN = "KEY_USER_TOKEN";
     private final String KEY_ABOUT_DATA = "KEY_ABOUT_DATA";
 
@@ -39,14 +39,15 @@ public class PreferenceManager {
     public UserAuth getUserAuth() {
         SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         String responseJSON = preferences.getString(KEY_USER_AUTH, null);
-        Log.d("SALMAN_APP getUserAuth", responseJSON);
         return gson.fromJson(responseJSON, UserAuth.class);
     }
 
     public void setUserAuth(UserAuth userAuth) {
-        Gson gson = new Gson();
-        Log.d("SALMAN_APP setUserAuth", gson.toJson(userAuth));
         SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        if (userAuth == null) {
+            preferences.edit().remove(KEY_USER_AUTH).apply();
+            return;
+        }
         SharedPreferences.Editor editor = preferences.edit();
         String json = gson.toJson(userAuth);
         editor.putString(KEY_USER_AUTH, json);
@@ -61,6 +62,10 @@ public class PreferenceManager {
 
     public void setUserData(User user) {
         SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        if (user == null) {
+            preferences.edit().remove(KEY_USER_DATA).apply();
+            return;
+        }
         SharedPreferences.Editor editor = preferences.edit();
         String json = gson.toJson(user);
         editor.putString(KEY_USER_DATA, json);

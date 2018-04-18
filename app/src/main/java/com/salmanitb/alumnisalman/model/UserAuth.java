@@ -22,7 +22,7 @@ public class UserAuth {
     @SerializedName("verified")
     boolean isVerified;
 
-    private boolean isPasswordHashed = false;
+    private transient boolean isPasswordHashed;
 
     public int getId() {
         return id;
