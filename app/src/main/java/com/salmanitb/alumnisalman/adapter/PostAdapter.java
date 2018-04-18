@@ -83,8 +83,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.datetime) TextView datetime;
         @BindView(R.id.headline) TextView headline;
         @BindView(R.id.content) TextView content;
-        @BindView(R.id.content_full) TextView contentfull;
-        @BindView(R.id.youtube_video_ID) TextView youtubeVideoID;
         public View layout;
 
         public PostViewHolder(View view) {
@@ -98,8 +96,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             datetime.setText(post.getDatetime());
             headline.setText(post.getHeadline());
             content.setText(post.getContent());
-            contentfull.setText(post.getContent());
-            youtubeVideoID.setText(post.getYoutubeVideoID());
             Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(image);
 
             layout.setOnClickListener(new View.OnClickListener() {

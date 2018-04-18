@@ -25,7 +25,8 @@
         android:layout_alignParentEnd="true"
         android:background="@color/popupbackground"
         android:elevation="2dp"
-        android:src="@drawable/ic_love" />
+        android:src="@drawable/ic_love"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -141,13 +142,14 @@
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
                     android:textColor="#FFFFFF" />
 
-            </RelativeLayout>
+                <WebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
 
-            <WebView
-                android:id="@+id/webview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_image_layout" />
+            </RelativeLayout>
 
         </RelativeLayout>
 

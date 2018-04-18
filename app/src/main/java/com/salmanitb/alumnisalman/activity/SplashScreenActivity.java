@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.helper.APIConnector;
@@ -23,6 +25,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         final Context context = this;
         UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
+        Gson gson = new Gson();
+        Log.d("SALMAN_APP splash", gson.toJson(userAuth));
         if (userAuth != null) {
 
             // Handle unverified user

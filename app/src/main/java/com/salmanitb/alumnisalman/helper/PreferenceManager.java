@@ -2,6 +2,7 @@ package com.salmanitb.alumnisalman.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
@@ -38,10 +39,13 @@ public class PreferenceManager {
     public UserAuth getUserAuth() {
         SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         String responseJSON = preferences.getString(KEY_USER_AUTH, null);
+        Log.d("SALMAN_APP getUserAuth", responseJSON);
         return gson.fromJson(responseJSON, UserAuth.class);
     }
 
     public void setUserAuth(UserAuth userAuth) {
+        Gson gson = new Gson();
+        Log.d("SALMAN_APP setUserAuth", gson.toJson(userAuth));
         SharedPreferences preferences = mApplicationContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         String json = gson.toJson(userAuth);
