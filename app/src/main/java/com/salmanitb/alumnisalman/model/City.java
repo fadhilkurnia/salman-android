@@ -1,9 +1,14 @@
 package com.salmanitb.alumnisalman.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class City {
 
+    @SerializedName("kota")
     private String name;
+    @SerializedName("latitude")
     private double latitute;
+    @SerializedName("longitude")
     private double longitude;
 
     public City() {

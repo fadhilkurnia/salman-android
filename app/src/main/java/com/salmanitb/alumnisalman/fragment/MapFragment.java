@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,7 +26,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.SearchActivity;
+import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.model.City;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,9 +43,11 @@ public class MapFragment extends Fragment {
 
 
     @BindView(R.id.input_search)
-    EditText inputSearch;
+    Button inputSearch;
 
     private GoogleMap googleMap;
+
+    ArrayList<City> cities;
 
     public MapFragment() {
         // Required empty public constructor
@@ -53,6 +59,7 @@ public class MapFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
         ButterKnife.bind(this, rootView);
+        cities = new ArrayList<>();
 
         inputSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +97,8 @@ public class MapFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        getDataAlumniMapping();
 
         FragmentManager fragmentManager = getChildFragmentManager();
         ((SupportMapFragment) fragmentManager.findFragmentById(R.id.searchMapFragment))
@@ -135,6 +144,34 @@ public class MapFragment extends Fragment {
 
                 }
             });
+    }
+
+    private void getDataAlumniMapping() {
+
+        APIConnector.getInstance().getAlumniMapping(new APIConnector.ApiCallback<ArrayList<City>>() {
+            @Override
+            public void onSuccess(ArrayList<City> response) {
+
+                if (cities == null)
+                    cities = new ArrayList<City>();
+                else
+                    cities.clear();
+
+                if (response.isEmpty()) {
+                    Toast.makeText(getContext(), "Pencarian tidak ditemukan", Toast.LENGTH_SHORT).show();
+                } else {
+                    for (City s : response) {
+                        cities.add(s);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void generatePinOnMap() {

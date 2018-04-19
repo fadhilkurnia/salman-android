@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.City;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
@@ -188,6 +189,37 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<ProfileResponse>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void getAlumniMapping(final ApiCallback<ArrayList<City>> callback) {
+        Call<BaseResponse<ArrayList<City>>> call = WebService.APIServiceImplementation.getInstance().getAlumniMapping();
+        call.enqueue(new Callback<BaseResponse<ArrayList<City>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ArrayList<City>>> call, Response<BaseResponse<ArrayList<City>>> response) {
+                BaseResponse<ArrayList<City>> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                    Log.e("API Persebaran", responseBody.getData().toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ArrayList<City>>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
