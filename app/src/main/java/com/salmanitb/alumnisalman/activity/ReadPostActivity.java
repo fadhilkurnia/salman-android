@@ -7,10 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.view.View;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
@@ -67,10 +71,9 @@ public class ReadPostActivity extends AppCompatActivity {
         newsLikeCount.setText(txtLike);
         newsViewCount.setText(txtView);
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Please wait ...", true);
+        final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Sedang memuat konten ...", true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -82,6 +85,13 @@ public class ReadPostActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 progressDialog.dismiss();
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                webView.setVisibility(View.GONE);
+                Toast.makeText(ReadPostActivity.this, "Gagal memuat konten", Toast.LENGTH_SHORT).show();
             }
         });
 
