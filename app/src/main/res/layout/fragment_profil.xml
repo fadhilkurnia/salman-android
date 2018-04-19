@@ -145,10 +145,10 @@
 
                     <ImageButton
                         android:id="@+id/btn_edit_personal"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_edit_button"/>
+                        android:background="@drawable/pencil_edit_button"/>
 
                     <ImageView
                         android:layout_width="20dp"
@@ -253,10 +253,10 @@
 
                     <ImageButton
                         android:id="@+id/btn_edit_almamater"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_edit_button"/>
+                        android:background="@drawable/pencil_edit_button"/>
 
                     <ImageView
                         android:layout_width="20dp"
@@ -321,10 +321,10 @@
 
                     <ImageButton
                         android:id="@+id/btn_edit_pekerjaan"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_edit_button"/>
+                        android:background="@drawable/pencil_edit_button"/>
 
                     <ImageView
                         android:layout_width="20dp"
@@ -426,10 +426,10 @@
 
                     <ImageButton
                         android:id="@+id/btn_edit_kegiatan"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_edit_button"/>
+                        android:background="@drawable/pencil_edit_button"/>
 
                     <ImageView
                         android:layout_width="20dp"
