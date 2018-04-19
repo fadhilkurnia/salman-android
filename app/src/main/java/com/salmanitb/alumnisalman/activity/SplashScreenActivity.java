@@ -35,25 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 return;
             }
 
-            // Handle verified user
-            APIConnector.getInstance().doLogin(userAuth.getEmail(), userAuth.getPassword(), new APIConnector.ApiCallback<UserAuth>() {
-                @Override
-                public void onSuccess(UserAuth response) {
-                    if (response != null)
-                        gotoMain();
-                    else {
-                        Toast.makeText(context, "Terjadi kesalahan pada sistem kami", Toast.LENGTH_SHORT).show();
-                        gotoLogin();
-                    }
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    Toast.makeText(context, "Gagal melakukan autentikasi", Toast.LENGTH_SHORT).show();
-                    gotoLogin();
-                }
-            });
-
+            gotoMain();
 
         } else { // no cached user data found
             new Handler().postDelayed(new Runnable() {
