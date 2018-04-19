@@ -13,14 +13,16 @@ public class Post implements Serializable{
     private int id;
     @SerializedName("judul")
     private String title;
-    @SerializedName("content_url")
+    @SerializedName("konten")
     private String contentURL;
     @SerializedName("deskripsi")
     private String shortContent;
     @SerializedName("thumbnail")
     private String imageURL;
-    @SerializedName("tanggal")
-    private String time;
+    @SerializedName("created_at")
+    private long createdAt;
+    @SerializedName("updated_at")
+    private long updatedAt;
     @SerializedName("like_count")
     private int loveCount;
     @SerializedName("view_count")
@@ -28,12 +30,12 @@ public class Post implements Serializable{
     @SerializedName("likedbyme")
     private boolean likedByMe;
 
-    public Post(String title, String contentURL, String shortContent, String imageURL, String time, int loveCount, int viewCount, boolean likedByMe) {
+    public Post(String title, String contentURL, String shortContent, String imageURL, long time, int loveCount, int viewCount, boolean likedByMe) {
         this.title = title;
         this.contentURL = contentURL;
         this.shortContent = shortContent;
         this.imageURL = imageURL;
-        this.time = time;
+        this.createdAt = time;
         this.loveCount = loveCount;
         this.viewCount = viewCount;
         this.likedByMe = likedByMe;
@@ -79,12 +81,20 @@ public class Post implements Serializable{
         this.imageURL = imageURL;
     }
 
-    public String getTime() {
-        return time;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public int getLoveCount() {

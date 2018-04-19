@@ -133,21 +133,21 @@ public class SalmanMenyapaFragment extends Fragment {
                         "\n" +
                         "KALAM Salman memang bervisi menjadi wadah pemersatu dan penggerak potensi alumni. Tujuannya, untuk terwujudnya pembinaan insan, pengembangan masyarakat, dan pembangunan peradaban. Sejak berdirinya pada tahun 2002 lalu, KALAM Salman berkomitmen untuk membangun jaringan alumni guna mewujudkan masyarakat madani berdasarkan nilai-nilai Islam. [ed: Dh]",
                 "https://itb.ac.id/files/107/20140628/1403916610.jpg",
-                "Kamis, 1 Maret 2018",
+                121232312l,
                 123,
                 123,
                 true
                 );
 
-        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " I", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " II", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " III", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " IV", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " V", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
 
         postAdapter.notifyDataSetChanged();

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:loadMoreEnabled="true"
         app:loadMoreFooterLayout="@layout/layout_load_more"
-        app:refreshEnabled="true"/>
+        app:refreshEnabled="true" />
 
     <!--<com.srx.widget.PullToLoadView-->
     <!--android:id="@+id/pull_load_salman_menyapa"-->

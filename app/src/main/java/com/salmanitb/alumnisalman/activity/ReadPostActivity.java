@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.model.Post;
 import com.squareup.picasso.Picasso;
 
@@ -59,7 +60,8 @@ public class ReadPostActivity extends AppCompatActivity {
 
         newsTitle.setText(post.getTitle());
         Picasso.get().load(post.getImageURL()).fit().centerCrop().into(mainImage);
-        newsTime.setText(post.getTime());
+        newsTime.setText(PostAdapter.decodeUnixTime(post.getCreatedAt()));
+
         String txtLike = String.valueOf(post.getLoveCount()) + " suka";
         String txtView = String.valueOf(post.getViewCount()) + " tayang";
         newsLikeCount.setText(txtLike);
