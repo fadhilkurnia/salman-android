@@ -43,7 +43,7 @@ public class MapFragment extends Fragment {
 
 
     @BindView(R.id.input_search)
-    EditText inputSearch;
+    Button inputSearch;
 
     private GoogleMap googleMap;
 

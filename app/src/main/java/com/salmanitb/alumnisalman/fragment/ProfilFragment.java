@@ -113,8 +113,10 @@ public class ProfilFragment extends Fragment{
             if (!currentUser.getImageURL().equals("")) {
                 Picasso.get().load(BASE_IMAGE_URL + currentUser.getImageURL()).into(imgProfile);
             }  else {
-                Picasso.get().load(R.drawable.ic_person).into(imgProfile);
+                Picasso.get().load(R.drawable.user).into(imgProfile);
             }
+        } else {
+            Picasso.get().load(R.drawable.user).into(imgProfile);
         }
 
         if (currentUser.getSex().equals(MALE)) {
