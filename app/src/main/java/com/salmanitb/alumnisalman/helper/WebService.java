@@ -33,7 +33,8 @@ import retrofit2.http.Query;
 
 public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
-    String BASE_IMAGE_URL = "http://pplk2h.if.itb.ac.id/media/";
+//    String BASE_IMAGE_URL = "http://pplk2h.if.itb.ac.id/media/";
+    String BASE_IMAGE_URL = "";
 
     @FormUrlEncoded
     @POST("login")
