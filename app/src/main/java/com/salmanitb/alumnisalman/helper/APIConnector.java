@@ -250,6 +250,31 @@ public class APIConnector{
         });
     }
 
+    public void getSalmanMenyapaDetail(final int id, final int uid, final ApiCallback<Post> callback) {
+        Call<BaseResponse<Post>> call = WebService.APIServiceImplementation.getInstance().getSalmanMenyapaDetail(id, uid);
+        call.enqueue(new Callback<BaseResponse<Post>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Post>> call, Response<BaseResponse<Post>> response) {
+                BaseResponse<Post> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan sistem"));
+                    return;
+                }
+                if (!responseBody.isSuccess()) {
+                    callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    return;
+                }
+                callback.onSuccess(responseBody.getData());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Post>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
     public void doLoveSalmanMenyapa(final int postId, final int uid, final ApiCallback<String> callback) {
         Call<BaseResponse<String>> call = WebService.APIServiceImplementation.getInstance().doLoveSalmanMenyapa(postId, uid);
         call.enqueue(new Callback<BaseResponse<String>>() {

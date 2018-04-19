@@ -69,7 +69,6 @@ public class SalmanMenyapaFragment extends Fragment {
         recyclerView.setIAdapter(postAdapter);
 
         if (currentPage == 0) {
-            preparePostData();
             loadPostData(currentPage+1);
         }
 
