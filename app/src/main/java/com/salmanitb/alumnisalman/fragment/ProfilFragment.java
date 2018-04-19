@@ -2,8 +2,11 @@ package com.salmanitb.alumnisalman.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -25,12 +28,15 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+
 import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.app.Activity.RESULT_OK;
 import static com.salmanitb.alumnisalman.SalmanApplication.currentUser;
 import static com.salmanitb.alumnisalman.helper.WebService.BASE_IMAGE_URL;
 import static com.salmanitb.alumnisalman.model.User.MALE;
@@ -79,6 +85,12 @@ public class ProfilFragment extends Fragment{
     @BindView(R.id.angkatan_lmd)
     TextView txtLmd;
 
+    private Bitmap bitmap;
+    private Uri filePath;
+
+
+    //a constant to track the file chooser intent
+    private static final int PICK_IMAGE_REQUEST = 234;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -95,6 +107,31 @@ public class ProfilFragment extends Fragment{
 
         return rootView;
     }
+
+
+    @OnClick (R.id.edit_image_button)
+    protected void editImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
+    }
+
+    // handling the image chooser activity result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),filePath);
+                imgProfile.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private void loadData() {
 

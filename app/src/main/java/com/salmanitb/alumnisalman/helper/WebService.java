@@ -15,7 +15,9 @@ import com.salmanitb.alumnisalman.model.UserAuth;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -36,6 +40,13 @@ public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
 //    String BASE_IMAGE_URL = "http://pplk2h.if.itb.ac.id/media/";
     String BASE_IMAGE_URL = "";
+
+    @Multipart
+    @POST("upload")
+    Call<BaseResponse<UserAuth>> upload(
+            @Part("id") RequestBody description,
+            @Part MultipartBody.Part file
+    );
 
     @FormUrlEncoded
     @POST("login")
