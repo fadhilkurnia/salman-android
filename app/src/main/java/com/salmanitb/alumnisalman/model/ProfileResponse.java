@@ -43,6 +43,8 @@ public class ProfileResponse extends User {
                 act.setEndYear(yearData[1]);
             activities.add(act);
         }
+        activityPlain = null;
+        activityYearData = null;
     }
 
 }

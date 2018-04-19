@@ -55,7 +55,8 @@ public class User{
     // Activity in Salman information
     @SerializedName("ang_LMD")
     private String lmd;
-    protected transient ArrayList<SalmanActivity> activities;
+    @SerializedName("activities")
+    protected ArrayList<SalmanActivity> activities;
 
     // Q&A information
     private transient String question1;
