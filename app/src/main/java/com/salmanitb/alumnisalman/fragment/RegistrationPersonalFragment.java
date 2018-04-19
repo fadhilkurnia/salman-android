@@ -3,6 +3,7 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,10 @@ import com.salmanitb.alumnisalman.model.GeocodingResponse;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.salmanitb.alumnisalman.SalmanApplication.currentUser;
+import static com.salmanitb.alumnisalman.activity.EditProfileActivity.EDIT_ARGUMENT;
+import static com.salmanitb.alumnisalman.model.User.MALE;
 
 
 /**
@@ -48,10 +53,15 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
     @BindView(R.id.input_address)
     EditText inputAddress;
 
+    @BindView(R.id.radio_female)
+    RadioButton radioFemale;
+
+    private boolean isEdit;
+
     public RegistrationPersonalFragment() {
         // Required empty public constructor
+        isEdit = false;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +71,30 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
         ButterKnife.bind(this, rootView);
         inputEmail.setText(SalmanApplication.getCurrentUser().getEmail());
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            isEdit = bundle.getBoolean(EDIT_ARGUMENT);
+//            Log.d("FRAGMENT_DEBUG","isEdit true");
+        }
+
+        if (isEdit){
+            setData();
+        }
+
         return rootView;
+    }
+
+    private void setData() {
+        inputName.setText(currentUser.getName());
+        inputEmail.setText(currentUser.getEmail());
+        if (currentUser.getSex().equals(MALE))
+            radiomMale.setChecked(true);
+        else
+            radioFemale.setChecked(true);
+        inputPhone.setText(currentUser.getPhonenumber());
+        inputCountry.setText(currentUser.getCountry());
+        inputCity.setText(currentUser.getCity());
+        inputAddress.setText(currentUser.getAddress());
     }
 
     @Override
