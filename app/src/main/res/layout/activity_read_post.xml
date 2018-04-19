@@ -44,7 +44,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -88,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginStart="18dp"
                     android:layout_marginTop="10dp"
                     android:text="Jumat, 30 Maret 2018"
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
@@ -100,7 +99,7 @@
                     android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_time"
                     android:background="#ffffff" />
@@ -111,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_view_icon"
                     android:text="1.234 tayang"
@@ -124,7 +123,7 @@
                     android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_view_count"
                     android:background="#ffffff" />
@@ -135,21 +134,21 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_like_icon"
                     android:text="123 suka"
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
                     android:textColor="#FFFFFF" />
 
-                <WebView
-                    android:id="@+id/webview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true" />
-
             </RelativeLayout>
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/main_image_layout" />
 
         </RelativeLayout>
 

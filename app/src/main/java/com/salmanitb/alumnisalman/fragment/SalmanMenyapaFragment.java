@@ -85,15 +85,15 @@ public class SalmanMenyapaFragment extends Fragment {
                 true
                 );
 
-        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
-        post = new Post(post.getTime(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postList.add(post);
 
         postAdapter.notifyDataSetChanged();
