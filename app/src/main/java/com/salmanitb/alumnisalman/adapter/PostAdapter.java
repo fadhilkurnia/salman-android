@@ -16,7 +16,12 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.model.Post;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +74,20 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return VIEWTYPE_NORMAL;
     }
 
+    public void add(Post post) {
+        postList.add(post);
+        notifyDataSetChanged();
+    }
+
+    public void addAll(ArrayList<Post> posts) {
+        postList.addAll(posts);
+        notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        postList.clear();
+        notifyDataSetChanged();
+    }
 
     public Post getPost(int index) {
         return postList.get(index);
@@ -83,8 +102,8 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         @BindView(R.id.datetime) TextView datetime;
         @BindView(R.id.headline) TextView headline;
         @BindView(R.id.content) TextView content;
-        @BindView(R.id.content_full) TextView contentfull;
-        @BindView(R.id.youtube_video_ID) TextView youtubeVideoID;
+        @BindView(R.id.news_like_count) TextView txtLikeCount;
+        @BindView(R.id.news_view_count) TextView txtViewCount;
         public View layout;
 
         public PostViewHolder(View view) {
@@ -95,12 +114,14 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public void bind(final Post post, final OnItemClickListener listener) {
 
-            datetime.setText(post.getDatetime());
-            headline.setText(post.getHeadline());
-            content.setText(post.getContent());
-            contentfull.setText(post.getContent());
-            youtubeVideoID.setText(post.getYoutubeVideoID());
-            Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(image);
+            datetime.setText(decodeUnixTime(post.getCreatedAt()));
+            headline.setText(post.getTitle());
+            content.setText(post.getShortContent());
+            String txtLove = String.valueOf(post.getLoveCount()) + " suka";
+            String txtView = String.valueOf(post.getViewCount()) + " tayang";
+            txtLikeCount.setText(txtLove);
+            txtViewCount.setText(txtView);
+            Picasso.get().load(post.getImageURL()).fit().centerCrop().into(image);
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,9 +146,9 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         public void bind(final Post post, final OnItemClickListener listener) {
-            Picasso.get().load(post.getImageLocation()).fit().centerCrop().into(headlineImage);
-            headlineTitle.setText(post.getHeadline());
-            headlineTime.setText(post.getDatetime());
+            Picasso.get().load(post.getImageURL()).fit().centerCrop().into(headlineImage);
+            headlineTitle.setText(post.getTitle());
+            headlineTime.setText(decodeUnixTime(post.getCreatedAt()));
 
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,6 +157,90 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 }
             });
         }
+    }
+
+
+    public static String decodeUnixTime(long unixTime) {
+        Date date = new Date(unixTime*1000);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+
+        StringBuilder sb = new StringBuilder();
+        switch (c.get(Calendar.DAY_OF_WEEK)) {
+            case Calendar.SUNDAY:
+                sb.append("Minggu");
+                break;
+            case Calendar.MONDAY:
+                sb.append("Senin");
+                break;
+            case Calendar.TUESDAY:
+                sb.append("Selasa");
+                break;
+            case Calendar.WEDNESDAY:
+                sb.append("Rabu");
+                break;
+            case Calendar.THURSDAY:
+                sb.append("Kamis");
+                break;
+            case Calendar.FRIDAY:
+                sb.append("Jumat");
+                break;
+            default: // saturday
+                sb.append("Sabtu");
+                break;
+        }
+
+        sb.append(", ");
+        sb.append(c.get(Calendar.DAY_OF_MONTH));
+        sb.append(" ");
+
+        switch (c.get(Calendar.MONTH)) {
+            case Calendar.JANUARY:
+                sb.append("Januari");
+                break;
+            case Calendar.FEBRUARY:
+                sb.append("Februari");
+                break;
+            case Calendar.MARCH:
+                sb.append("Maret");
+                break;
+            case Calendar.APRIL:
+                sb.append("April");
+                break;
+            case Calendar.MAY:
+                sb.append("Mei");
+                break;
+            case Calendar.JUNE:
+                sb.append("Juni");
+                break;
+            case Calendar.JULY:
+                sb.append("Juli");
+                break;
+            case Calendar.AUGUST:
+                sb.append("Agustus");
+                break;
+            case Calendar.SEPTEMBER:
+                sb.append("September");
+                break;
+            case Calendar.OCTOBER:
+                sb.append("Oktober");
+                break;
+            case Calendar.NOVEMBER:
+                sb.append("November");
+                break;
+            default: // december
+                sb.append("Desemeber");
+                break;
+        }
+        sb.append(" ");
+        sb.append(c.get(Calendar.YEAR));
+
+
+        return sb.toString();
+//        SimpleDateFormat simpleDate = new SimpleDateFormat("EEEE, d MMMM y");
+//        String formatedDate = simpleDate.format(date);
+//        return  formatedDate;
+//        return "Kamis, 1 Maret 2018";
     }
 
 }
