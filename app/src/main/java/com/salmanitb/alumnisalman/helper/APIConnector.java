@@ -141,6 +141,67 @@ public class APIConnector{
         });
     }
 
+    public void doUpdate(final User user, final ApiCallback<UserAuth> callback) {
+        Gson gson = new Gson();
+        ArrayList<String> activities = new ArrayList<>();
+        ArrayList<String> activitiesYear = new ArrayList<>();
+        for (SalmanActivity activity : user.getActivities()) {
+            activities.add(activity.getTitle());
+            StringBuilder sb = new StringBuilder();
+            sb.append(activity.getStartYear());
+            if (!activity.getEndYear().trim().equals(""))
+                sb.append("-");
+            sb.append(activity.getEndYear());
+            activitiesYear.add(sb.toString());
+        }
+
+        String uid = String.valueOf(user.getUid());
+        Log.d("UID_UPDATE", uid);
+
+        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doUpdate(
+                uid,
+                user.getName(),
+                user.getEmail(),
+                user.getSex(),
+                user.getCountry(),
+                user.getCity(),
+                user.getAddress(),
+                user.getLatitude(),
+                user.getLongitude(),
+                user.getPhonenumber(),
+                user.getUniversity(),
+                user.getMajor(),
+                user.getYearUniversity(),
+                user.getLmd(),
+                user.getJob(),
+                user.getCompany(),
+                gson.toJson(activities),
+                gson.toJson(activitiesYear)
+        );
+
+        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
+                BaseResponse<UserAuth> responseBody = response.body();
+                if (responseBody != null) {
+                    if (!responseBody.isSuccess()) {
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                        return;
+                    }
+                    callback.onSuccess(responseBody.getData());
+                    return;
+                }
+                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
     public void checkEmail(String email, final ApiCallback<CheckEmailResponse> callback) {
         Call<BaseResponse<CheckEmailResponse>> call = WebService.APIServiceImplementation.getInstance().checkEmail(email);
         call.enqueue(new Callback<BaseResponse<CheckEmailResponse>>() {

@@ -60,6 +60,11 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_registration_job, container, false);
         ButterKnife.bind(this, rootView);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            isEdit = bundle.getBoolean(EDIT_ARGUMENT);
+//            Log.d("FRAGMENT_DEBUG","isEdit true");
+        }
 
         jobCheckbox = new ArrayList<>();
         String jobs[] = getResources().getStringArray(R.array.default_registered_profession);
@@ -79,12 +84,6 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
             }
         });
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            isEdit = bundle.getBoolean(EDIT_ARGUMENT);
-//            Log.d("FRAGMENT_DEBUG","isEdit true");
-        }
-
         if (isEdit){
             setData();
         }
@@ -93,6 +92,7 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
     }
 
     private void setData() {
+        inputCompany.setText(SalmanApplication.getCurrentUser().getCompany());
     }
 
     @Override
@@ -138,6 +138,11 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
         for (int i = 0; i < data.length; i++) {
             CheckBox checkBox = new CheckBox(getActivity());
             checkBox.setText(data[i]);
+            if (isEdit) {
+                if (SalmanApplication.getCurrentUser().getJob().equals(data[i])) {
+                    checkBox.setChecked(true);
+                }
+            }
 
             if (i%2==0)
                 leftColumn.addView(checkBox);
@@ -145,6 +150,20 @@ public class RegistrationJobFragment extends RegistrationStepFragment {
                 rightColumn.addView(checkBox);
 
             jobCheckbox.add(checkBox);
+        }
+        if (isEdit) {
+            boolean other = true;
+            for (String s : data) {
+                if (SalmanApplication.currentUser.getJob().equals(s)){
+                    other = false;
+                }
+            }
+            if (other) {
+                checkboxOthers.setChecked(true);
+                inputOthers.setText(SalmanApplication.getCurrentUser().getJob());
+                inputOthers.setEnabled(true);
+                inputOthers.setFocusable(true);
+            }
         }
     }
 

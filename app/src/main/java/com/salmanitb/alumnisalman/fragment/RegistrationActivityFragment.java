@@ -64,12 +64,42 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_registration_activity, container, false);
         ButterKnife.bind(this, rootView);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            isEdit = bundle.getBoolean(EDIT_ARGUMENT);
+//            Log.d("FRAGMENT_DEBUG","isEdit true");
+        }
 
         inputActivity = new ArrayList<>();
         for (String activity: getResources().getStringArray(R.array.default_registered_activity)) {
-            ActivityView view = new ActivityView(getActivity(), activity);
-            inputActivity.add(view);
-            activityLayoutRow.addView(view);
+            if (isEdit) {
+                boolean isChecked = false;
+                String start = "0", end = "0";
+                for (SalmanActivity s : SalmanApplication.getCurrentUser().getActivities()) {
+                    if (activity.equals(s.getTitle())) {
+                        isChecked = true;
+                        start = s.getStartYear();
+                        end = s.getEndYear();
+                    }
+                }
+                if (isChecked) {
+                    ActivityView view = new ActivityView(getActivity(), activity, true, true, true);
+                    view.setStartYear(Integer.parseInt(start));
+                    view.setEndYear(Integer.parseInt(end));
+                    inputActivity.add(view);
+                    activityLayoutRow.addView(view);
+                } else {
+                    ActivityView view = new ActivityView(getActivity(), activity, false, true, true);
+                    inputActivity.add(view);
+                    activityLayoutRow.addView(view);
+                }
+            } else {
+                ActivityView view = new ActivityView(getActivity(), activity);
+                inputActivity.add(view);
+                activityLayoutRow.addView(view);
+            }
+
+
         }
 
         checkBoxOthers.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -86,12 +116,6 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
             }
         });
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            isEdit = bundle.getBoolean(EDIT_ARGUMENT);
-//            Log.d("FRAGMENT_DEBUG","isEdit true");
-        }
-
         if (isEdit){
             setData();
         }
@@ -100,6 +124,7 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
     }
 
     private void setData() {
+        inputLMD.setText(SalmanApplication.getCurrentUser().getLmd());
     }
 
     @Override

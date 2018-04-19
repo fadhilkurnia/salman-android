@@ -69,6 +69,28 @@ public interface WebService {
             @Field("jawaban2") String answer2);
 
     @FormUrlEncoded
+    @POST("user/update")
+    Call<BaseResponse<UserAuth>> doUpdate(
+            @Field("id") String id,
+            @Field("nama") String name,
+            @Field("email") String email,
+            @Field("gender") String sex,
+            @Field("negara") String country,
+            @Field("kota") String city,
+            @Field("alamat") String address,
+            @Field("latitude") double latitude,
+            @Field("longitude") double longitude,
+            @Field("no_hp") String phone,
+            @Field("univ") String university,
+            @Field("jurusan") String major,
+            @Field("ang_kuliah") String yearUniversity,
+            @Field("ang_LMD") String lmd,
+            @Field("pekerjaan") String job,
+            @Field("instansi") String company,
+            @Field("aktifitas") String activity,
+            @Field("tahun_aktif") String yearActivity);
+
+    @FormUrlEncoded
     @POST("email")
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 

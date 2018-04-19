@@ -107,15 +107,56 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             });
         } else if (fragmentID.equals("ALMAMATER")) {
-
+            editAlmamater.checkInput(new RegistrationCheckerCallback() {
+                @Override
+                public void onFinishChecking(boolean isSuccess) {
+                    if (isSuccess) {
+                        PreferenceManager.getInstance().setUserData(currentUser);
+                        updateToDatabase();
+                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
+                        goToProfile();
+                    }
+                }
+            });
         } else if (fragmentID.equals("PEKERJAAN")) {
-
+            editPekerjaan.checkInput(new RegistrationCheckerCallback() {
+                @Override
+                public void onFinishChecking(boolean isSuccess) {
+                    if (isSuccess) {
+                        PreferenceManager.getInstance().setUserData(currentUser);
+                        updateToDatabase();
+                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
+                        goToProfile();
+                    }
+                }
+            });
         } else if (fragmentID.equals("KEGIATAN")) {
-
+            editKegiatan.checkInput(new RegistrationCheckerCallback() {
+                @Override
+                public void onFinishChecking(boolean isSuccess) {
+                    if (isSuccess) {
+                        PreferenceManager.getInstance().setUserData(currentUser);
+                        updateToDatabase();
+                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
+                        goToProfile();
+                    }
+                }
+            });
         }
     }
 
     private void updateToDatabase() {
+        APIConnector.getInstance().doUpdate(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<UserAuth>() {
+            @Override
+            public void onSuccess(UserAuth response) {
+                PreferenceManager.getInstance().setUserAuth(response);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(EditProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void goToProfile() {

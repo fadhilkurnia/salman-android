@@ -28,6 +28,15 @@ public class ActivityView extends LinearLayout {
         setTitle(title);
     }
 
+    public ActivityView(Context context, String title, boolean check, boolean start, boolean end) {
+        super(context);
+        inflateLayout(context);
+        setTitle(title);
+        checkBox.setChecked(check);
+        txtStartYear.setEnabled(start);
+        txtEndYear.setEnabled(end);
+    }
+
     public ActivityView(Context context) {
         super(context);
         inflateLayout(context);
@@ -65,6 +74,7 @@ public class ActivityView extends LinearLayout {
     public String getEndYear() {
         return txtEndYear.getText().toString();
     }
+
 
     public void inflateLayout(final Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
