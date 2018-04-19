@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.ReadPostActivity;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.ISwipeRefreshLayout;
 import com.salmanitb.alumnisalman.model.Post;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ import butterknife.ButterKnife;
  */
 public class SalmanMenyapaFragment extends Fragment {
 
+    @BindView(R.id.swipe_refresh)
+    ISwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.salman_menyapa_recycler_view)
     IRecyclerView recyclerView;
 
@@ -64,8 +68,11 @@ public class SalmanMenyapaFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setIAdapter(postAdapter);
 
-        preparePostData();
-        loadPostData(currentPage+1);
+        if (currentPage == 0) {
+            preparePostData();
+            loadPostData(currentPage+1);
+        }
+
         return rootView;
     }
 
@@ -86,9 +93,25 @@ public class SalmanMenyapaFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Log.d("SALMAN_APP", "on refresh");
-                recyclerView.setRefreshing(false);
+                resetData();
             }
         });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("SALMAN_APP", "on refresh");
+                resetData();
+            }
+        });
+    }
+
+    private void resetData() {
+        currentPage = 0;
+        postList.clear();
+        postAdapter.clearData();
+        postAdapter.notifyDataSetChanged();
+
+        loadPostData(currentPage+1);
     }
 
     private void loadPostData(int pageNumber) {
@@ -97,12 +120,15 @@ public class SalmanMenyapaFragment extends Fragment {
             public void onSuccess(ArrayList<Post> response) {
                 postAdapter.addAll(response);
                 recyclerView.getLoadMoreFooterView().setVisibility(View.GONE);
+                recyclerView.setRefreshing(false);
+                swipeRefreshLayout.setRefreshing(false);
                 currentPage++;
             }
 
             @Override
             public void onFailure(Throwable t) {
                 recyclerView.getLoadMoreFooterView().setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
                 if (t.getMessage().equals("Artikel tidak ditemukan.")) {
                     Toast.makeText(getActivity(), "Anda sudah di ujung Salman Menyapa", Toast.LENGTH_SHORT).show();
                     return;

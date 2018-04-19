@@ -6,25 +6,21 @@
     android:orientation="vertical"
     tools:context="com.salmanitb.alumnisalman.fragment.SalmanMenyapaFragment">
 
-    <com.aspsine.irecyclerview.IRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/salman_menyapa_recycler_view"
+    <com.salmanitb.alumnisalman.helper.ISwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:loadMoreEnabled="true"
-        app:loadMoreFooterLayout="@layout/layout_load_more"
-        app:refreshEnabled="true" />
+        android:layout_height="match_parent">
 
-    <!--<com.srx.widget.PullToLoadView-->
-    <!--android:id="@+id/pull_load_salman_menyapa"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"/>-->
+        <com.aspsine.irecyclerview.IRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/salman_menyapa_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadMoreEnabled="true"
+            app:loadMoreFooterLayout="@layout/layout_load_more"
+            app:refreshEnabled="false"/>
 
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/recyclerview_salman_menyapa"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:scrollbars="none"-->
-    <!--android:layout_width="match_parent">-->
-    <!--</android.support.v7.widget.RecyclerView>-->
+    </com.salmanitb.alumnisalman.helper.ISwipeRefreshLayout>
+
 
 </LinearLayout>
