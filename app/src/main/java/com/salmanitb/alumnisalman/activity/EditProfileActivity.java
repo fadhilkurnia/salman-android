@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
@@ -21,55 +24,66 @@ import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.salmanitb.alumnisalman.SalmanApplication.currentUser;
+import static com.salmanitb.alumnisalman.model.User.MALE;
+
 public class EditProfileActivity extends AppCompatActivity {
-
-//    @BindView(R.id.user_name) protected EditText username;
-//    @BindView(R.id.user_email) protected EditText email;
-//    @BindView(R.id.user_sex) protected EditText sex;
-//    @BindView(R.id.user_job) protected EditText job;
-//    @BindView(R.id.user_company) protected EditText company;
-//    @BindView(R.id.user_address) protected EditText address;
-//    @BindView(R.id.user_city) protected EditText city;
-//    @BindView(R.id.user_country) protected EditText country;
-//    @BindView(R.id.user_phonenumber) protected EditText phonenumber;
-//    @BindView(R.id.user_university) protected EditText university;
-//    @BindView(R.id.user_year_university) protected EditText year_university;
-//    @BindView(R.id.user_major) protected EditText major;
-//    @BindView(R.id.user_lmd) protected EditText lmd;
-//    @BindView(R.id.user_activities) protected EditText activities;
-//    @BindView(R.id.user_year_activities) protected EditText year_activities;
-//
-//    @BindView(R.id.edit_profile_image) protected CircleImageView image;
-
-//
-//    //a constant to track the file chooser intent
-//    private static final int PICK_IMAGE_REQUEST = 234;
-//
-//    private Bitmap bitmap;
-//    private Uri filePath;
-//
-//    @OnClick(R.id.save_button) protected void saveProfile() {
-//        saveUserAction();
-//    }
-//
-//    @OnClick(R.id.edit_image_icon) protected void editImage() {
-//        editImageAction();
-//    }
 
     @BindView(R.id.edit_profile_frame)
     FrameLayout frame_layout;
-
 
     RegistrationStepFragment editPersonal;
     RegistrationStepFragment editAlmamater;
     RegistrationStepFragment editPekerjaan;
     RegistrationStepFragment editKegiatan;
+
+    //Edit Profil
+    @BindView(R.id.input_name)
+    EditText inputName;
+    @BindView(R.id.input_email)
+    EditText inputEmail;
+    @BindView(R.id.radio_male)
+    RadioButton radioMale;
+    @BindView(R.id.radio_female)
+    RadioButton radioFemale;
+    @BindView(R.id.input_phone)
+    EditText inputPhone;
+    @BindView(R.id.input_country)
+    EditText inputCountry;
+    @BindView(R.id.input_city)
+    EditText inputCity;
+    @BindView(R.id.input_address)
+    EditText inputAddress;
+
+    //Edit Almamater
+    @BindView(R.id.input_campus)
+    EditText inputCampus;
+    @BindView(R.id.input_major)
+    EditText inputMajor;
+    @BindView(R.id.input_year)
+    EditText inputYear;
+
+    //Edit Pekerjaan
+    @BindView(R.id.leftColumn)
+    LinearLayout leftColumn;
+    @BindView(R.id.rightColumn)
+    LinearLayout rightColumn;
+    @BindView(R.id.input_company)
+    EditText inputCompany;
+    @BindView(R.id.checkbox_others)
+    CheckBox checkboxOthers;
+    @BindView(R.id.input_others)
+    EditText inputOthers;
+
+    ArrayList<CheckBox> jobCheckbox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +104,64 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
         laodFragment(fragmentID);
+        loadData(fragmentID);
 
 
+    }
+
+    private void loadData(String fragmentID) {
+        if (fragmentID == null) {
+            Log.d("EDIT_PROFILE", "null fragment ID");
+        } else if (fragmentID.equals("PERSONAL")) {
+            inputName.setText(currentUser.getName());
+            inputEmail.setText(currentUser.getEmail());
+            if (currentUser.getSex().equals(MALE))
+                radioMale.setChecked(true);
+            else
+                radioFemale.setChecked(true);
+            inputPhone.setText(currentUser.getPhonenumber());
+            inputCountry.setText(currentUser.getCountry());
+            inputCity.setText(currentUser.getCity());
+            inputAddress.setText(currentUser.getAddress());
+        } else if (fragmentID.equals("ALMAMATER")) {
+            inputCampus.setText(currentUser.getUniversity());
+            inputMajor.setText(currentUser.getMajor());
+            inputYear.setText(currentUser.getYearUniversity());
+        } else if (fragmentID.equals("PEKERJAAN")) {
+            jobCheckbox = new ArrayList<>();
+            String jobs[] = getResources().getStringArray(R.array.default_registered_profession);
+            prepareJobOption(leftColumn, rightColumn, jobs);
+
+            checkboxOthers.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        inputOthers.setEnabled(true);
+                        inputOthers.setBackground(getResources().getDrawable(R.drawable.edit_text_background));
+                    } else {
+                        inputOthers.setEnabled(false);
+                        inputOthers.setText("");
+                        inputOthers.setBackground(getResources().getDrawable(R.drawable.edit_text_background_disabled));
+                    }
+                }
+            });
+        } else if (fragmentID.equals("KEGIATAN")) {
+        }
+    }
+
+
+    private void prepareJobOption(LinearLayout leftColumn, LinearLayout rightColumn, String data[]) {
+        for (int i = 0; i < data.length; i++) {
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setText(data[i]);
+
+            if (i%2==0)
+                leftColumn.addView(checkBox);
+            else
+                rightColumn.addView(checkBox);
+
+            jobCheckbox.add(checkBox);
+        }
     }
 
     private void laodFragment(String fragmentID) {
@@ -115,114 +185,4 @@ public class EditProfileActivity extends AppCompatActivity {
         transaction.commit();
 
     }
-
-//
-//    private void editImageAction() {
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
-//
-//    }
-//
-//    // handling the image chooser activity result
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode,resultCode,data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            filePath = data.getData();
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
-//                image.setImageBitmap(bitmap);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    private void saveUserAction() {
-//
-//        final String txtUsername = username.getText().toString();
-//        final String txtEmail = email.getText().toString();
-//        final String txtSex = sex.getText().toString();
-//        final String txtJob = job.getText().toString();
-//        final String txtCompany = company.getText().toString();
-//        final String txtAddress = address.getText().toString();
-//        final String txtCity= city.getText().toString();
-//        final String txtCountry= country.getText().toString();
-//        final String txtPhonenumber= phonenumber.getText().toString();
-//        final String txtUniversity = university.getText().toString();
-//        final String txtYearUniversity = year_university.getText().toString();
-//        final String txtMajor= major.getText().toString();
-//        final String txtLmd= lmd.getText().toString();
-//        final String txtActivities= activities.getText().toString();
-//        final String txtYearActivities= year_activities.getText().toString();
-//
-//        if (TextUtils.isEmpty(txtUsername)) {
-//            showShortToast("Masukkan nama lengkap!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtEmail)) {
-//            showShortToast("Masukkan email!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtSex)) {
-//            showShortToast("Masukkan jenis kelamin!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtJob)) {
-//            showShortToast("Masukkan pekerjaan!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtCompany)) {
-//            showShortToast("Masukkan tempat kerja!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtAddress)) {
-//            showShortToast("Masukkan alamat!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtCity)) {
-//            showShortToast("Masukkan kota!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtCountry)) {
-//            showShortToast("Masukkan negara!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtPhonenumber)) {
-//            showShortToast("Masukkan nomer HP!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtUniversity)) {
-//            showShortToast("Masukkan universitas!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtYearUniversity)) {
-//            showShortToast("Masukkan tahun anda di universitas!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtMajor)) {
-//            showShortToast("Masukkan jurusan!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtLmd)) {
-//            showShortToast("Masukkan angkatan LMD!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtActivities)) {
-//            showShortToast("Masukkan aktivitas di Salman!");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(txtYearActivities)) {
-//            showShortToast("Masukkan tahun beraktivitas!");
-//            return;
-//        }
-//
-//    }
-//
-//    private void showShortToast(String message) {
-//        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-//    }
-
 }

@@ -63,6 +63,8 @@ public class User{
     private transient String answer1;
     private transient String answer2;
 
+    public static String MALE = "Pria";
+
     public User() {
     }
 

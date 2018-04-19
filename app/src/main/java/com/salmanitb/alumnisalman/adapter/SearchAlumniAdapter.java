@@ -94,9 +94,12 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
 //            Log.d("IMAGE_URL", alumni.getImageURL());
             if (alumni.getImageURL() != null) {
                 if (!alumni.getImageURL().equals("")) {
-                    Picasso.get().load(BASE_IMAGE_URL + alumni.getImageURL()).into(imgPhoto);
-                }  else {
-                    Picasso.get().load(R.drawable.ic_person).into(imgPhoto);
+                    try{
+                        Picasso.get().load(BASE_IMAGE_URL + alumni.getImageURL()).into(imgPhoto);
+                    } catch (Exception e) {
+                        Picasso.get().load(R.drawable.ic_person).into(imgPhoto);
+                        e.printStackTrace();
+                    }
                 }
             }
 
