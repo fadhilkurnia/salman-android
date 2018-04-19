@@ -74,7 +74,7 @@ public interface WebService {
     Call<BaseResponse<ProfileResponse>> getProfil(@Path("id") int uid, @Query("format") String format);
 
     @GET("menyapa/page/{page}?format=json")
-    Call<BaseResponse<Post>> getSalmanMenyapa(@Path("page") int page);
+    Call<BaseResponse<ArrayList<Post>>> getSalmanMenyapa(@Path("page") int page);
 
     @GET("menyapa/get?format=json")
     Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Query("q") int postId, @Query("w") int uid);
