@@ -85,7 +85,7 @@ public class ReadPostActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadUrl("https://today.line.me/id/article/Tarik+Produk+dari+Pasar+Heinz+ABC+Indonesia+Investigasi+Temuan+Cacing-RemzMw");
+        webView.loadUrl(post.getContentURL());
     }
 
 }

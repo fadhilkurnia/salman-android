@@ -116,7 +116,7 @@ public class SalmanMenyapaFragment extends Fragment {
 
         Post post = new Post(
                 "KALAM Salman: Keterhubungan Antar Alumni Itu Penting",
-                null,
+                "https://today.line.me/id/article/Tarik+Produk+dari+Pasar+Heinz+ABC+Indonesia+Investigasi+Temuan+Cacing-RemzMw",
                 "Pembangunan jaringan merupakan hal yang vital dalam mengoptimalkan dakwah di Indonesia. Berkaitan dengan ini, Alumni Masjid Salman ITB seyogyanya senantiasa terhubung satu sama lain. Bahkan lebih lanjut lagi, saling membantu saat ada yang kesusahan.\n" +
                         "\n" +
                         "“Kita harus senantiasa bergandengan tangan, siapa yang jatuh, kita bantu. Lalu siapa yang naik, agar tidak lupa,” kata Ketua YPM Salman Syarif Hidayat, pada acara Pelantikan Pengurus Keluarga Alumni (KALAM) Salman ITB periode 2015-2019, Sabtu (24/1).\n" +
@@ -139,15 +139,15 @@ public class SalmanMenyapaFragment extends Fragment {
                 true
                 );
 
-        post = new Post(post.getTitle() + " I", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " I", post.getContentURL(), post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle() + " II", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " II", post.getContentURL(), post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle() + " III", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " III", post.getContentURL(), post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle() + " IV", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " IV", post.getContentURL(), post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
-        post = new Post(post.getTitle() + " V", post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
+        post = new Post(post.getTitle() + " V", post.getContentURL(), post.getShortContent(), post.getImageURL(), post.getCreatedAt(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
         postAdapter.add(post);
 
         postAdapter.notifyDataSetChanged();
