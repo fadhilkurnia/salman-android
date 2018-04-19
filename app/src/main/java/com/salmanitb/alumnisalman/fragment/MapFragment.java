@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.salmanitb.alumnisalman.activity.MainActivity.cities;
 
 /**
  * A simple {@link Fragment} subclass.

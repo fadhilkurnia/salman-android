@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -17,11 +18,16 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.fragment.RegistrationActivityFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationAlmamaterFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationJobFragment;
 import com.salmanitb.alumnisalman.fragment.RegistrationPersonalFragment;
+import com.salmanitb.alumnisalman.helper.APIConnector;
+import com.salmanitb.alumnisalman.helper.PreferenceManager;
+import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +52,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public static String EDIT_ARGUMENT = "EDIT";
 
+    public static String EDIT_PROFILE_BUNDLE = "EDIT";
+
+    String fragmentID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +75,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        String fragmentID;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -80,6 +89,43 @@ public class EditProfileActivity extends AppCompatActivity {
         loadFragment(fragmentID);
 
     }
+
+    @OnClick (R.id.save_button)
+    protected void saveUserProfile() {
+        if (fragmentID == null) {
+            Log.d("EDIT_PROFILE", "null fragment ID");
+        } else if (fragmentID.equals("PERSONAL")) {
+            editPersonal.checkInput(new RegistrationCheckerCallback() {
+                @Override
+                public void onFinishChecking(boolean isSuccess) {
+                    if (isSuccess) {
+                        PreferenceManager.getInstance().setUserData(currentUser);
+                        updateToDatabase();
+                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
+                        goToProfile();
+                    }
+                }
+            });
+        } else if (fragmentID.equals("ALMAMATER")) {
+
+        } else if (fragmentID.equals("PEKERJAAN")) {
+
+        } else if (fragmentID.equals("KEGIATAN")) {
+
+        }
+    }
+
+    private void updateToDatabase() {
+    }
+
+    private void goToProfile() {
+        Intent intent = new Intent(this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(EDIT_PROFILE_BUNDLE, true);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
 
     private void loadFragment(String fragmentID) {
 

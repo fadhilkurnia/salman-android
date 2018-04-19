@@ -21,9 +21,6 @@ import com.salmanitb.alumnisalman.model.User;
 
 import java.util.ArrayList;
 
-import static com.salmanitb.alumnisalman.activity.MainActivity.users;
-
-
 public class SearchActivity extends AppCompatActivity {
 
     SearchView searchView;

@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.salmanitb.alumnisalman.activity.EditProfileActivity.EDIT_PROFILE_BUNDLE;
+
 public class MainActivity extends AppCompatActivity {
     Fragment salmanMenyapaFragment;
     Fragment alumniFragment;
@@ -35,12 +37,10 @@ public class MainActivity extends AppCompatActivity {
     Fragment profilFragment;
     Fragment mapFragment;
 
-    //untuk nyoba maps dan profile
-    public static ArrayList<User> users = new ArrayList<User>();
-    public static ArrayList<City> cities = new ArrayList<City>();
-
     @BindView(R.id.my_toolbar) Toolbar toolbar;
     @BindView(R.id.navigation) BottomNavigationView navigation;
+
+    boolean isFromEditProfile;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        Bundle bundle = this.getIntent().getExtras();
+        if (bundle != null) {
+            isFromEditProfile = bundle.getBoolean(EDIT_PROFILE_BUNDLE);
+        }
+
         navigation.setSelectedItemId(R.id.navigation_home);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -85,30 +90,12 @@ public class MainActivity extends AppCompatActivity {
         profilFragment = new ProfilFragment();
         mapFragment = new MapFragment();
 
-        loadFragment(salmanMenyapaFragment);
-
-        //untuk nyoba maps dan profile
-        users.clear();
-        User user = new User(1, "Muhammad Hilmi A", "mhilmiasyrofi@gmail.com", "Imam Tua");
-        users.add(user);
-        user = new User(2, "Farah Ghezi Athaya", "farah@gmail.com", "Istri Tua");
-        users.add(user);
-        user = new User(3, "Winsya Hesaputri Suryawan", "winsy@gmail.com", "Istri Muda");
-        users.add(user);
-        user = new User(4, "Hasna Marhamah Aulia", "hasna@gmail.com", "Istri Muda Kedua");
-        users.add(user);
-        user = new User(5, "Fadhil Imam Kurnia", "fadhil@gmail.com", "Carry");
-        users.add(user);
-
-        cities.clear();
-        City city = new City("Bandung", -6.8919607, 107.6156134);
-        cities.add(city);
-        city = new City("Jakarta", -5.7773029, 106.3971043);
-        cities.add(city);
-        city = new City("Yogyakarta", -7.803249, 110.3397397);
-        cities.add(city);
-        city = new City("Papua", -4.8703029, 135.5597428);
-        cities.add(city);
+        if (isFromEditProfile) {
+            loadFragment(profilFragment);
+            navigation.setSelectedItemId(R.id.navigation_profile);
+        } else {
+            loadFragment(salmanMenyapaFragment);
+        }
 
     }
 
