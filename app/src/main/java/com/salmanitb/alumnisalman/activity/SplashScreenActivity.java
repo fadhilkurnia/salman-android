@@ -35,7 +35,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                 return;
             }
 
-            gotoMain();
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    gotoMain();
+                }
+            }, 500);
 
         } else { // no cached user data found
             new Handler().postDelayed(new Runnable() {
