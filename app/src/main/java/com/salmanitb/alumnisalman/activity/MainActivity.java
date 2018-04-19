@@ -89,15 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
         //untuk nyoba maps dan profile
         users.clear();
-        User user = new User("1", "Muhammad Hilmi A", "mhilmiasyrofi@gmail.com", "Imam Tua");
+        User user = new User(1, "Muhammad Hilmi A", "mhilmiasyrofi@gmail.com", "Imam Tua");
         users.add(user);
-        user = new User("2", "Farah Ghezi Athaya", "farah@gmail.com", "Istri Tua");
+        user = new User(2, "Farah Ghezi Athaya", "farah@gmail.com", "Istri Tua");
         users.add(user);
-        user = new User("3", "Winsya Hesaputri Suryawan", "winsy@gmail.com", "Istri Muda");
+        user = new User(3, "Winsya Hesaputri Suryawan", "winsy@gmail.com", "Istri Muda");
         users.add(user);
-        user = new User("4", "Hasna Marhamah Aulia", "hasna@gmail.com", "Istri Muda Kedua");
+        user = new User(4, "Hasna Marhamah Aulia", "hasna@gmail.com", "Istri Muda Kedua");
         users.add(user);
-        user = new User("5", "Fadhil Imam Kurnia", "fadhil@gmail.com", "Carry");
+        user = new User(5, "Fadhil Imam Kurnia", "fadhil@gmail.com", "Carry");
         users.add(user);
 
         cities.clear();

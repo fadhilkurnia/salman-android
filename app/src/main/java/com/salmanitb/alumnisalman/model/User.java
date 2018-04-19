@@ -12,7 +12,7 @@ public class User{
 
     // Personal Info
     @SerializedName("id")
-    private String uid;
+    private int uid;
     @SerializedName("nama")
     private String name;
     @SerializedName("email")
@@ -66,13 +66,13 @@ public class User{
     public User() {
     }
 
-    public User(String uid, String name, String email) {
+    public User(int uid, String name, String email) {
         this.uid = uid;
         this.name = name;
         this.email = email;
     }
 
-    public User(String uid, String name, String email, String img, String city) {
+    public User(int uid, String name, String email, String img, String city) {
         this.uid = uid;
         this.name = name;
         this.email = email;
@@ -80,18 +80,18 @@ public class User{
         this.city = city;
     }
 
-    public User(String uid, String name, String email, String job) {
+    public User(int uid, String name, String email, String job) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.job = job;
     }
 
-    public String getUid() {
+    public int getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(int uid) {
         this.uid = uid;
     }
 

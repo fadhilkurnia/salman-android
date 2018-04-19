@@ -79,7 +79,7 @@ public interface WebService {
     @GET("menyapa/get?format=json")
     Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Query("q") int postId, @Query("w") int uid);
 
-    @GET("like?format=json")
+    @GET("menyapa/like?format=json")
     Call<BaseResponse<String>> doLoveSalmanMenyapa(@Query("q") int postId, @Query("w") int uid);
 
     @GET("about")

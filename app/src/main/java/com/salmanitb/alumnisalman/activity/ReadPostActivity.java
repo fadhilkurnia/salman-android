@@ -86,7 +86,7 @@ public class ReadPostActivity extends AppCompatActivity {
 
         final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Sedang memuat konten ...", true);
         webView.getSettings().setJavaScriptEnabled(true);
-//        webView.getSettings().setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -143,9 +143,21 @@ public class ReadPostActivity extends AppCompatActivity {
     }
 
     private void changeLoveStatus() {
-        post.setLikedByMe(!post.isLikedByMe());
-        showLoveButton();
-        // TODO: tembak API
+        APIConnector.getInstance().doLoveSalmanMenyapa(post.getId(), SalmanApplication.getCurrentUserAuth().getId(), new APIConnector.ApiCallback<String>() {
+            @Override
+            public void onSuccess(String response) {
+                if (response.equals("Berhasil")) {
+                    post.setLikedByMe(!post.isLikedByMe());
+                    showLoveButton();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(ReadPostActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 

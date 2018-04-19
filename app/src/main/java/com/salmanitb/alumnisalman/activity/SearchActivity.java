@@ -124,7 +124,7 @@ public class SearchActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                 } else {
                     for (SearchUserResponse s : response) {
-                        User user = new User("1", s.getName(), s.getEmail(), s.getUrlImg(), s.getCity());
+                        User user = new User(1, s.getName(), s.getEmail(), s.getUrlImg(), s.getCity());
                         alumni.add(user);
                     }
                     adapter.addAll(alumni);
