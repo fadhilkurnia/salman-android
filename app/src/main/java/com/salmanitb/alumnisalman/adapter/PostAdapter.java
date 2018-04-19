@@ -16,6 +16,7 @@ import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.model.Post;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -69,6 +70,15 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return VIEWTYPE_NORMAL;
     }
 
+    public void add(Post post) {
+        postList.add(post);
+        notifyDataSetChanged();
+    }
+
+    public void addAll(ArrayList<Post> posts) {
+        postList.addAll(posts);
+        notifyDataSetChanged();
+    }
 
     public Post getPost(int index) {
         return postList.get(index);

@@ -1,29 +1,31 @@
 package com.salmanitb.alumnisalman.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aspsine.irecyclerview.IRecyclerView;
+import com.aspsine.irecyclerview.OnLoadMoreListener;
+import com.aspsine.irecyclerview.OnRefreshListener;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.ReadPostActivity;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.model.Post;
-import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.http.POST;
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -31,16 +33,19 @@ import retrofit2.http.POST;
  */
 public class SalmanMenyapaFragment extends Fragment {
 
+    @BindView(R.id.salman_menyapa_recycler_view)
+    IRecyclerView recyclerView;
+
     private ArrayList<Post> postList = new ArrayList<Post>();
-    private RecyclerView recyclerView;
     private PostAdapter postAdapter;
+    private int currentPage = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_salman_menyapa, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_salman_menyapa);
+        ButterKnife.bind(this, rootView);
 
         PostAdapter.OnItemClickListener listener = new PostAdapter.OnItemClickListener() {
             @Override
@@ -51,32 +56,63 @@ public class SalmanMenyapaFragment extends Fragment {
             }
         };
 
+        prepareListener();
+
         postAdapter = new PostAdapter(postList, listener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(postAdapter);
+        recyclerView.setIAdapter(postAdapter);
 
         preparePostData();
+        loadPostData(currentPage+1);
         return rootView;
     }
 
-    private void preparePostData() {
+    private void prepareListener() {
+        recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                recyclerView.getLoadMoreFooterView().setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        // do nothing
+                    }
+                }, 1000);
+                loadPostData(currentPage+1);
+            }
+        });
+        recyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("SALMAN_APP", "on refresh");
+                recyclerView.setRefreshing(false);
+            }
+        });
+    }
 
-        // Testing API
-        APIConnector.getInstance().getSalmanMenyapa(1, new APIConnector.ApiCallback<ArrayList<Post>>() {
+    private void loadPostData(int pageNumber) {
+        APIConnector.getInstance().getSalmanMenyapa(pageNumber, new APIConnector.ApiCallback<ArrayList<Post>>() {
             @Override
             public void onSuccess(ArrayList<Post> response) {
-                postList = response;
-                postAdapter.notifyDataSetChanged();
+                postAdapter.addAll(response);
+                recyclerView.getLoadMoreFooterView().setVisibility(View.GONE);
+                currentPage++;
             }
 
             @Override
             public void onFailure(Throwable t) {
+                recyclerView.getLoadMoreFooterView().setVisibility(View.GONE);
+                if (t.getMessage().equals("Artikel tidak ditemukan.")) {
+                    Toast.makeText(getActivity(), "Anda sudah di ujung Salman Menyapa", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void preparePostData() {
 
         Post post = new Post(
                 "KALAM Salman: Keterhubungan Antar Alumni Itu Penting",
@@ -104,15 +140,15 @@ public class SalmanMenyapaFragment extends Fragment {
                 );
 
         post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
-        postList.add(post);
+        postAdapter.add(post);
         post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
-        postList.add(post);
+        postAdapter.add(post);
         post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
-        postList.add(post);
+        postAdapter.add(post);
         post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
-        postList.add(post);
+        postAdapter.add(post);
         post = new Post(post.getTitle(), post.getContentURL()+" I", post.getShortContent(), post.getImageURL(), post.getTime(), post.getLoveCount(), post.getViewCount(), post.isLikedByMe());
-        postList.add(post);
+        postAdapter.add(post);
 
         postAdapter.notifyDataSetChanged();
     }
