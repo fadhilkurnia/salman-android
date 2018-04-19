@@ -80,7 +80,7 @@ public interface WebService {
     @GET("menyapa/get?format=json")
     Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Query("q") int postId, @Query("w") int uid);
 
-    @GET("like?format=json")
+    @GET("menyapa/like?format=json")
     Call<BaseResponse<String>> doLoveSalmanMenyapa(@Query("q") int postId, @Query("w") int uid);
 
     @GET("about")
@@ -131,9 +131,9 @@ public interface WebService {
 
         private GeocodingWebService createGeocodingWebService() {
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-            builder.readTimeout(60, TimeUnit.SECONDS);
-            builder.connectTimeout(60, TimeUnit.SECONDS);
-            builder.writeTimeout(60, TimeUnit.SECONDS);
+            builder.readTimeout(20, TimeUnit.SECONDS);
+            builder.connectTimeout(20, TimeUnit.SECONDS);
+            builder.writeTimeout(20, TimeUnit.SECONDS);
 
             Gson gson = new GsonBuilder().serializeNulls().create();
 
