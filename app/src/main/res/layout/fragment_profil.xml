@@ -93,7 +93,7 @@
                 android:layout_below="@id/header_cover_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-60dp"
-                android:src="@drawable/profile"
+                android:src="@drawable/ic_person"
                 app:civ_border_color="@android:color/white"
                 app:civ_border_width="2dp" />
 
@@ -166,7 +166,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/user_company"
+                        android:id="@+id/user_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/alamat"
@@ -380,7 +380,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/user_instansi"
+                        android:id="@+id/user_company"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/instansi"
@@ -457,21 +457,6 @@
 
                     </LinearLayout>
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/detail_activity"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@id/activity_title"-->
-                        <!--android:layout_marginLeft="27dp"-->
-                        <!--android:text="Aksara, Asrama Salman"/>-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/year_activity"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@id/detail_activity"-->
-                        <!--android:layout_marginLeft="27dp"-->
-                        <!--android:text="2015"/>-->
 
                 </RelativeLayout>
 
@@ -503,7 +488,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/isi5"
+                        android:id="@+id/angkatan_lmd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -512,19 +497,6 @@
                         android:text="122" />
 
                 </RelativeLayout>
-
-                <!--<Button-->
-                    <!--android:id="@+id/btn_logout"-->
-                    <!--android:background="@android:color/darker_gray"-->
-                    <!--android:layout_marginEnd="10dp"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:layout_marginBottom="10dp"-->
-                    <!--android:layout_marginStart="15dp"-->
-                    <!--android:layout_marginLeft="15dp"-->
-                    <!--android:textColor="@color/colorPrimary"-->
-                    <!--android:text="Keluar"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
 
             </LinearLayout>
 
