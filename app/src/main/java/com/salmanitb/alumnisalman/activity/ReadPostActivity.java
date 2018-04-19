@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ReadPostActivity extends AppCompatActivity {
 
@@ -160,5 +161,19 @@ public class ReadPostActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.fab_share)
+    protected void shareArticle() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(post.getTitle());
+        sb.append("\n\n");
+        sb.append(post.getShortContent());
+        sb.append("\n\nSelengkapnya: ");
+        sb.append(post.getContentURL());
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
+        startActivity(Intent.createChooser(shareIntent, "Bagikan artikel ke media sosial"));
+    }
 
 }
