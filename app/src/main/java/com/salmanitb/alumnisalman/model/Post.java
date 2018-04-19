@@ -3,19 +3,27 @@
  */
 package com.salmanitb.alumnisalman.model;
 
+import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class Post {
 
-public class Post implements Serializable {
-
+    @SerializedName("id")
     private int id;
+    @SerializedName("judul")
     private String title;
+    @SerializedName("content_url")
     private String contentURL;
+    @SerializedName("deskripsi")
     private String shortContent;
+    @SerializedName("thumbnail")
     private String imageURL;
+    @SerializedName("tanggal")
     private String time;
+    @SerializedName("like_count")
     private int loveCount;
+    @SerializedName("view_count")
     private int viewCount;
+    @SerializedName("likedbyme")
     private boolean likedByMe;
 
     public Post(String title, String contentURL, String shortContent, String imageURL, String time, int loveCount, int viewCount, boolean likedByMe) {

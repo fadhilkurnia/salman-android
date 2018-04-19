@@ -60,6 +60,10 @@ public class ReadPostActivity extends AppCompatActivity {
         newsTitle.setText(post.getTitle());
         Picasso.get().load(post.getImageURL()).fit().centerCrop().into(mainImage);
         newsTime.setText(post.getTime());
+        String txtLike = String.valueOf(post.getLoveCount()) + " suka";
+        String txtView = String.valueOf(post.getViewCount()) + " tayang";
+        newsLikeCount.setText(txtLike);
+        newsViewCount.setText(txtView);
 
         final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Please wait ...", true);
         webView.getSettings().setJavaScriptEnabled(true);

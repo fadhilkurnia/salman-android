@@ -98,8 +98,8 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             datetime.setText(post.getTime());
             headline.setText(post.getTitle());
             content.setText(post.getShortContent());
-            String txtLove = String.valueOf(post.getLoveCount()) + "suka";
-            String txtView = String.valueOf(post.getViewCount()) + "tayang";
+            String txtLove = String.valueOf(post.getLoveCount()) + " suka";
+            String txtView = String.valueOf(post.getViewCount()) + " tayang";
             txtLikeCount.setText(txtLove);
             txtViewCount.setText(txtView);
             Picasso.get().load(post.getImageURL()).fit().centerCrop().into(image);
