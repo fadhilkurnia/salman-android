@@ -39,6 +39,21 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.salmanitb.alumnisalman.activity.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="pplk2h.if.itb.ac.id"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="www.pplk2h.if.itb.ac.id"
+                    android:pathPrefix="/menyapa" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.ConfirmActivity" />
         <activity android:name=".activity.SearchActivity" />
@@ -51,7 +66,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegistrationIntroActivity"></activity>
+        <activity android:name=".activity.RegistrationIntroActivity"/>
     </application>
 
 </manifest>

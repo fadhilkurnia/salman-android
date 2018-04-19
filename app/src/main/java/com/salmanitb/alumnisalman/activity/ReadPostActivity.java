@@ -2,6 +2,7 @@ package com.salmanitb.alumnisalman.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,6 +58,7 @@ public class ReadPostActivity extends AppCompatActivity {
     ImageButton imgLove;
 
     Post post;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,28 +66,34 @@ public class ReadPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_post);
         ButterKnife.bind(this);
 
+        progressDialog = ProgressDialog.show(this, "Loading", "Sedang memuat konten ...", true);
+
+        webView.setVisibility(View.GONE);
+        imgLove.setVisibility(View.GONE);
+        prepareWebView();
+
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        if (data != null) {
+            String id = data.getQueryParameter("q");
+            loadSalmanMenyapaDetail(Integer.valueOf(id));
+            return;
+        }
+
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        webView.setVisibility(View.GONE);
-        imgLove.setVisibility(View.GONE);
-
-        Intent intent = getIntent();
         post = (Post) intent.getSerializableExtra("POST");
 
-        newsTitle.setText(post.getTitle());
-        Picasso.get().load(post.getImageURL()).fit().centerCrop().into(mainImage);
-        newsTime.setText(PostAdapter.decodeUnixTime(post.getCreatedAt()));
+        prepareLoveButton();
+        loadPost(post);
 
-        String txtLike = String.valueOf(post.getLoveCount()) + " suka";
-        String txtView = String.valueOf(post.getViewCount()) + " tayang";
-        newsLikeCount.setText(txtLike);
-        newsViewCount.setText(txtView);
+    }
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this, "Loading", "Sedang memuat konten ...", true);
+    private void prepareWebView() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUserAgentString("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3");
         webView.setWebViewClient(new WebViewClient(){
@@ -109,8 +117,9 @@ public class ReadPostActivity extends AppCompatActivity {
                 Toast.makeText(ReadPostActivity.this, "Gagal memuat konten", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        webView.loadUrl(post.getContentURL());
+    private void prepareLoveButton() {
         APIConnector.getInstance().getSalmanMenyapaDetail(post.getId(), SalmanApplication.getCurrentUserAuth().getId(), new APIConnector.ApiCallback<Post>() {
             @Override
             public void onSuccess(Post response) {
@@ -130,7 +139,19 @@ public class ReadPostActivity extends AppCompatActivity {
                 changeLoveStatus();
             }
         });
+    }
 
+    private void loadPost(Post post) {
+        newsTitle.setText(post.getTitle());
+        Picasso.get().load(post.getImageURL()).fit().centerCrop().into(mainImage);
+        newsTime.setText(PostAdapter.decodeUnixTime(post.getCreatedAt()));
+
+        String txtLike = String.valueOf(post.getLoveCount()) + " suka";
+        String txtView = String.valueOf(post.getViewCount()) + " tayang";
+        newsLikeCount.setText(txtLike);
+        newsViewCount.setText(txtView);
+
+        webView.loadUrl(post.getContentURL());
     }
 
 
@@ -174,6 +195,22 @@ public class ReadPostActivity extends AppCompatActivity {
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
         startActivity(Intent.createChooser(shareIntent, "Bagikan artikel ke media sosial"));
+    }
+
+    private void loadSalmanMenyapaDetail(int id) {
+        APIConnector.getInstance().getSalmanMenyapaDetail(id, 1, new APIConnector.ApiCallback<Post>() {
+            @Override
+            public void onSuccess(Post response) {
+                progressDialog.dismiss();
+                loadPost(response);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(ReadPostActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

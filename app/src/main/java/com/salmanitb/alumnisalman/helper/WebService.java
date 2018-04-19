@@ -130,9 +130,9 @@ public interface WebService {
 
         private GeocodingWebService createGeocodingWebService() {
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-            builder.readTimeout(60, TimeUnit.SECONDS);
-            builder.connectTimeout(60, TimeUnit.SECONDS);
-            builder.writeTimeout(60, TimeUnit.SECONDS);
+            builder.readTimeout(20, TimeUnit.SECONDS);
+            builder.connectTimeout(20, TimeUnit.SECONDS);
+            builder.writeTimeout(20, TimeUnit.SECONDS);
 
             Gson gson = new GsonBuilder().serializeNulls().create();
 
