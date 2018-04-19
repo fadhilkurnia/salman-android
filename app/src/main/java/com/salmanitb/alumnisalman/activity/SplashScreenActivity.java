@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.helper.APIConnector;
@@ -23,6 +25,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         final Context context = this;
         UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
+        Gson gson = new Gson();
+        Log.d("SALMAN_APP splash", gson.toJson(userAuth));
         if (userAuth != null) {
 
             // Handle unverified user
@@ -31,25 +35,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                 return;
             }
 
-            // Handle verified user
-            APIConnector.getInstance().doLogin(userAuth.getEmail(), userAuth.getPassword(), new APIConnector.ApiCallback<UserAuth>() {
-                @Override
-                public void onSuccess(UserAuth response) {
-                    if (response != null)
-                        gotoMain();
-                    else {
-                        Toast.makeText(context, "Terjadi kesalahan pada sistem kami", Toast.LENGTH_SHORT).show();
-                        gotoLogin();
-                    }
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    gotoMain();
                 }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    Toast.makeText(context, "Gagal melakukan autentikasi", Toast.LENGTH_SHORT).show();
-                    gotoLogin();
-                }
-            });
-
+            }, 500);
 
         } else { // no cached user data found
             new Handler().postDelayed(new Runnable() {

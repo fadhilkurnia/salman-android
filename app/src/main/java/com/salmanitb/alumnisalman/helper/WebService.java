@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
@@ -71,6 +72,15 @@ public interface WebService {
 
     @GET("user/get/{id}")
     Call<BaseResponse<ProfileResponse>> getProfil(@Path("id") int uid, @Query("format") String format);
+
+    @GET("menyapa/page/{page}?format=json")
+    Call<BaseResponse<ArrayList<Post>>> getSalmanMenyapa(@Path("page") int page);
+
+    @GET("menyapa/get?format=json")
+    Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Query("q") int postId, @Query("w") int uid);
+
+    @GET("like?format=json")
+    Call<BaseResponse<String>> doLoveSalmanMenyapa(@Query("q") int postId, @Query("w") int uid);
 
     @GET("about")
     Call<BaseResponse<About>> getAbout(@Query("format") String format);

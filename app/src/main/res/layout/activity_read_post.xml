@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:orientation="vertical"
     tools:context="com.salmanitb.alumnisalman.activity.ReadPostActivity">
 
@@ -17,6 +16,16 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar"
         app:title="Detail Berita" />
+
+    <ImageButton
+        android:id="@+id/like_btn"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:background="@color/popupbackground"
+        android:elevation="2dp"
+        android:src="@drawable/ic_love"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -34,7 +43,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -78,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginStart="18dp"
                     android:layout_marginTop="10dp"
                     android:text="Jumat, 30 Maret 2018"
                     android:textAppearance="@style/Base.Widget.AppCompat.Button.Small"
@@ -90,10 +98,10 @@
                     android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_time"
-                    android:background="#ffffff" />
+                    android:src="@drawable/ic_eye" />
 
                 <TextView
                     android:id="@+id/news_view_count"
@@ -101,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_view_icon"
                     android:text="1.234 tayang"
@@ -114,10 +122,10 @@
                     android:layout_height="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_view_count"
-                    android:background="#ffffff" />
+                    android:src="@drawable/ic_love" />
 
                 <TextView
                     android:id="@+id/news_like_count"
@@ -125,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/news_like_icon"
                     android:text="123 suka"
@@ -138,6 +146,8 @@
                 android:id="@+id/webview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/main_image_layout" />
 
         </RelativeLayout>
