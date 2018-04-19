@@ -5,7 +5,9 @@ package com.salmanitb.alumnisalman.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable{
 
     @SerializedName("id")
     private int id;

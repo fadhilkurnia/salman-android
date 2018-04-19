@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
 import com.salmanitb.alumnisalman.activity.ReadPostActivity;
 import com.salmanitb.alumnisalman.adapter.PostAdapter;
+import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.model.Post;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ import retrofit2.http.POST;
  */
 public class SalmanMenyapaFragment extends Fragment {
 
-    private List<Post> postList = new ArrayList<Post>();
+    private ArrayList<Post> postList = new ArrayList<Post>();
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
 
@@ -60,6 +62,22 @@ public class SalmanMenyapaFragment extends Fragment {
     }
 
     private void preparePostData() {
+
+        // Testing API
+        APIConnector.getInstance().getSalmanMenyapa(1, new APIConnector.ApiCallback<ArrayList<Post>>() {
+            @Override
+            public void onSuccess(ArrayList<Post> response) {
+                postList = response;
+                postAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         Post post = new Post(
                 "KALAM Salman: Keterhubungan Antar Alumni Itu Penting",
                 null,
