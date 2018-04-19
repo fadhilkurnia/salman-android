@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
+import com.salmanitb.alumnisalman.model.City;
 import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.User;
@@ -88,6 +89,9 @@ public interface WebService {
 
     @GET("search")
     Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Query("q") String format);
+
+    @GET("persebaran")
+    Call<BaseResponse<ArrayList<City>>> getAlumniMapping();
 
     public class APIServiceImplementation {
         private static WebService webService;
