@@ -20,14 +20,16 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.activity.EditProfileActivity;
 import com.salmanitb.alumnisalman.activity.LoginActivity;
+import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
+import com.salmanitb.alumnisalman.model.UserAuth;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
+import java.io.File;
 import java.io.IOException;
 
 import butterknife.BindDimen;
@@ -35,6 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
 
 import static android.app.Activity.RESULT_OK;
 import static com.salmanitb.alumnisalman.SalmanApplication.currentUser;
@@ -126,10 +129,30 @@ public class ProfilFragment extends Fragment{
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),filePath);
                 imgProfile.setImageBitmap(bitmap);
+                uploadImage();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void uploadImage() {
+        // use the FileUtils to get the actual file by uri
+        File file = new File(filePath.toString());
+
+//                getFile(this, filePath);
+
+        APIConnector.getInstance().uploadFile(getContext(), SalmanApplication.getCurrentUser(), filePath, file,  new APIConnector.ApiCallback<ResponseBody>() {
+            @Override
+            public void onSuccess(ResponseBody response) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

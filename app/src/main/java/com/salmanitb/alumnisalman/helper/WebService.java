@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,8 +44,8 @@ public interface WebService {
 
     @Multipart
     @POST("upload")
-    Call<BaseResponse<UserAuth>> upload(
-            @Part("id") RequestBody description,
+    Call<ResponseBody> uploadFile(
+            @Part("id") String id,
             @Part MultipartBody.Part file
     );
 

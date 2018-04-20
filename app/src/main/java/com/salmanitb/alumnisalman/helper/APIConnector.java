@@ -1,10 +1,17 @@
 package com.salmanitb.alumnisalman.helper;
 
+import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.salmanitb.alumnisalman.SalmanApplication;
+import com.salmanitb.alumnisalman.activity.ConfirmActivity;
+import com.salmanitb.alumnisalman.activity.EditProfileActivity;
+import com.salmanitb.alumnisalman.activity.MainActivity;
+import com.salmanitb.alumnisalman.fragment.ProfilFragment;
 import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
@@ -17,6 +24,7 @@ import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
@@ -24,6 +32,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,6 +85,53 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void uploadFile(final Context context, final User user, Uri filePath, File file, final ApiCallback<ResponseBody> callback) {
+
+        // create RequestBody instance from file
+        Log.e("Upload FILE", "req");
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse(context.getContentResolver().getType(filePath)),
+                        file
+                );
+
+        Log.e("Upload FILE", "part");
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
+
+        String uid = String.valueOf(user.getUid());
+
+        Call<ResponseBody> call = WebService.APIServiceImplementation.getInstance().uploadFile(
+                uid,
+                body
+        );
+
+        Log.e("Upload FILE", "call");
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                ResponseBody responseBody = response.body();
+                Log.d("RESPON", responseBody.toString());
+//                if (responseBody != null) {
+//                    if (!responseBody.)) {
+//                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+//                        return;
+//                    }
+//                    callback.onSuccess(responseBody.getData());
+//                    return;
+//                }
+//                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
