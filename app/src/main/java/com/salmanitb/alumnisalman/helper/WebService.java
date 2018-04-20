@@ -43,7 +43,7 @@ public interface WebService {
     String BASE_IMAGE_URL = "";
 
     @Multipart
-    @POST("upload")
+    @POST("user/update/image")
     Call<ResponseBody> uploadFile(
             @Part("id") String id,
             @Part MultipartBody.Part file
