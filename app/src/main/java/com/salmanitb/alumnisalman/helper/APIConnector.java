@@ -91,25 +91,30 @@ public class APIConnector{
         });
     }
 
-    public void uploadFile(final Context context, final User user, Uri filePath, File file, final ApiCallback<ResponseBody> callback) {
+    public void uploadFile(final Context context, final User user, File file, final ApiCallback<ResponseBody> callback) {
 
         // create RequestBody instance from file
         Log.e("Upload FILE", "req");
         RequestBody requestFile =
                 RequestBody.create(
-                        MediaType.parse(context.getContentResolver().getType(filePath)),
+                        MediaType.parse("image/*"),
                         file
                 );
 
         Log.e("Upload FILE", "part");
+        Log.e("Upload FILE", file.getName());
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
 
+
         String uid = String.valueOf(user.getUid());
 
+        RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody id = RequestBody.create(MediaType.parse("text/plain"), uid);
+
         Call<ResponseBody> call = WebService.APIServiceImplementation.getInstance().uploadFile(
-                uid,
-                body
+                image,
+                id
         );
 
         Log.e("Upload FILE", "call");

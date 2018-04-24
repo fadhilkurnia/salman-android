@@ -1,7 +1,9 @@
 package com.salmanitb.alumnisalman.fragment;
 
 
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.salmanitb.alumnisalman.activity.EditProfileActivity;
 import com.salmanitb.alumnisalman.activity.LoginActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
+import com.salmanitb.alumnisalman.helper.RealPathUtil;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.salmanitb.alumnisalman.model.UserAuth;
 import com.squareup.picasso.Picasso;
@@ -89,11 +92,11 @@ public class ProfilFragment extends Fragment{
     TextView txtLmd;
 
     private Bitmap bitmap;
-    private Uri filePath;
+    private String filePath;
 
 
     //a constant to track the file chooser intent
-    private static final int PICK_IMAGE_REQUEST = 234;
+    private static final int PICK_IMAGE_REQUEST = 100;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -125,9 +128,16 @@ public class ProfilFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
+//            filePath = data.getData();
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),filePath);
+                android.net.Uri selectedImage = data.getData();
+                Log.d("PATH URI", selectedImage.toString());
+
+                filePath = RealPathUtil.getRealPath(this.getContext(), selectedImage);
+                Log.d("PATH STR", filePath);
+//                File file = new File(filePath);
+
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 imgProfile.setImageBitmap(bitmap);
                 uploadImage();
             } catch (IOException e) {
@@ -138,11 +148,11 @@ public class ProfilFragment extends Fragment{
 
     private void uploadImage() {
         // use the FileUtils to get the actual file by uri
-        File file = new File(filePath.toString());
+        File file = new File(filePath);
 
 //                getFile(this, filePath);
 
-        APIConnector.getInstance().uploadFile(getContext(), SalmanApplication.getCurrentUser(), filePath, file,  new APIConnector.ApiCallback<ResponseBody>() {
+        APIConnector.getInstance().uploadFile(getContext(), SalmanApplication.getCurrentUser(), file,  new APIConnector.ApiCallback<ResponseBody>() {
             @Override
             public void onSuccess(ResponseBody response) {
 

@@ -45,8 +45,10 @@ public interface WebService {
     @Multipart
     @POST("user/update/image")
     Call<ResponseBody> uploadFile(
-            @Part("id") String id,
-            @Part MultipartBody.Part file
+//            @Part("description") RequestBody description,
+//            @Part MultipartBody.Part image,
+            @Part("foto") RequestBody image,
+            @Part("id") RequestBody id
     );
 
     @FormUrlEncoded

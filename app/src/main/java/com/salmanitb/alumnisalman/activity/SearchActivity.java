@@ -58,7 +58,7 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new SearchAlumniAdapter(this, new ArrayList<User>(), new SearchAlumniAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(User user) {
-                Toast.makeText(getApplicationContext(),user.getName() + "clicked", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),user.getName() + "clicked", Toast.LENGTH_LONG).show();
             }
         });
 
