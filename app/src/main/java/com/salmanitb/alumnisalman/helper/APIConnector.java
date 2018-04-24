@@ -296,7 +296,7 @@ public class APIConnector{
     }
 
     public void getProfil(int uid, final ApiCallback<User> callback) {
-        WebService.APIServiceImplementation.getInstance().getProfil(uid, "json").enqueue(new Callback<BaseResponse<ProfileResponse>>() {
+        WebService.APIServiceImplementation.getInstance().getProfil(SalmanApplication.getCurrentUserAuth().getToken(), uid, "json").enqueue(new Callback<BaseResponse<ProfileResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<ProfileResponse>> call, Response<BaseResponse<ProfileResponse>> response) {
                 if (response.body() == null) {
@@ -321,7 +321,7 @@ public class APIConnector{
     }
 
     public void getAlumniMapping(final ApiCallback<ArrayList<City>> callback) {
-        Call<BaseResponse<ArrayList<City>>> call = WebService.APIServiceImplementation.getInstance().getAlumniMapping();
+        Call<BaseResponse<ArrayList<City>>> call = WebService.APIServiceImplementation.getInstance().getAlumniMapping(SalmanApplication.getCurrentUserAuth().getToken());
         call.enqueue(new Callback<BaseResponse<ArrayList<City>>>() {
             @Override
             public void onResponse(Call<BaseResponse<ArrayList<City>>> call, Response<BaseResponse<ArrayList<City>>> response) {
@@ -352,7 +352,7 @@ public class APIConnector{
     }
 
     public void searchUser(String query, final ApiCallback<ArrayList<SearchUserResponse>> callback) {
-        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(query);
+        Call<BaseResponse<ArrayList<SearchUserResponse>>> call = WebService.APIServiceImplementation.getInstance().searchUser(SalmanApplication.getCurrentUserAuth().getToken(), query);
         call.enqueue(new Callback<BaseResponse<ArrayList<SearchUserResponse>>>() {
             @Override
             public void onResponse(Call<BaseResponse<ArrayList<SearchUserResponse>>> call, Response<BaseResponse<ArrayList<SearchUserResponse>>> response) {
@@ -383,7 +383,7 @@ public class APIConnector{
     }
 
     public void getSalmanMenyapa(final int page, final ApiCallback<ArrayList<Post>> callback) {
-        Call<BaseResponse<ArrayList<Post>>> call = WebService.APIServiceImplementation.getInstance().getSalmanMenyapa(page);
+        Call<BaseResponse<ArrayList<Post>>> call = WebService.APIServiceImplementation.getInstance().getSalmanMenyapa(SalmanApplication.getCurrentUserAuth().getToken(), page);
         call.enqueue(new Callback<BaseResponse<ArrayList<Post>>>() {
             @Override
             public void onResponse(Call<BaseResponse<ArrayList<Post>>> call, Response<BaseResponse<ArrayList<Post>>> response) {
@@ -408,7 +408,7 @@ public class APIConnector{
     }
 
     public void getSalmanMenyapaDetail(final int id, final int uid, final ApiCallback<Post> callback) {
-        Call<BaseResponse<Post>> call = WebService.APIServiceImplementation.getInstance().getSalmanMenyapaDetail(id, uid);
+        Call<BaseResponse<Post>> call = WebService.APIServiceImplementation.getInstance().getSalmanMenyapaDetail(SalmanApplication.getCurrentUserAuth().getToken(), id, uid);
         call.enqueue(new Callback<BaseResponse<Post>>() {
             @Override
             public void onResponse(Call<BaseResponse<Post>> call, Response<BaseResponse<Post>> response) {
@@ -433,7 +433,7 @@ public class APIConnector{
     }
 
     public void doLoveSalmanMenyapa(final int postId, final int uid, final ApiCallback<String> callback) {
-        Call<BaseResponse<String>> call = WebService.APIServiceImplementation.getInstance().doLoveSalmanMenyapa(postId, uid);
+        Call<BaseResponse<String>> call = WebService.APIServiceImplementation.getInstance().doLoveSalmanMenyapa(SalmanApplication.getCurrentUserAuth().getToken(), postId, uid);
         call.enqueue(new Callback<BaseResponse<String>>() {
             @Override
             public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
@@ -458,7 +458,7 @@ public class APIConnector{
     }
 
     public void getAbout(final ApiCallback<About> callback) {
-        Call<BaseResponse<About>> call = WebService.APIServiceImplementation.getInstance().getAbout("json");
+        Call<BaseResponse<About>> call = WebService.APIServiceImplementation.getInstance().getAbout(SalmanApplication.getCurrentUserAuth().getToken(), "json");
         call.enqueue(new Callback<BaseResponse<About>>() {
             @Override
             public void onResponse(Call<BaseResponse<About>> call, Response<BaseResponse<About>> response) {

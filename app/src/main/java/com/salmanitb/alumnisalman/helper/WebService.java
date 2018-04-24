@@ -27,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -109,25 +110,26 @@ public interface WebService {
     Call<BaseResponse<CheckEmailResponse>> checkEmail(@Field("email") String email);
 
     @GET("user/get/{id}")
-    Call<BaseResponse<ProfileResponse>> getProfil(@Path("id") int uid, @Query("format") String format);
+    Call<BaseResponse<ProfileResponse>> getProfil(@Header("um") String authKey, @Path("id") int uid, @Query("format") String format);
 
     @GET("menyapa/page/{page}?format=json")
-    Call<BaseResponse<ArrayList<Post>>> getSalmanMenyapa(@Path("page") int page);
+    Call<BaseResponse<ArrayList<Post>>> getSalmanMenyapa(@Header("um") String authKey, @Path("page") int page);
 
     @GET("menyapa/get?format=json")
-    Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Query("q") int postId, @Query("w") int uid);
+    Call<BaseResponse<Post>> getSalmanMenyapaDetail(@Header("um") String authKey, @Query("q") int postId, @Query("w") int uid);
 
     @GET("menyapa/like?format=json")
-    Call<BaseResponse<String>> doLoveSalmanMenyapa(@Query("q") int postId, @Query("w") int uid);
+    Call<BaseResponse<String>> doLoveSalmanMenyapa(@Header("um") String authKey, @Query("q") int postId, @Query("w") int uid);
 
     @GET("about")
-    Call<BaseResponse<About>> getAbout(@Query("format") String format);
+    Call<BaseResponse<About>> getAbout(@Header("um") String authKey, @Query("format") String format);
 
     @GET("search")
-    Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Query("q") String format);
+    Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Header("um") String authKey, @Query("q") String format)
+                                  ;
 
     @GET("persebaran")
-    Call<BaseResponse<ArrayList<City>>> getAlumniMapping();
+    Call<BaseResponse<ArrayList<City>>> getAlumniMapping(@Header("um") String authKey);
 
     public class APIServiceImplementation {
         private static WebService webService;

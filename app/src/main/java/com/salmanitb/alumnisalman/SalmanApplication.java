@@ -1,6 +1,7 @@
 package com.salmanitb.alumnisalman;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.model.User;
@@ -26,6 +27,8 @@ public class SalmanApplication extends Application {
         if (currentUserAuth != null) {
             currentUser.setEmail(currentUserAuth.getEmail());
         }
+        if (currentUser == null)
+            Log.d("User Profil", "null");
     }
 
     public static User getCurrentUser() {

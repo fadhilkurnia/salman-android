@@ -35,6 +35,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 return;
             }
 
+            Log.d("USER_TOKEN", userAuth.getToken());
+
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     gotoMain();
