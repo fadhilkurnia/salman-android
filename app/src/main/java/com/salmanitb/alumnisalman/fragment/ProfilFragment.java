@@ -3,6 +3,7 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -28,13 +29,19 @@ import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 import static android.app.Activity.RESULT_OK;
@@ -115,7 +122,7 @@ public class ProfilFragment extends Fragment{
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent,"Pilih Foto"),PICK_IMAGE_REQUEST);
     }
 
     // handling the image chooser activity result
@@ -123,34 +130,42 @@ public class ProfilFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            filePath = data.getData();
             try {
                 android.net.Uri selectedImage = data.getData();
-                Log.d("PATH URI", selectedImage.toString());
 
                 filePath = RealPathUtil.getRealPath(this.getContext(), selectedImage);
-                Log.d("PATH STR", filePath);
-//                File file = new File(filePath);
 
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
-                imgProfile.setImageBitmap(bitmap);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 60, out);
+                Bitmap image = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+                imgProfile.setImageBitmap(image);
+
                 uploadImage();
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(getActivity(), "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void uploadImage() {
-        // use the FileUtils to get the actual file by uri
         File file = new File(filePath);
+        try {
+            Bitmap bitmap = BitmapFactory.decodeFile (file.getPath ());
+            bitmap.compress (Bitmap.CompressFormat.JPEG, 50, new FileOutputStream(file));
+        }
+        catch (Throwable t) {
+            Log.e("ERROR", "Error compressing file." + t.toString ());
+            t.printStackTrace ();
+        }
+        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("foto", file.getName(), reqFile);
 
-//                getFile(this, filePath);
-
-        APIConnector.getInstance().uploadFile(getContext(), SalmanApplication.getCurrentUser(), file,  new APIConnector.ApiCallback<ResponseBody>() {
+        APIConnector.getInstance().uploadImage(body, new APIConnector.ApiCallback<MessageResponse>() {
             @Override
-            public void onSuccess(ResponseBody response) {
-
+            public void onSuccess(MessageResponse response) {
+                Toast.makeText(getActivity(), "Sukses!", Toast.LENGTH_SHORT).show();
             }
 
             @Override

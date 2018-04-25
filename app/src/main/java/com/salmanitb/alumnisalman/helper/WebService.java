@@ -1,5 +1,7 @@
 package com.salmanitb.alumnisalman.helper;
 
+import android.media.Image;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.salmanitb.alumnisalman.model.About;
@@ -49,10 +51,9 @@ public interface WebService {
 
     @Multipart
     @POST("user/update/image")
-    Call<ResponseBody> uploadFile(
-//            @Part("description") RequestBody description,
-//            @Part MultipartBody.Part image,
-            @Part("foto") RequestBody image,
+    Call<BaseResponse<MessageResponse>> uploadFile(
+            @Header("um") String authToken,
+            @Part MultipartBody.Part foto,
             @Part("id") RequestBody id
     );
 

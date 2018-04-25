@@ -1,6 +1,7 @@
 package com.salmanitb.alumnisalman.helper;
 
 import android.content.Context;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -122,57 +123,92 @@ public class APIConnector{
         });
     }
 
-    public void uploadFile(final Context context, final User user, File file, final ApiCallback<ResponseBody> callback) {
+    public void uploadImage(final MultipartBody.Part image, final ApiCallback<MessageResponse> callback) {
+        RequestBody id = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(SalmanApplication.getCurrentUserAuth().getId()));
+        Call<BaseResponse<MessageResponse>> call = WebService.APIServiceImplementation.getInstance()
+                .uploadFile(
+                        SalmanApplication.getCurrentUserAuth().getToken(),
+                        image,
+                        id);
 
-        // create RequestBody instance from file
-        Log.e("Upload FILE", "req");
-        RequestBody requestFile =
-                RequestBody.create(
-                        MediaType.parse("image/*"),
-                        file
-                );
-
-        Log.e("Upload FILE", "part");
-        Log.e("Upload FILE", file.getName());
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
-
-
-        String uid = String.valueOf(user.getUid());
-
-        RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
-        RequestBody id = RequestBody.create(MediaType.parse("text/plain"), uid);
-
-        Call<ResponseBody> call = WebService.APIServiceImplementation.getInstance().uploadFile(
-                image,
-                id
-        );
-
-        Log.e("Upload FILE", "call");
-
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<BaseResponse<MessageResponse>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                ResponseBody responseBody = response.body();
-                Log.d("RESPON", responseBody.toString());
-//                if (responseBody != null) {
-//                    if (!responseBody.)) {
-//                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
-//                        return;
-//                    }
-//                    callback.onSuccess(responseBody.getData());
-//                    return;
-//                }
-//                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+            public void onResponse(Call<BaseResponse<MessageResponse>> call, Response<BaseResponse<MessageResponse>> response) {
+                BaseResponse<MessageResponse> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<MessageResponse>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }
         });
     }
+
+//    public void uploadFile(final Context context, final User user, File file, final ApiCallback<ResponseBody> callback) {
+//
+//        // create RequestBody instance from file
+//        Log.e("Upload FILE", "req");
+//        RequestBody requestFile =
+//                RequestBody.create(
+//                        MediaType.parse("image/*"),
+//                        file
+//                );
+//
+//        Log.e("Upload FILE", "part");
+//        Log.e("Upload FILE", file.getName());
+//        MultipartBody.Part body =
+//                MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
+//
+//
+//        String uid = String.valueOf(user.getUid());
+//
+//        RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
+//        RequestBody id = RequestBody.create(MediaType.parse("text/plain"), uid);
+//
+//        Call<ResponseBody> call = WebService.APIServiceImplementation.getInstance().uploadFile(
+//                image,
+//                id
+//        );
+//
+//        Log.e("Upload FILE", "call");
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                ResponseBody responseBody = response.body();
+//                Log.d("RESPON", responseBody.toString());
+////                if (responseBody != null) {
+////                    if (!responseBody.)) {
+////                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+////                        return;
+////                    }
+////                    callback.onSuccess(responseBody.getData());
+////                    return;
+////                }
+////                callback.onFailure(new Throwable("Terjadi kesahalah sistem, coba beberapa saat lagi"));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Log.e("Error", t.getMessage());
+//                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+//            }
+//        });
+//    }
 
     public void doRegister(final User user, final ApiCallback<UserAuth> callback) {
         String hashedPassword = getMD5(user.getPassword());
