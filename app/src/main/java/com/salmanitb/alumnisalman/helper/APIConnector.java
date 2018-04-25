@@ -463,7 +463,7 @@ public class APIConnector{
         });
     }
 
-    public void doLoveSalmanMenyapa(final int postId, final int uid, final ApiCallback<String> callback) {
+    public void doLoveSalmanMenyapa(final int postId, final int uid, final ApiCallback<Void> callback) {
         Call<BaseResponse<String>> call = WebService.APIServiceImplementation.getInstance().doLoveSalmanMenyapa(SalmanApplication.getCurrentUserAuth().getToken(), postId, uid);
         call.enqueue(new Callback<BaseResponse<String>>() {
             @Override
@@ -477,7 +477,7 @@ public class APIConnector{
                     callback.onFailure(new Throwable(responseBody.getError().getMessage()));
                     return;
                 }
-                callback.onSuccess(responseBody.getData());
+                callback.onSuccess(null);
             }
 
             @Override

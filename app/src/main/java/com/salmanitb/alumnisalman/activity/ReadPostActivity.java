@@ -165,13 +165,11 @@ public class ReadPostActivity extends AppCompatActivity {
     }
 
     private void changeLoveStatus() {
-        APIConnector.getInstance().doLoveSalmanMenyapa(post.getId(), SalmanApplication.getCurrentUserAuth().getId(), new APIConnector.ApiCallback<String>() {
+        APIConnector.getInstance().doLoveSalmanMenyapa(post.getId(), SalmanApplication.getCurrentUserAuth().getId(), new APIConnector.ApiCallback<Void>() {
             @Override
-            public void onSuccess(String response) {
-                if (response.equals("Berhasil")) {
-                    post.setLikedByMe(!post.isLikedByMe());
-                    showLoveButton();
-                }
+            public void onSuccess(Void voids) {
+                post.setLikedByMe(!post.isLikedByMe());
+                showLoveButton();
             }
 
             @Override
