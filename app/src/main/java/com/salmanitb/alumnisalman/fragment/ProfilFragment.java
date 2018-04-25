@@ -1,16 +1,12 @@
 package com.salmanitb.alumnisalman.fragment;
 
 
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +25,11 @@ import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RealPathUtil;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
-import com.salmanitb.alumnisalman.model.UserAuth;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 
-import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -183,10 +177,10 @@ public class ProfilFragment extends Fragment{
             if (!currentUser.getImageURL().equals("")) {
                 Picasso.get().load(BASE_IMAGE_URL + currentUser.getImageURL()).into(imgProfile);
             }  else {
-                Picasso.get().load(R.drawable.user).into(imgProfile);
+                Picasso.get().load(R.drawable.default_user).into(imgProfile);
             }
         } else {
-            Picasso.get().load(R.drawable.user).into(imgProfile);
+            Picasso.get().load(R.drawable.default_user).into(imgProfile);
         }
 
         if (currentUser.getSex().equals(MALE)) {

@@ -73,7 +73,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         txtQuestion1.setText(questions[idx]);
         txtQuestion2.setText(questions[nextIdx]);
 
-        // Show user data
+        // Show default_user data
         showUserData();
 
         return rootView;

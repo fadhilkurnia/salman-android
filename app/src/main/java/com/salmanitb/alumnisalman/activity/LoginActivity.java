@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        // Get all user data and save to local
+        // Get all default_user data and save to local
         APIConnector.getInstance().getProfil(userAuth.getId(), new APIConnector.ApiCallback<User>() {
             @Override
             public void onSuccess(User response) {

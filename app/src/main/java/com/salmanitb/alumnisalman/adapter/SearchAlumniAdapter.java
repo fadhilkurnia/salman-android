@@ -2,7 +2,6 @@ package com.salmanitb.alumnisalman.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import com.salmanitb.alumnisalman.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.salmanitb.alumnisalman.helper.WebService.BASE_IMAGE_URL;
 
@@ -97,7 +95,7 @@ public class SearchAlumniAdapter extends RecyclerView.Adapter<SearchAlumniAdapte
                     try{
                         Picasso.get().load(BASE_IMAGE_URL + alumni.getImageURL()).into(imgPhoto);
                     } catch (Exception e) {
-                        Picasso.get().load(R.drawable.user).into(imgPhoto);
+                        Picasso.get().load(R.drawable.default_user).into(imgPhoto);
                         e.printStackTrace();
                     }
                 }
