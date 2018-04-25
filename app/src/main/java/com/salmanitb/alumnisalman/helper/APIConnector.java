@@ -17,6 +17,7 @@ import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.City;
 import com.salmanitb.alumnisalman.model.GeocodingResponse;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
@@ -85,6 +86,36 @@ public class APIConnector{
 
             @Override
             public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+                callback.onFailure(new Throwable("Periksa koneksi anda!"));
+            }
+        });
+    }
+
+    public void doLogout(final ApiCallback<MessageResponse> callback) {
+        Call<BaseResponse<MessageResponse>> call = WebService.APIServiceImplementation.getInstance()
+                .doLogout(SalmanApplication.getCurrentUserAuth().getToken());
+        call.enqueue(new Callback<BaseResponse<MessageResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<MessageResponse>> call, Response<BaseResponse<MessageResponse>> response) {
+                BaseResponse<MessageResponse> responseBody = response.body();
+                if (responseBody == null) {
+                    callback.onFailure(new Throwable("Terjadi kesalahan pada sistem kami"));
+                    return;
+                }
+
+                if (!responseBody.isSuccess()) {
+                    if (responseBody.getError() != null)
+                        callback.onFailure(new Throwable(responseBody.getError().getMessage()));
+                    else
+                        callback.onFailure(new Throwable("Terjadi kesalahan!"));
+                } else {
+                    callback.onSuccess(responseBody.getData());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<MessageResponse>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }

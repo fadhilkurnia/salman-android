@@ -6,18 +6,23 @@ import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.City;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.User;
 import com.salmanitb.alumnisalman.model.SearchUserResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -40,7 +45,6 @@ import retrofit2.http.Query;
 
 public interface WebService {
     String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
-//    String BASE_IMAGE_URL = "http://pplk2h.if.itb.ac.id/media/";
     String BASE_IMAGE_URL = "";
 
     @Multipart
@@ -56,6 +60,9 @@ public interface WebService {
     @POST("login")
     Call<BaseResponse<UserAuth>> doLogin(@Field("email") String email,
                                  @Field("password") String hashedPassword);
+
+    @POST("logout")
+    Call<BaseResponse<MessageResponse>> doLogout(@Header("um") String authToken);
 
     @FormUrlEncoded
     @POST("register")
@@ -125,8 +132,7 @@ public interface WebService {
     Call<BaseResponse<About>> getAbout(@Header("um") String authKey, @Query("format") String format);
 
     @GET("search")
-    Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Header("um") String authKey, @Query("q") String format)
-                                  ;
+    Call<BaseResponse<ArrayList<SearchUserResponse>>> searchUser(@Header("um") String authKey, @Query("q") String format);
 
     @GET("persebaran")
     Call<BaseResponse<ArrayList<City>>> getAlumniMapping(@Header("um") String authKey);
