@@ -6,6 +6,7 @@ import com.salmanitb.alumnisalman.model.About;
 import com.salmanitb.alumnisalman.model.BaseResponse;
 import com.salmanitb.alumnisalman.model.CheckEmailResponse;
 import com.salmanitb.alumnisalman.model.City;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.Post;
 import com.salmanitb.alumnisalman.model.ProfileResponse;
 import com.salmanitb.alumnisalman.model.User;
@@ -59,6 +60,9 @@ public interface WebService {
     @POST("login")
     Call<BaseResponse<UserAuth>> doLogin(@Field("email") String email,
                                  @Field("password") String hashedPassword);
+
+    @POST("logout")
+    Call<BaseResponse<MessageResponse>> doLogout(@Header("um") String authToken);
 
     @FormUrlEncoded
     @POST("register")

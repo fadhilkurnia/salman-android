@@ -24,6 +24,7 @@ import com.salmanitb.alumnisalman.activity.LoginActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RealPathUtil;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
 import com.squareup.picasso.Picasso;
 
@@ -207,17 +208,27 @@ public class ProfilFragment extends Fragment{
     protected void doLogout() {
 
         if (doubleLogoutToExitPressedOnce) {
-            PreferenceManager.getInstance().setUserAuth(null);
-            Intent i = new Intent(getActivity(), LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
+            APIConnector.getInstance().doLogout(new APIConnector.ApiCallback<MessageResponse>() {
+                @Override
+                public void onSuccess(MessageResponse response) {
+                    PreferenceManager.getInstance().setUserAuth(null);
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getActivity(), "Gagal logout!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return;
         }
 
         this.doubleLogoutToExitPressedOnce = true;
         Toast.makeText(this.getContext(), "Tekan sekali lagi untuk logout", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 doubleLogoutToExitPressedOnce=false;
