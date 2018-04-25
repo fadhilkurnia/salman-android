@@ -1,16 +1,12 @@
 package com.salmanitb.alumnisalman.fragment;
 
 
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +24,13 @@ import com.salmanitb.alumnisalman.activity.LoginActivity;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RealPathUtil;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
-import com.salmanitb.alumnisalman.model.UserAuth;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 
-import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -183,10 +178,10 @@ public class ProfilFragment extends Fragment{
             if (!currentUser.getImageURL().equals("")) {
                 Picasso.get().load(BASE_IMAGE_URL + currentUser.getImageURL()).into(imgProfile);
             }  else {
-                Picasso.get().load(R.drawable.user).into(imgProfile);
+                Picasso.get().load(R.drawable.default_user).into(imgProfile);
             }
         } else {
-            Picasso.get().load(R.drawable.user).into(imgProfile);
+            Picasso.get().load(R.drawable.default_user).into(imgProfile);
         }
 
         if (currentUser.getSex().equals(MALE)) {
@@ -213,17 +208,27 @@ public class ProfilFragment extends Fragment{
     protected void doLogout() {
 
         if (doubleLogoutToExitPressedOnce) {
-            PreferenceManager.getInstance().setUserAuth(null);
-            Intent i = new Intent(getActivity(), LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
+            APIConnector.getInstance().doLogout(new APIConnector.ApiCallback<MessageResponse>() {
+                @Override
+                public void onSuccess(MessageResponse response) {
+                    PreferenceManager.getInstance().setUserAuth(null);
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getActivity(), "Gagal logout!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return;
         }
 
         this.doubleLogoutToExitPressedOnce = true;
         Toast.makeText(this.getContext(), "Tekan sekali lagi untuk logout", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 doubleLogoutToExitPressedOnce=false;

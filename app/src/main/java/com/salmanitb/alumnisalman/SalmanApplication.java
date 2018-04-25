@@ -44,4 +44,9 @@ public class SalmanApplication extends Application {
         return currentUserAuth;
     }
 
+    public static void setCurrentUserAuth(UserAuth userAuth) {
+        PreferenceManager.getInstance().setUserAuth(userAuth);
+        currentUserAuth = userAuth;
+    }
+
 }

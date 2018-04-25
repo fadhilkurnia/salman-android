@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/user" />
+            android:src="@drawable/default_user" />
 
         <LinearLayout
             android:layout_width="wrap_content"

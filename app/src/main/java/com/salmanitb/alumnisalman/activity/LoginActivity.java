@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UserAuth response) {
                 response.setPassword(password);
-                PreferenceManager.getInstance().setUserAuth(response);
+                SalmanApplication.setCurrentUserAuth(response);
                 if (response.isVerified())
                     gotoMain();
                 else
@@ -113,12 +113,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void gotoMain() {
-        UserAuth userAuth = PreferenceManager.getInstance().getUserAuth();
+        UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
         if (userAuth == null) {
             Toast.makeText(this, "Terjadi kesalahan sistem", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         // Get all user data and save to local
         APIConnector.getInstance().getProfil(userAuth.getId(), new APIConnector.ApiCallback<User>() {
@@ -133,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                enableInput();
             }
         });
     }
