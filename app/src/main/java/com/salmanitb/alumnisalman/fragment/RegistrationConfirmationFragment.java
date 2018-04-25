@@ -141,7 +141,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
         APIConnector.getInstance().doRegister(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<UserAuth>() {
             @Override
             public void onSuccess(UserAuth response) {
-                PreferenceManager.getInstance().setUserAuth(response);
+                SalmanApplication.setCurrentUserAuth(response);
                 callback.onFinishChecking(true);
             }
 

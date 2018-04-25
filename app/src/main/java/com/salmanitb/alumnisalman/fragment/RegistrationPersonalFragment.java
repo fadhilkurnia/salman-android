@@ -185,7 +185,7 @@ public class RegistrationPersonalFragment extends RegistrationStepFragment {
                         geocodingResponse.getResults()[0]
                                 .getGeometry()
                                 .getLocation()
-                                .getLatitude());
+                                .getLongitude());
     }
 
     private boolean isMember(String data[], String element) {
