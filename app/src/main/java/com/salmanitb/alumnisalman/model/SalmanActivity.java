@@ -24,6 +24,8 @@ public class SalmanActivity {
     }
 
     public String getStartYear() {
+        if (startYear == null)
+            startYear = "";
         return startYear;
     }
 
@@ -32,6 +34,8 @@ public class SalmanActivity {
     }
 
     public String getEndYear() {
+        if(endYear == null)
+            endYear = "";
         return endYear;
     }
 

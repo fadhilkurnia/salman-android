@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RealPathUtil;
 import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.SalmanActivity;
+import com.salmanitb.alumnisalman.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayInputStream;
@@ -93,6 +95,9 @@ public class ProfilFragment extends Fragment{
     @BindView(R.id.angkatan_lmd)
     TextView txtLmd;
 
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout refreshLayout;
+
     private Bitmap bitmap;
     private String filePath;
 
@@ -110,10 +115,31 @@ public class ProfilFragment extends Fragment{
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profil, container, false);
         ButterKnife.bind(this, rootView);
-
+        prepareRefreshLayout();
         loadData();
 
         return rootView;
+    }
+
+    private void prepareRefreshLayout() {
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                APIConnector.getInstance().getProfil(SalmanApplication.getCurrentUserAuth().getId(), new APIConnector.ApiCallback<User>() {
+                    @Override
+                    public void onSuccess(User response) {
+                        refreshLayout.setRefreshing(false);
+                        SalmanApplication.setCurrentUser(response);
+                        loadData();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(getActivity(), "Gagal memperbaharui data profil", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
 
@@ -205,12 +231,21 @@ public class ProfilFragment extends Fragment{
             imgMan.setVisibility(View.GONE);
         }
 
+        linearLayout.removeAllViews();
         for (SalmanActivity s : currentUser.getActivities()) {
             String year_start =  s.getStartYear();
             String year_end = s.getEndYear();
             String activity = s.getTitle();
             TextView textView = new TextView(getContext());
-            String detail_activity = activity + ", " + year_start + "-" + year_end;
+            String detail_activity = activity;
+            if (!(year_start.equals("") && year_end.equals(""))) {
+                if (!year_start.equals(""))
+                    detail_activity = detail_activity + ", " + year_start;
+                if (!year_end.equals(""))
+                    if (!year_start.equals(""))
+                        detail_activity = detail_activity + "-";
+                    detail_activity = detail_activity + year_end;
+            }
             textView.setText(detail_activity);
             linearLayout.addView(textView);
         }

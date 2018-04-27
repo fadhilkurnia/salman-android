@@ -3,6 +3,7 @@ package com.salmanitb.alumnisalman.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,36 +72,54 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
         }
 
         inputActivity = new ArrayList<>();
-        for (String activity: getResources().getStringArray(R.array.default_registered_activity)) {
-            if (isEdit) {
-                boolean isChecked = false;
+        if (isEdit) {
+            boolean isChecked;
+            for (String activity: getResources().getStringArray(R.array.default_registered_activity)) {
                 String start = "0", end = "0";
+                isChecked = false;
                 for (SalmanActivity s : SalmanApplication.getCurrentUser().getActivities()) {
                     if (activity.equals(s.getTitle())) {
                         isChecked = true;
                         start = s.getStartYear();
                         end = s.getEndYear();
+                        break;
                     }
                 }
                 if (isChecked) {
+                    //                    Log.d("TAHUN:", start);
+                    //                    Log.d("TAHUN:", end);
+
                     ActivityView view = new ActivityView(getActivity(), activity, true, true, true);
-                    view.setStartYear(Integer.parseInt(start));
                     view.setEndYear(Integer.parseInt(end));
+                    view.setStartYear(Integer.parseInt(start));
                     inputActivity.add(view);
                     activityLayoutRow.addView(view);
                 } else {
-                    ActivityView view = new ActivityView(getActivity(), activity, false, true, true);
+                    ActivityView view = new ActivityView(getActivity(), activity, false, false, false);
                     inputActivity.add(view);
                     activityLayoutRow.addView(view);
                 }
-            } else {
+            }
+
+            for (SalmanActivity s : SalmanApplication.getCurrentUser().getActivities()) {
+                for (String activity : getResources().getStringArray(R.array.default_registered_activity)) {
+                    if (!activity.equals(s.getTitle())) {
+                        checkBoxOthers.setChecked(true);
+                        inputOthers.setText(s.getTitle());
+                        inputOthers.setEnabled(true);
+                        inputOthers.setFocusable(true);
+                    }
+                }
+            }
+
+        } else {
+            for (String activity: getResources().getStringArray(R.array.default_registered_activity)) {
                 ActivityView view = new ActivityView(getActivity(), activity);
                 inputActivity.add(view);
                 activityLayoutRow.addView(view);
             }
-
-
         }
+
 
         checkBoxOthers.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

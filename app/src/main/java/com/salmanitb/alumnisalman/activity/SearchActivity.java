@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.salmanitb.alumnisalman.R;
+import com.salmanitb.alumnisalman.SalmanApplication;
 import com.salmanitb.alumnisalman.adapter.SearchAlumniAdapter;
 import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
@@ -122,7 +123,8 @@ public class SearchActivity extends AppCompatActivity {
                 } else {
                     for (SearchUserResponse s : response) {
                         User user = new User(1, s.getName(), s.getEmail(), s.getUrlImg(), s.getCity());
-                        alumni.add(user);
+                        if (!s.getEmail().equals(SalmanApplication.getCurrentUserAuth().getEmail()))
+                            alumni.add(user);
                     }
                     adapter.addAll(alumni);
                 }

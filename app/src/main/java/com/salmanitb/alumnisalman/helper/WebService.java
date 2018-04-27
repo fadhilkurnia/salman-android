@@ -93,7 +93,7 @@ public interface WebService {
 
     @FormUrlEncoded
     @POST("user/update")
-    Call<BaseResponse<UserAuth>> doUpdate(
+    Call<BaseResponse<MessageResponse>> doUpdate(@Header("um") String authKey,
             @Field("id") String id,
             @Field("nama") String name,
             @Field("email") String email,
