@@ -138,22 +138,10 @@ public class RegistrationActivity extends AppCompatActivity {
                         return;
                     }
 
-                    // Get Profil data
                     UserAuth userAuth = SalmanApplication.getCurrentUserAuth();
-                    APIConnector.getInstance().getProfil(userAuth.getId(), new APIConnector.ApiCallback<User>() {
-                        @Override
-                        public void onSuccess(User response) {
-                            SalmanApplication.setCurrentUser(response);
-                            Intent i = new Intent(RegistrationActivity.this, ConfirmActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                        }
-
-                        @Override
-                        public void onFailure(Throwable t) {
-
-                        }
-                    });
+                    Intent i = new Intent(RegistrationActivity.this, ConfirmActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
 
                 }
             }
