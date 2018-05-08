@@ -6,515 +6,522 @@
     android:background="@android:color/white"
     tools:context="com.salmanitb.alumnisalman.fragment.ProfilFragment">
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/header_cover_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/navigation_header_image" />
-
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/header_cover_image"
-                android:background="@color/colorPrimaryDark">
-
-                <Button
-                    android:id="@+id/btn_logout"
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/ic_logout" />
-
-                <TextView
-                    android:id="@+id/txt_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="90dp"
-                    android:text="Muhammad Hilmi Asyrofi"
-                    android:textAlignment="center"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/man_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/man"
-                    android:layout_toLeftOf="@id/txt_name"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginRight="5dp"/>
-
-
-                <ImageView
-                    android:id="@+id/woman_icon"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/woman"
-                    android:layout_toLeftOf="@id/txt_name"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginRight="5dp"/>
-
-                <TextView
-                    android:id="@+id/user_email"
+                    android:id="@+id/header_cover_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="115dp"
-                    android:text="imamtua@gmail.com"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="12dp" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/navigation_header_image" />
+
+
+                <RelativeLayout
+                    android:id="@+id/profile_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/header_cover_image"
+                    android:background="@color/colorPrimaryDark">
+
+                    <Button
+                        android:id="@+id/btn_logout"
+                        android:layout_width="20dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/ic_logout" />
+
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="90dp"
+                        android:text="Muhammad Hilmi Asyrofi"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/man_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/man"
+                        android:layout_toLeftOf="@id/txt_name"
+                        android:layout_marginTop="97dp"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/woman_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/woman"
+                        android:layout_toLeftOf="@id/txt_name"
+                        android:layout_marginTop="97dp"
+                        android:layout_marginRight="5dp"/>
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="115dp"
+                        android:text="imamtua@gmail.com"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="12dp" />
+
+                </RelativeLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_below="@id/header_cover_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-60dp"
+                    android:src="@drawable/default_user"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="2dp" />
+
+                <ImageButton
+                    android:id="@+id/edit_image_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_toRightOf="@id/profile_image"
+                    android:layout_toEndOf="@id/profile_image"
+                    android:layout_marginLeft="-35dp"
+                    android:layout_marginStart="-35dp"
+                    android:layout_alignBottom="@id/profile_image"
+                    android:background="@drawable/ic_edit_image"/>
+
+
+                <LinearLayout
+                    android:id="@+id/bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/profile_layout"
+                    android:background="@color/colorBackground"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:text="Personal"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/separator" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/btn_edit_personal"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/pencil_edit_button"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_maps" />
+
+                        <TextView
+                            android:id="@+id/alamat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Alamat"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/user_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/alamat"
+                            android:layout_marginLeft="27dp"
+                            android:text="Jalan Dago Asri V no 7, Bandung" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_phone_receiver" />
+
+                        <TextView
+                            android:id="@+id/judul4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Handphone"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/user_phonenumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/judul4"
+                            android:layout_marginLeft="27dp"
+                            android:text="0823228133254" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:text="Almamater"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/separator" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/btn_edit_almamater"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/pencil_edit_button"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_college" />
+
+                        <TextView
+                            android:id="@+id/judul_jurusan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Pendidikan"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/user_major"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/judul_jurusan"
+                            android:layout_marginLeft="27dp"
+                            android:text="Teknik Informatika ITB 2015" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:text="Pekerjaan"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/separator" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/btn_edit_pekerjaan"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/pencil_edit_button"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_profesi" />
+
+                        <TextView
+                            android:id="@+id/judul2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Profesi"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/user_job"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/judul2"
+                            android:layout_marginLeft="27dp"
+                            android:text="AI Engineer" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_job" />
+
+                        <TextView
+                            android:id="@+id/instansi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Instansi"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/user_company"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/instansi"
+                            android:layout_marginLeft="27dp"
+                            android:text="Google Silicon Valley" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:text="Kegiatan"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/separator" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageButton
+                            android:id="@+id/btn_edit_kegiatan"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/pencil_edit_button"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="1dp"
+                            android:src="@drawable/ic_list" />
+
+                        <TextView
+                            android:id="@+id/activity_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Aktivitas"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/activity_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/activity_title"
+                            android:layout_marginLeft="27dp"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBackground"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_star" />
+
+                        <TextView
+                            android:id="@+id/lmd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true"
+                            android:paddingLeft="25dp"
+                            android:text="Angkatan LMD"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/angkatan_lmd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/lmd"
+                            android:layout_marginLeft="27dp"
+                            android:text="122" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
 
             </RelativeLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_below="@id/header_cover_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="-60dp"
-                android:src="@drawable/default_user"
-                app:civ_border_color="@android:color/white"
-                app:civ_border_width="2dp" />
 
-            <ImageButton
-                android:id="@+id/edit_image_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_toRightOf="@id/profile_image"
-                android:layout_toEndOf="@id/profile_image"
-                android:layout_marginLeft="-35dp"
-                android:layout_marginStart="-35dp"
-                android:layout_alignBottom="@id/profile_image"
-                android:background="@drawable/ic_edit_image"/>
+        </ScrollView>
 
-
-            <LinearLayout
-                android:id="@+id/bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@id/profile_layout"
-                android:background="@color/colorBackground"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:text="Personal"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/separator" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageButton
-                        android:id="@+id/btn_edit_personal"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/pencil_edit_button"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_maps" />
-
-                    <TextView
-                        android:id="@+id/alamat"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Alamat"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/user_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/alamat"
-                        android:layout_marginLeft="27dp"
-                        android:text="Jalan Dago Asri V no 7, Bandung" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_phone_receiver" />
-
-                    <TextView
-                        android:id="@+id/judul4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Handphone"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/user_phonenumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/judul4"
-                        android:layout_marginLeft="27dp"
-                        android:text="0823228133254" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:text="Almamater"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/separator" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageButton
-                        android:id="@+id/btn_edit_almamater"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/pencil_edit_button"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_college" />
-
-                    <TextView
-                        android:id="@+id/judul_jurusan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Pendidikan"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/user_major"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/judul_jurusan"
-                        android:layout_marginLeft="27dp"
-                        android:text="Teknik Informatika ITB 2015" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:text="Pekerjaan"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
-                        />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/separator" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageButton
-                        android:id="@+id/btn_edit_pekerjaan"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/pencil_edit_button"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_profesi" />
-
-                    <TextView
-                        android:id="@+id/judul2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Profesi"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/user_job"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/judul2"
-                        android:layout_marginLeft="27dp"
-                        android:text="AI Engineer" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_job" />
-
-                    <TextView
-                        android:id="@+id/instansi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Instansi"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/user_company"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/instansi"
-                        android:layout_marginLeft="27dp"
-                        android:text="Google Silicon Valley" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:text="Kegiatan"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info"
-                        />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/separator" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
-
-                    <ImageButton
-                        android:id="@+id/btn_edit_kegiatan"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/pencil_edit_button"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="1dp"
-                        android:src="@drawable/ic_list" />
-
-                    <TextView
-                        android:id="@+id/activity_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Aktivitas"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/activity_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/activity_title"
-                        android:layout_marginLeft="27dp"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorBackground"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_star" />
-
-                    <TextView
-                        android:id="@+id/lmd"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:paddingLeft="25dp"
-                        android:text="Angkatan LMD"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/angkatan_lmd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/lmd"
-                        android:layout_marginLeft="27dp"
-                        android:text="122" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-
-    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

@@ -272,7 +272,7 @@ public class APIConnector{
         });
     }
 
-    public void doUpdate(final User user, final ApiCallback<UserAuth> callback) {
+    public void doUpdate(final User user, final ApiCallback<MessageResponse> callback) {
         Gson gson = new Gson();
         ArrayList<String> activities = new ArrayList<>();
         ArrayList<String> activitiesYear = new ArrayList<>();
@@ -289,7 +289,8 @@ public class APIConnector{
         String uid = String.valueOf(user.getUid());
         Log.d("UID_UPDATE", uid);
 
-        Call<BaseResponse<UserAuth>> call = WebService.APIServiceImplementation.getInstance().doUpdate(
+        Call<BaseResponse<MessageResponse>> call = WebService.APIServiceImplementation.getInstance().doUpdate(
+                SalmanApplication.getCurrentUserAuth().getToken(),
                 uid,
                 user.getName(),
                 user.getEmail(),
@@ -310,10 +311,10 @@ public class APIConnector{
                 gson.toJson(activitiesYear)
         );
 
-        call.enqueue(new Callback<BaseResponse<UserAuth>>() {
+        call.enqueue(new Callback<BaseResponse<MessageResponse>>() {
             @Override
-            public void onResponse(Call<BaseResponse<UserAuth>> call, Response<BaseResponse<UserAuth>> response) {
-                BaseResponse<UserAuth> responseBody = response.body();
+            public void onResponse(Call<BaseResponse<MessageResponse>> call, Response<BaseResponse<MessageResponse>> response) {
+                BaseResponse<MessageResponse> responseBody = response.body();
                 if (responseBody != null) {
                     if (!responseBody.isSuccess()) {
                         callback.onFailure(new Throwable(responseBody.getError().getMessage()));
@@ -326,7 +327,7 @@ public class APIConnector{
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<UserAuth>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<MessageResponse>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
                 callback.onFailure(new Throwable("Periksa koneksi anda!"));
             }

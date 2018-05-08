@@ -27,6 +27,7 @@ import com.salmanitb.alumnisalman.helper.APIConnector;
 import com.salmanitb.alumnisalman.helper.PreferenceManager;
 import com.salmanitb.alumnisalman.helper.RegistrationCheckerCallback;
 import com.salmanitb.alumnisalman.helper.RegistrationStepFragment;
+import com.salmanitb.alumnisalman.model.MessageResponse;
 import com.salmanitb.alumnisalman.model.UserAuth;
 
 import java.io.IOException;
@@ -101,8 +102,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (isSuccess) {
                         PreferenceManager.getInstance().setUserData(currentUser);
                         updateToDatabase();
-                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
-                        goToProfile();
                     }
                 }
             });
@@ -113,8 +112,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (isSuccess) {
                         PreferenceManager.getInstance().setUserData(currentUser);
                         updateToDatabase();
-                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
-                        goToProfile();
                     }
                 }
             });
@@ -125,8 +122,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (isSuccess) {
                         PreferenceManager.getInstance().setUserData(currentUser);
                         updateToDatabase();
-                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
-                        goToProfile();
                     }
                 }
             });
@@ -137,8 +132,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (isSuccess) {
                         PreferenceManager.getInstance().setUserData(currentUser);
                         updateToDatabase();
-                        Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
-                        goToProfile();
                     }
                 }
             });
@@ -146,10 +139,11 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateToDatabase() {
-        APIConnector.getInstance().doUpdate(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<UserAuth>() {
+        APIConnector.getInstance().doUpdate(SalmanApplication.getCurrentUser(), new APIConnector.ApiCallback<MessageResponse>() {
             @Override
-            public void onSuccess(UserAuth response) {
-                PreferenceManager.getInstance().setUserAuth(response);
+            public void onSuccess(MessageResponse response) {
+                Toast.makeText(EditProfileActivity.this, "Berhasil memperbaharui profil" , Toast.LENGTH_SHORT).show();
+                goToProfile();
             }
 
             @Override

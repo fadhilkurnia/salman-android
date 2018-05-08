@@ -68,7 +68,7 @@ public class ActivityView extends LinearLayout {
     }
 
     public void setEndYear(int endYear) {
-        txtStartYear.setText(String.valueOf(endYear));
+        txtEndYear.setText(String.valueOf(endYear));
     }
 
     public String getEndYear() {
