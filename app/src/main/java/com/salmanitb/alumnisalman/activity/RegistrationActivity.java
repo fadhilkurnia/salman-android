@@ -152,19 +152,19 @@ public class RegistrationActivity extends AppCompatActivity {
     private void changeRegistrationIcon() {
         switch (stepId) {
             case 1:
-                imgStepIcon.setImageResource(R.drawable.ic_action_contact);
+                imgStepIcon.setImageResource(R.drawable.ic_education);
                 txtStepDescription.setText("Masukan data almamater sarjana (S1) Anda");
                 break;
             case 2:
-                imgStepIcon.setImageResource(R.drawable.ic_mail);
+                imgStepIcon.setImageResource(R.drawable.ic_activity);
                 txtStepDescription.setText("Masukan data kegiatan yang pernah anda ikuti di Masjid Salman");
                 break;
             case 3:
-                imgStepIcon.setImageResource(R.drawable.ic_phone);
+                imgStepIcon.setImageResource(R.drawable.ic_work);
                 txtStepDescription.setText("Masukan data pekerjaan Anda saat ini");
                 break;
             case 4:
-                imgStepIcon.setImageResource(R.drawable.ic_address);
+                imgStepIcon.setImageResource(R.drawable.ic_finish);
                 txtStepDescription.setText("Jawab pertanyaan dari kami, dan pastikan data Anda sudah benar");
                 break;
             default:

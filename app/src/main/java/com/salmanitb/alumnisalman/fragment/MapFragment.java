@@ -2,6 +2,8 @@ package com.salmanitb.alumnisalman.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +22,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -178,10 +182,12 @@ public class MapFragment extends Fragment {
 
 //        Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.northeast.toString());
 //        Log.d("Bound: ", googleMap.getProjection().getVisibleRegion().latLngBounds.southwest.toString());
+        BitmapDescriptor mapIcon = BitmapDescriptorFactory.fromResource(R.drawable.ic_marker);
         for (City city : cities) {
             LatLng pos = new LatLng(city.getLatitute(), city.getLongitude());
             if (googleMap.getProjection().getVisibleRegion().latLngBounds.contains(pos)) {
                 googleMap.addMarker(new MarkerOptions().position(pos)
+                        .icon(mapIcon)
                         .title(city.getName()));
             }
         }

@@ -65,7 +65,7 @@ public class SearchActivity extends AppCompatActivity {
 
         searchView = (SearchView) findViewById(R.id.search);
         searchView.setIconifiedByDefault(false);
-        searchView.setQueryHint("Ketikkan minimal 2 huruf!");
+        searchView.setQueryHint("Cari berdasarkan nama");
         searchView.setFocusable(true);
         searchView.requestFocus();
         searchView.setFocusableInTouchMode(true);
@@ -73,7 +73,7 @@ public class SearchActivity extends AppCompatActivity {
             searchView.setQuery(searchQuery, true);
             getAlumniList(searchQuery);
             if (adapter.getItemCount() == 0)
-                searchView.setQueryHint("Ketikkan minimal 2 huruf!");
+                searchView.setQueryHint("Cari berdasarkan nama");
             recyclerView.setAdapter(adapter);
         }
 
