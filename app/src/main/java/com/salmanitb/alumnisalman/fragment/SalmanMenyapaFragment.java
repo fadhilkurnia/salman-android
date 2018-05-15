@@ -129,10 +129,10 @@ public class SalmanMenyapaFragment extends Fragment {
                 recyclerView.getLoadMoreFooterView().setVisibility(View.GONE);
                 swipeRefreshLayout.setRefreshing(false);
                 if (t.getMessage().equals("Artikel tidak ditemukan.")) {
-                    Toast.makeText(getActivity(), "Anda sudah di ujung Salman Menyapa", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Anda sudah di ujung Salman Menyapa", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
