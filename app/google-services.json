@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "332024380175",
+    "firebase_url": "https://alumni-salman.firebaseio.com",
+    "project_id": "alumni-salman",
+    "storage_bucket": "alumni-salman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332024380175:android:0cc1005f6c4f229d",
+        "android_client_info": {
+          "package_name": "com.salmanitb.alumnisalman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332024380175-1bqr5mnj3vb81qgj0dvtvo9d303fe3k9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.salmanitb.alumnisalman",
+            "certificate_hash": "d24b1ce9baf44f677576ccf6840791197e20ee06"
+          }
+        },
+        {
+          "client_id": "332024380175-saft9av8b871cjngbi4onjl6jn8mipqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.salmanitb.alumnisalman",
+            "certificate_hash": "01c361876c583d9dc39370acbd2f70b80ab47271"
+          }
+        },
+        {
+          "client_id": "332024380175-7plnvsomt2nb73cuvhpjupauk5gsmmmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI8sXOKqZHvDJCEEHigZrujxnPb1u--dQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332024380175-7plnvsomt2nb73cuvhpjupauk5gsmmmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
