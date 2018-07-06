@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     @BindView(R.id.txt_login)
     TextView txtLogin;
+    @BindView(R.id.loading)
+    ProgressBar loading;
 
     @OnClick(R.id.txt_login)
     public void gotoLogin() {
@@ -115,6 +118,11 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setEnabled(false);
         btnRegister.setBackgroundColor(getResources().getColor(R.color.separator));
         txtLogin.setEnabled(false);
+
+        inputEmail.setVisibility(View.GONE);
+        inputPassword.setVisibility(View.GONE);
+        inputRepassword.setVisibility(View.GONE);
+        loading.setVisibility(View.VISIBLE);
     }
 
     private void enableInput() {
@@ -124,6 +132,11 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setEnabled(true);
         btnRegister.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         txtLogin.setEnabled(true);
+
+        inputEmail.setVisibility(View.VISIBLE);
+        inputPassword.setVisibility(View.VISIBLE);
+        inputRepassword.setVisibility(View.VISIBLE);
+        loading.setVisibility(View.GONE);
     }
 
 }
