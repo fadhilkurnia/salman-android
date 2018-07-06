@@ -84,12 +84,10 @@
     </string-array>
 
     <string-array name="default_registered_question">
-        <item>Siapakah tokoh nasional yang meresmikan Masjid Salman ITB?</item>
-        <item>Pada tahun berapakah Masjid Salman ITB diresmikan?</item>
-        <item>Berapa jumlah tiang yang ada dalam Masjid Salman ITB?</item>
-        <item>Dimanakah letak Asrama Masjid Salman ITB?</item>
-        <item>Dimanakah letak Kantin Masjid Salman ITB?</item>
-        <item>Dimanakah letak Gedung Kayu?</item>
+        <item>Apa saja hal unik di Salman ITB?</item>
+        <item>Siapa tokoh inspiratif selama beraktivitas di Salman ITB?</item>
+        <item>Apa saja kegiatan yang berkesan di Salman ITB?</item>
+        <item>Kenapa dulu Anda terlibat aktif di Masjid Salman ITB?</item>
     </string-array>
 
 </resources>
