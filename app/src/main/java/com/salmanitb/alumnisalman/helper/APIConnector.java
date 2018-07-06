@@ -47,7 +47,6 @@ import retrofit2.Response;
  */
 
 public class APIConnector{
-    private static String BASE_URL = "http://pplk2h.if.itb.ac.id";
     private static APIConnector apiConnector;
 
     public static APIConnector getInstance() {

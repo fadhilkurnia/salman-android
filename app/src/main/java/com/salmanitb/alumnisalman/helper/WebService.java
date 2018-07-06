@@ -46,7 +46,8 @@ import retrofit2.http.Query;
  */
 
 public interface WebService {
-    String BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
+    String OLD_BASE_URL = "http://pplk2h.if.itb.ac.id/api/";
+    String BASE_URL = "http://128.199.123.167:3110/api/";
     String BASE_IMAGE_URL = "";
 
     @Multipart
