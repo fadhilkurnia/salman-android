@@ -46,7 +46,8 @@
         android:layout_below="@id/txt_status_description"
         android:layout_marginTop="80dp"
         android:text="@string/data_anda_belum_benar_ubah_data"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:visibility="gone" />
 
 
     <Button
