@@ -197,20 +197,22 @@ public class RegistrationActivityFragment extends RegistrationStepFragment {
             sbActivity.append(", ").append(inputOthers.getText().toString());
         }
 
+        // Accquire all activities and LMD data
         SalmanApplication.getCurrentUser().setLmd(inputLMD.getText().toString());
+        ArrayList<SalmanActivity> choosenActivity = new ArrayList<>();
         SalmanApplication.getCurrentUser().setActivities(new ArrayList<SalmanActivity>());
         for (ActivityView activityView: inputActivity) {
             if (activityView.isChecked()) {
                 SalmanActivity salmanActivity = new SalmanActivity(activityView.getTitle(), activityView.getStartYear(), activityView.getEndYear());
-                SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+                choosenActivity.add(salmanActivity);
             }
         }
         if (checkBoxOthers.isChecked()) {
-            if (SalmanApplication.getCurrentUser().getActivities() == null)
-                SalmanApplication.getCurrentUser().setActivities(new ArrayList<SalmanActivity>());
             SalmanActivity salmanActivity = new SalmanActivity(inputOthers.getText().toString(), "", "");
-            SalmanApplication.getCurrentUser().getActivities().add(salmanActivity);
+            choosenActivity.add(salmanActivity);
         }
+        SalmanApplication.getCurrentUser().setActivities(choosenActivity);
+
         callback.onFinishChecking(true);
     }
 

@@ -95,6 +95,7 @@ public class RegistrationConfirmationFragment extends RegistrationStepFragment {
 
         stringBuilder.append("Angkatan LMD/LSI   : " + user.getLmd() + "\n");
         stringBuilder.append("Aktivitas   : \n");
+        if (SalmanApplication.getCurrentUser().getActivities() != null)
         for(SalmanActivity activity: SalmanApplication.getCurrentUser().getActivities()) {
             stringBuilder.append("     - " + activity.toString() + "\n");
         }
