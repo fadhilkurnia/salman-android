@@ -63,7 +63,7 @@ public class SalmanMenyapaFragment extends Fragment {
         prepareListener();
 
         postAdapter = new PostAdapter(postList, listener);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setIAdapter(postAdapter);

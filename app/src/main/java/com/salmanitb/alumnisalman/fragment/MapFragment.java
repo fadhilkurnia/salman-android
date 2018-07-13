@@ -1,6 +1,7 @@
 package com.salmanitb.alumnisalman.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -94,7 +95,7 @@ public class MapFragment extends Fragment {
     }
 
     private void loadSearchActivity() {
-        Intent intent = new Intent(this.getContext(), SearchActivity.class);
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
         startActivity(intent);
     }
 
@@ -138,7 +139,7 @@ public class MapFragment extends Fragment {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
 
-                        Intent intent = new Intent(getContext(), SearchActivity.class);
+                        Intent intent = new Intent(getActivity(), SearchActivity.class);
                         intent.putExtra("SEARCH_QUERY", marker.getTitle());
                         startActivity(intent);
 
@@ -162,7 +163,7 @@ public class MapFragment extends Fragment {
                     cities.clear();
 
                 if (response.isEmpty()) {
-                    Toast.makeText(getContext(), "Pencarian tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Pencarian tidak ditemukan", Toast.LENGTH_SHORT).show();
                 } else {
                     for (City s : response) {
                         cities.add(s);
@@ -172,7 +173,7 @@ public class MapFragment extends Fragment {
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

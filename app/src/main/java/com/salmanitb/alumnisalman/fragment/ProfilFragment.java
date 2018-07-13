@@ -201,7 +201,7 @@ public class ProfilFragment extends Fragment{
             try {
                 android.net.Uri selectedImage = data.getData();
 
-                filePath = RealPathUtil.getRealPath(this.getContext(), selectedImage);
+                filePath = RealPathUtil.getRealPath(this.getActivity(), selectedImage);
 
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -303,7 +303,7 @@ public class ProfilFragment extends Fragment{
             String year_start =  s.getStartYear();
             String year_end = s.getEndYear();
             String activity = s.getTitle();
-            TextView textView = new TextView(getContext());
+            TextView textView = new TextView(getActivity());
             String detail_activity = activity;
             if (!(year_start.equals("") && year_end.equals(""))) {
                 if (!year_start.equals(""))
@@ -343,7 +343,7 @@ public class ProfilFragment extends Fragment{
         }
 
         this.doubleLogoutToExitPressedOnce = true;
-        Toast.makeText(this.getContext(), "Tekan sekali lagi untuk logout", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getActivity(), "Tekan sekali lagi untuk logout", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -355,28 +355,28 @@ public class ProfilFragment extends Fragment{
 
     @OnClick (R.id.btn_edit_personal)
     protected void editPersonal() {
-        Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        Intent intent = new Intent(this.getActivity(), EditProfileActivity.class);
         intent.putExtra("FRAGMENT_ID","PERSONAL");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_almamater)
     protected void editAlmamater() {
-        Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        Intent intent = new Intent(this.getActivity(), EditProfileActivity.class);
         intent.putExtra("FRAGMENT_ID","ALMAMATER");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_pekerjaan)
     protected void editPekerjaan() {
-        Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        Intent intent = new Intent(this.getActivity(), EditProfileActivity.class);
         intent.putExtra("FRAGMENT_ID","PEKERJAAN");
         startActivity(intent);
     }
 
     @OnClick (R.id.btn_edit_kegiatan)
     protected void editKegiatan() {
-        Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
+        Intent intent = new Intent(this.getActivity(), EditProfileActivity.class);
         intent.putExtra("FRAGMENT_ID","KEGIATAN");
         startActivity(intent);
     }
